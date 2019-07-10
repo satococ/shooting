@@ -399,6 +399,7 @@ class DanamkuStgGame extends Game {
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
-    document.body.appendChild(game.screenCanvas);
+    var kon = document.body.childNodes[1];
+    kon.appendChild(game.screenCanvas);
     game.start();
 });
