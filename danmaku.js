@@ -1,4 +1,54 @@
 'use strict';
+   var timer = document.getElementById('timer');
+    var start = document.getElementById('start');
+
+    //クリック時の時間を保持するための変数定義
+    var startTime;
+
+    //経過時刻を更新するための変数。 初めはだから0で初期化
+    var elapsedTime = 0;
+ //タイマーを止めるにはclearTimeoutを使う必要があり、そのためにはclearTimeoutの引数に渡すためのタイマーのidが必要
+    var timerId;
+
+
+function updateTimetText(){
+
+        //m(分) = 135200 / 60000ミリ秒で割った数の商　-> 2分
+        var m = Math.floor(elapsedTime / 60000);
+
+        //s(秒) = 135200 % 60000ミリ秒で / 1000 (ミリ秒なので1000で割ってやる) -> 15秒
+        var s = Math.floor(elapsedTime % 60000 / 1000);
+
+        //ms(ミリ秒) = 135200ミリ秒を % 1000ミリ秒で割った数の余り
+        var ms = elapsedTime % 1000;
+
+
+        //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
+        //javascriptでは文字列数列を連結すると文字列になる
+        //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
+        m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+
+        //HTMLのid　timer部分に表示させる　
+        timer.textContent = m + ':' + s + ':' + ms;
+}
+
+function countUp(){
+
+        //timerId変数はsetTimeoutの返り値になるので代入する
+        timerId = setTimeout(function(){
+
+            //経過時刻は現在時刻をミリ秒で示すDate.now()からstartを押した時の時刻(startTime)を引く
+            elapsedTime = Date.now() - startTime ;
+            updateTimetText()
+
+            //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
+            countUp();
+
+        //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
+        },10);
+}
 
 class TextLabel extends Actor {
     constructor(x, y, text) {
@@ -167,7 +217,7 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 16, 16);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 100;		//敵の最大HP
+        this.maxHp = 10;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
@@ -263,6 +313,7 @@ class DanmakuStgEndScene extends Scene {
         this._clearScreen(gameInfo);
         this._renderAll();
         if(input.getKey(' ')){location.reload();}
+        
     }
 }
 
@@ -301,6 +352,13 @@ class DanmakuStgMainScene extends Scene {
 
         // 敵がやられたらクリア画面にする
         enemy.addEventListener('destroy', (e) => {
+         var m = Math.floor(elapsedTime / 60000);
+         var s = Math.floor(elapsedTime % 60000 / 1000);
+         var ms = elapsedTime % 1000;
+         m = ('0' + m).slice(-2); 
+        s = ('0' + s).slice(-2);
+        ms = ('0' + ms).slice(-3);
+         alert( m + ':' + s + ':' + ms);
             const scene = new DanmakuStgEndScene(this.renderingTarget);
             this.changeScene(scene);
         });
@@ -322,6 +380,10 @@ class DanmakuStgTitleScene extends Scene {
         if(input.getKeyDown(' ')) {
             const mainScene = new DanmakuStgMainScene(this.renderingTarget);
             this.changeScene(mainScene);
+            startTime = Date.now();
+
+        //再帰的に使えるように関数を作る
+        countUp();
         }
     }
 }
@@ -337,6 +399,7 @@ class DanamkuStgGame extends Game {
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
-    document.body.appendChild(game.screenCanvas);
+    var kon = document.body.childNodes[1];
+    kon.appendChild(game.screenCanvas);
     game.start();
 });
