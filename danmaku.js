@@ -72,7 +72,7 @@ class TextLabel extends Actor {
 
     render(target) {
         const context = target.getContext('2d');
-        context.font = '25px sans-serif';
+        context.font = '40px sans-serif';
         context.fillStyle = 'white';
         context.fillText(this.text, this.x, this.y);
     }
@@ -170,8 +170,8 @@ class Fighter extends SpriteActor {
 
        this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
-            //this.shootBulletA(6);		//引数１は弾幕の密度、引数２は弾速
-            //this.shootBulletB(6);
+            this.shootBulletA(6);		//自機狙い弾の発射
+            this.shootBulletB(6);
             this._timeCountS = 0;
         }
 
@@ -226,6 +226,7 @@ class EnemyBullet extends SpriteActor {
         }
     }
 }
+//エネミーマーカーのを表示させるクラス
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
@@ -247,7 +248,7 @@ class aBullet extends SpriteActor {
         }
     }
 }
-
+//背景を表示させるクラス
 class BackG extends SpriteActor {
 constructor(x, y) {
        const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
@@ -262,7 +263,7 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 32, 32);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 10;		//敵の最大HP
+        this.maxHp = 35;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
@@ -368,7 +369,7 @@ class DanmakuStgEndScene extends Scene {
 class DanmakuStgGameOverScene extends Scene {
     constructor(renderingTarget) {
         super('ゲームオーバー', 'black', renderingTarget);
-        const text = new TextLabel(100, 200, '満身創痍');
+        const text = new TextLabel(160, 400, '満身創痍');
         this.add(text);
         setTimeout("location.reload()",2000);		//2秒後にタイトルに戻る(2000ms)
     }
@@ -386,7 +387,7 @@ class DanmakuStgMainScene extends Scene {
     constructor(renderingTarget) {
         super('メイン', 'black', renderingTarget);
 		const backg = new BackG(0,0);
-        const fighter = new Fighter(150, 300);
+        const fighter = new Fighter(230, 550);    //自機の初期座標
         const enemy = new Enemy(150, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
 		this.add(backg);
@@ -454,8 +455,8 @@ if(elapsedTime<rank5){
 class DanmakuStgTitleScene extends Scene {
     constructor(renderingTarget) {
         super('タイトル', 'black', renderingTarget);
-        const title = new TextLabel(200, 400, '弾幕STG');
-        const title1 = new TextLabel(105, 600, 'スペースでゲームスタート');
+        const title = new TextLabel(160, 400, '弾幕STG');
+        const title1 = new TextLabel(10, 600, 'スペースでゲームスタート');
         this.add(title);
         this.add(title1)
     }
