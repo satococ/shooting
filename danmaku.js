@@ -8,6 +8,11 @@
     var setu3 = document.getElementById('setu3');
     var setu4 = document.getElementById('setu4');
 
+     //var rink1 = document.getElementById('rink1');
+     //var rink2 = document.getElementById('rink2');
+     //var rink3 = document.getElementById('rink3');
+
+
     //クリック時の時間を保持するための変数定義
     var startTime;
 
@@ -44,6 +49,10 @@ function updateTimetText(){
         setu2.textContent = 'Zキーorスペースキー　発射';
         setu3.textContent = 'Shift + 十字キー　低速移動';
         setu4.textContent = 'Xボタン　ボム';
+        //rink1.textContent = '<a href = select.html>ステージセレクト画面に</a>';
+        //rink2.textContent = '<a href=demo.html>デモプレイに</a>';
+        //rink3.textContent = '<a href =rank.html>ランキング画面に</a>';
+
 }
 
 function countUp(){
