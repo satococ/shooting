@@ -235,6 +235,14 @@ class aBullet extends SpriteActor {
         }
     }
 }
+
+class BackG extends SpriteActor {
+constructor(x, y) {
+       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 300, 600));
+       const hitArea = new Rectangle(0, 0, 0, 0);
+       super(x, y, sprite, hitArea, ['back']);
+   }
+}
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
@@ -365,9 +373,11 @@ class DanmakuStgGameOverScene extends Scene {
 class DanmakuStgMainScene extends Scene {
     constructor(renderingTarget) {
         super('メイン', 'black', renderingTarget);
+		const backg = new BackG(0,0);
         const fighter = new Fighter(150, 300);
         const enemy = new Enemy(150, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
+		this.add(backg);
         this.add(fighter);
         this.add(enemy);
         this.add(hpBar);
@@ -386,6 +396,41 @@ class DanmakuStgMainScene extends Scene {
          m = ('0' + m).slice(-2); 
         s = ('0' + s).slice(-2);
         ms = ('0' + ms).slice(-3);
+
+localStorage.setItem("new", elapsedTime);
+
+var rank5 = localStorage.getItem("fifth");
+if(elapsedTime<rank5){
+
+	localStorage.setItem("fifth", elapsedTime);
+	var rank4 = localStorage.getItem("fourth");
+
+	if(elapsedTime<rank4){
+		localStorage.setItem("fifth",rank4);
+		localStorage.setItem("fourth", elapsedTime);
+		var rank3 = localStorage.getItem("third");
+
+		if(elapsedTime<rank4){
+			localStorage.setItem("fourth",rank3);
+			localStorage.setItem("third", elapsedTime);
+			var rank2 = localStorage.getItem("second");
+
+			if(elapsedTime<rank4){
+				localStorage.setItem("third",rank2);
+				localStorage.setItem("second", elapsedTime);
+				var rank1 = localStorage.getItem("first");
+
+				if(elapsedTime<rank4){
+					localStorage.setItem("second",rank1);
+					localStorage.setItem("first", elapsedTime);
+				}
+				
+			}
+		}
+	}
+}
+
+
          alert( m + ':' + s + ':' + ms);
             const scene = new DanmakuStgEndScene(this.renderingTarget);
             this.changeScene(scene);
@@ -423,7 +468,7 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
-
+assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
