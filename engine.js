@@ -48,11 +48,11 @@ class AssetLoader {
 
         this._promises.push(promise);
     }
-    
+
     loadAll() {
         return Promise.all(this._promises).then((p) => this._assets);
     }
-    
+
     get(name) {
         return this._assets.get(name);
     }
@@ -101,12 +101,12 @@ class Actor extends EventDispatcher {
         this.x = x;
         this.y = y;
     }
-    
+
     update(gameInfo, input) {}		//毎フレーム呼ばれてゲーム情報と入力を受け取って動く。サブクラスでオーバーライド
 
     render(target) {}		//描画処理。サブクラスでオーバーライド
 
-    hasTag(tagName) {		
+    hasTag(tagName) {
         return this.tags.includes(tagName);
     }
 
@@ -117,17 +117,17 @@ class Actor extends EventDispatcher {
     destroy() {		//呼ばれると死ぬ
         this.dispatchEvent('destroy', new GameEvent(this));
     }
-    
+
     get x() {		//座標の取得
         return this._x;
     }
-    
+
     set x(value) {
         this._x = value;
         this.hitArea.x = value + this._hitAreaOffsetX;
     }
 
-    get y() {		
+    get y() {
         return this._y;
     }
 
@@ -145,7 +145,7 @@ class SpriteActor extends Actor {
         this.width = sprite.rectangle.width;
         this.height = sprite.rectangle.height;
     }
-    
+
     render(target) {		//画像を描画できるようにするためのオーバーライド
         const context = target.getContext('2d');
         const rect = this.sprite.rectangle;
@@ -155,7 +155,7 @@ class SpriteActor extends Actor {
             this.x, this.y,
             rect.width, rect.height);
     }
-    
+
     isOutOfBounds(boundRect) {		//画面の外に出られないようにする
         const actorLeft = this.x;
         const actorRight = this.x + this.width;
@@ -246,7 +246,7 @@ class Scene extends EventDispatcher {
         const index = this.actors.indexOf(actor);
         this.actors.splice(index, 1);
     }
-    
+
     changeScene(newScene) {
         const event = new GameEvent(newScene);
         this.dispatchEvent('changescene', event);
@@ -319,7 +319,7 @@ class Game {
         this.height = height;
         this.maxFps = maxFps;
         this.currentFps = 0;
-	
+
         this.screenCanvas = document.createElement('canvas');
         this.screenCanvas.height = height;
         this.screenCanvas.width = width;

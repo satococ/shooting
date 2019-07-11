@@ -1,6 +1,12 @@
 'use strict';
    var timer = document.getElementById('timer');
     var start = document.getElementById('start');
+    var hp = document.getElementById('hp');
+    var bom = document.getElementById('bom');
+    var setu1 = document.getElementById('setu1');
+    var setu2 = document.getElementById('setu2');
+    var setu3 = document.getElementById('setu3');
+    var setu4 = document.getElementById('setu4');
 
     //クリック時の時間を保持するための変数定義
     var startTime;
@@ -26,12 +32,18 @@ function updateTimetText(){
         //HTML 上で表示の際の桁数を固定する　例）3 => 03　、 12 -> 012
         //javascriptでは文字列数列を連結すると文字列になる
         //文字列の末尾2桁を表示したいのでsliceで負の値(-2)引数で渡してやる。
-        m = ('0' + m).slice(-2); 
+        m = ('0' + m).slice(-2);
         s = ('0' + s).slice(-2);
         ms = ('0' + ms).slice(-3);
 
         //HTMLのid　timer部分に表示させる　
-        timer.textContent = m + ':' + s + ':' + ms;
+        timer.textContent ='Time ' + m + ':' + s + ':' + ms;
+        hp.textContent = 'HP';
+        bom.textContent = 'ボム';
+        setu1.textContent = '十字キー　移動';
+        setu2.textContent = 'Zキーorスペースキー　発射';
+        setu3.textContent = 'Shift + 十字キー　低速移動';
+        setu4.textContent = 'Xボタン　ボム';
 }
 
 function countUp(){
@@ -54,7 +66,7 @@ class TextLabel extends Actor {
     constructor(x, y, text) {
         const hitArea = new Rectangle(0, 0, 0, 0);
         super(x, y, hitArea);
-        
+
         this.text = text;
     }
 
@@ -68,7 +80,7 @@ class TextLabel extends Actor {
 
 class Bullet extends SpriteActor {
     constructor(x, y, velocityX) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 16, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 32, 32, 32));
         const hitArea = new Rectangle(4, 0, 8, 16);
         super(x, y, sprite, hitArea, ['playerBullet']);
 
@@ -76,7 +88,7 @@ class Bullet extends SpriteActor {
 this.velocityX = velocityX;
         // 敵に当たったら消える
         this.addEventListener('hit', (e) => {
-           if(e.target.hasTag('enemy')) { this.destroy(); } 
+           if(e.target.hasTag('enemy')) { this.destroy(); }
         });
     }
 
@@ -91,7 +103,7 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(8, 8, 2, 2);
         super(x, y, sprite, hitArea);
 
@@ -103,12 +115,12 @@ class Fighter extends SpriteActor {
         this._speedS = 1;
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
-        
+
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('enemyBullet')) {
                this.destroy();
-           } 
+           }
         });
     }
      shootBulletA(speed) {
@@ -116,7 +128,7 @@ class Fighter extends SpriteActor {
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
-        
+
         const bullet = new EnemyBullet(0, 0, velocityX, velocityY);
         this.spawnActor(bullet);
     }
@@ -125,16 +137,16 @@ class Fighter extends SpriteActor {
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
-        
+
         const bullet = new EnemyBullet(290, 0, velocityX, velocityY);
         this.spawnActor(bullet);
     }
-    
+
     update(gameInfo, input) {
         // キーを押されたら移動する
         this._velocityX = 0;
         this._velocityY = 0;
-        
+
        	if(input.getKey('Shift')){
         	if(input.getKey('ArrowRight')) { this._velocityX = this._speedS; }
         }else{
@@ -155,14 +167,14 @@ class Fighter extends SpriteActor {
         }else{
         	if(input.getKey('ArrowDown')) { this._velocityY = this._speed; }
         }
-      
+
        this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
             //this.shootBulletA(6);		//引数１は弾幕の密度、引数２は弾速
             //this.shootBulletB(6);
             this._timeCountS = 0;
-        } 
-      
+        }
+
         this.x += this._velocityX;
         this.y += this._velocityY;
 
@@ -170,7 +182,7 @@ class Fighter extends SpriteActor {
         const boundWidth = gameInfo.screenRectangle.width - this.width;
         const boundHeight = gameInfo.screenRectangle.height - this.height;
         const bound = new Rectangle(this.width, this.height, boundWidth, boundHeight);
-        
+
         if(this.isOutOfBounds(bound)) {
             this.x -= this._velocityX;
             this.y -= this._velocityY;
@@ -195,7 +207,7 @@ class Fighter extends SpriteActor {
 
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(16, 16, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(4, 4, 8, 8);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -216,7 +228,7 @@ class EnemyBullet extends SpriteActor {
 }
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(16, 16, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(4, 4, 8, 8);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -238,7 +250,7 @@ class aBullet extends SpriteActor {
 
 class BackG extends SpriteActor {
 constructor(x, y) {
-       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 300, 600));
+       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
        const hitArea = new Rectangle(0, 0, 0, 0);
        super(x, y, sprite, hitArea, ['back']);
    }
@@ -246,7 +258,7 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(16, 0, 16, 16));
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 0, 32, 32));
         const hitArea = new Rectangle(0, 0, 16, 16);
         super(x, y, sprite, hitArea, ['enemy']);
 
@@ -271,7 +283,7 @@ class Enemy extends SpriteActor {
         const rad = degree / 180 * Math.PI;		//初期値は180
         const velocityX = Math.cos(rad) * speed;
         const velocityY = Math.sin(rad) * speed;
-        
+
         const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY);
         this.spawnActor(bullet);
     }
@@ -290,7 +302,7 @@ class Enemy extends SpriteActor {
         if(this.x <= 100 || this.x >= 200) {		//敵が動く範囲？
         	this._velocityX *= -1;
         }
-        
+
         // インターバルを経過していたら弾を撃つ
         this._timeCount++;
         if(this._timeCount > this._interval) {
@@ -303,7 +315,7 @@ class Enemy extends SpriteActor {
         if(this.currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,395, 0, 5);
+        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }
@@ -313,9 +325,9 @@ class EnemyHpBar extends Actor {
         const hitArea = new Rectangle(0, 0, 0, 0);
         super(x, y, hitArea);
 
-        this._width = 200;
+        this._width = 400;
         this._height = 10;
-        
+
         this._innerWidth = this._width;
 
         // 敵のHPが変わったら内側の長さを変更する
@@ -330,7 +342,7 @@ class EnemyHpBar extends Actor {
         const context = target.getContext('2d');
         context.strokeStyle = 'white';		//HPバーの外枠の色
         context.fillStyle = 'white';		//HPバーの色
-        
+
         context.strokeRect(this.x, this.y, this._width, this._height);
         context.fillRect(this.x, this.y, this._innerWidth, this._height);
     }
@@ -341,7 +353,7 @@ class DanmakuStgEndScene extends Scene {
         super('クリア', 'black', renderingTarget);
         const text = new TextLabel(60, 200, 'ゲームクリア！');
         this.add(text);
-        
+
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);
         this._hitTest();
@@ -349,7 +361,7 @@ class DanmakuStgEndScene extends Scene {
         this._clearScreen(gameInfo);
         this._renderAll();
         if(input.getKey(' ')){location.reload();}
-        
+
     }
 }
 
@@ -381,7 +393,7 @@ class DanmakuStgMainScene extends Scene {
         this.add(fighter);
         this.add(enemy);
         this.add(hpBar);
-        
+
         // 自機がやられたらゲームオーバー画面にする
         fighter.addEventListener('destroy', (e) => {
             const scene = new DanmakuStgGameOverScene(this.renderingTarget);
@@ -393,7 +405,7 @@ class DanmakuStgMainScene extends Scene {
          var m = Math.floor(elapsedTime / 60000);
          var s = Math.floor(elapsedTime % 60000 / 1000);
          var ms = elapsedTime % 1000;
-         m = ('0' + m).slice(-2); 
+         m = ('0' + m).slice(-2);
         s = ('0' + s).slice(-2);
         ms = ('0' + ms).slice(-3);
 
@@ -410,21 +422,21 @@ if(elapsedTime<rank5){
 		localStorage.setItem("fourth", elapsedTime);
 		var rank3 = localStorage.getItem("third");
 
-		if(elapsedTime<rank4){
+		if(elapsedTime<rank3){
 			localStorage.setItem("fourth",rank3);
 			localStorage.setItem("third", elapsedTime);
 			var rank2 = localStorage.getItem("second");
 
-			if(elapsedTime<rank4){
+			if(elapsedTime<rank2){
 				localStorage.setItem("third",rank2);
 				localStorage.setItem("second", elapsedTime);
 				var rank1 = localStorage.getItem("first");
 
-				if(elapsedTime<rank4){
+				if(elapsedTime<rank1){
 					localStorage.setItem("second",rank1);
 					localStorage.setItem("first", elapsedTime);
 				}
-				
+
 			}
 		}
 	}
@@ -439,11 +451,11 @@ if(elapsedTime<rank5){
 }
 
 //開始画面？
-class DanmakuStgTitleScene extends Scene {	
+class DanmakuStgTitleScene extends Scene {
     constructor(renderingTarget) {
         super('タイトル', 'black', renderingTarget);
-        const title = new TextLabel(100, 200, '弾幕STG');
-        const title1 = new TextLabel(3, 300, 'スペースでゲームスタート');
+        const title = new TextLabel(200, 400, '弾幕STG');
+        const title1 = new TextLabel(105, 600, 'スペースでゲームスタート');
         this.add(title);
         this.add(title1)
     }
@@ -463,7 +475,7 @@ class DanmakuStgTitleScene extends Scene {
 
 class DanamkuStgGame extends Game {
     constructor() {
-        super('弾幕STG', 300, 400, 60);//引数２と３は画面の広さ。４はフレームレート？
+        super('弾幕STG', 500, 890, 60);//引数２と３は画面の広さ。４はフレームレート？(初期値：('弾幕STG', 300, 400, 60)
         const titleScene = new DanmakuStgTitleScene(this.screenCanvas);
         this.changeScene(titleScene);
     }

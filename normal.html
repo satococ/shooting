@@ -5,20 +5,42 @@
     <title>弾幕シューティング</title>
 </head>
 <body>
+
 	<p></p>
     <div class="rightbox">
-    
-    	<table>
-    		<tr><td>index</td></tr>
-    		<tr><td>select</td></tr>
-    		<tr><td>demo</td></tr>
-    	</table>
-    	
+
     </div>
 <script defer src="engine.js"></script>
 <script defer src="danmaku.js"></script>
+<div id="timer">
+     Time 00:00:000<br>
+</div>
+<div id ="hp">
+     HP
+</div>
 
-    <div id="timer">00:00:000</div>
+<div id ="bom">
+     ボム
+</div>
+
+<div id ="setu1">
+     十字キー　移動
+</div>
+
+<div id ="setu2">
+     Zキーorスペースキー　発射
+</div>
+
+<div id ="setu3">
+     Shift + 十字キー　低速移動
+</div>
+
+<div id ="setu4">
+     Xボタン　ボム
+</div>
+
+
+
 <style>
 *{
 	margin:0px;
@@ -30,6 +52,50 @@ p{
 body{
 
 	background-color:#BBBBBB;
+}
+#timer{
+     position:  absolute;
+     top:30px;
+     right:40px;
+     font-size: 60px;
+}
+#hp{
+     position:  absolute;
+     top:120px;
+     right:40px;
+     font-size: 60px;
+}
+
+#bom{
+     position:  absolute;
+     top:240px;
+     right:40px;
+     font-size: 60px;
+}
+
+#setu1{
+     position:  absolute;
+     top:360px;
+     right:40px;
+     font-size: 30px;
+}
+#setu2{
+     position:  absolute;
+     top:400px;
+     right:40px;
+     font-size: 30px;
+}
+#setu3{
+     position:  absolute;
+     top:440px;
+     right:40px;
+     font-size: 30px;
+}
+#setu4{
+     position:  absolute;
+     top:480px;
+     right:40px;
+     font-size: 30px;
 }
 
 </style>
