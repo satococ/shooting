@@ -81,7 +81,7 @@ class TextLabel extends Actor {
 class Bullet extends SpriteActor {
     constructor(x, y, velocityX) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 32, 32, 32));
-        const hitArea = new Rectangle(4, 0, 8, 16);
+        const hitArea = new Rectangle(8, 0, 16, 32);
         super(x, y, sprite, hitArea, ['playerBullet']);
 
         this._speed = 6;		//自機の発射間隔(初期値６)
@@ -104,7 +104,7 @@ this.velocityX = velocityX;
 class Fighter extends SpriteActor {
     constructor(x, y) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
-        const hitArea = new Rectangle(8, 8, 2, 2);
+        const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
         this._interval = 5;		//初期値５
@@ -208,7 +208,7 @@ class Fighter extends SpriteActor {
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
-        const hitArea = new Rectangle(4, 4, 8, 8);
+        const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
         this.velocityX = velocityX;
@@ -229,7 +229,7 @@ class EnemyBullet extends SpriteActor {
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
-        const hitArea = new Rectangle(4, 4, 8, 8);
+        const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
         this.velocityX = velocityX;
@@ -259,7 +259,7 @@ constructor(x, y) {
 class Enemy extends SpriteActor {
     constructor(x, y) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 0, 32, 32));
-        const hitArea = new Rectangle(0, 0, 16, 16);
+        const hitArea = new Rectangle(0, 0, 32, 32);
         super(x, y, sprite, hitArea, ['enemy']);
 
         this.maxHp = 10;		//敵の最大HP
