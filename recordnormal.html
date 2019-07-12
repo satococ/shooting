@@ -1,0 +1,75 @@
+<html>
+   <head>
+       <meta charset="UTF-8" />
+       <title>Sample</title>
+   </head>
+   <body>
+       <script type="text/javascript" >
+			function saveC() {
+        	var newname;
+        	var elapsedTime;
+        		var olddata=localStorage.getItem("oldN");
+               	elapsedTime = Number(localStorage.getItem("newN"));
+        		newname = document.getElementById("text").value;
+        		if(newname==''){
+        			 newname = "NONAME";
+        		}
+               	if(olddata==null){
+               		localStorage.setItem("oldN",3599999);
+               	}
+               
+               	if(elapsedTime!==olddata){
+					var rank5 = Number(localStorage.getItem("fifthN"));
+					if(elapsedTime<rank5){
+
+						localStorage.setItem("fifthN", elapsedTime);
+						localStorage.setItem("fifthplayerN", newname);
+						var rank4 = Number(localStorage.getItem("fourth"));
+						var rank4play = localStorage.getItem("fourthplayer");
+						if(elapsedTime<rank4){
+							
+							localStorage.setItem("fifthN",rank4);
+							localStorage.setItem("fifthplayerN",rank4play);
+							localStorage.setItem("fourthN", elapsedTime);
+							localStorage.setItem("fourthplayer",newname);
+							var rank3 = Number(localStorage.getItem("thirdN"));
+							var rank3play = localStorage.getItem("thirdplayerN");
+							if(elapsedTime<rank3){
+								localStorage.setItem("fourthN",rank3);
+								localStorage.setItem("fourthplayerN",rank3play);
+								localStorage.setItem("thirdN", elapsedTime);
+								localStorage.setItem("thirdplayerN",newname);
+								var rank2 = Number(localStorage.getItem("secondN"));
+								var rank2play = localStorage.getItem("secondplayerN");
+
+								if(elapsedTime<rank2){
+									localStorage.setItem("thirdN",rank2);
+									localStorage.setItem("thirdplayerN",rank2play);
+									localStorage.setItem("secondN", elapsedTime);
+									localStorage.setItem("secondplayerN",newname);
+									var rank1 = Number(localStorage.getItem("firstN"));
+									var rank1play = localStorage.getItem("firstplayerN");
+
+									if(elapsedTime<rank1){
+										localStorage.setItem("secondN",rank1);
+										localStorage.setItem("secondplayerN",rank1play);
+										localStorage.setItem("firstN", elapsedTime);
+										localStorage.setItem("firstplayerN",newname);
+									}
+								}
+							}
+						}
+					}
+				}
+				localStorage.setItem("oldN",elapsedTime);
+               	alert("aaaa");
+				var key="newplayerN";
+				localStorage.setItem(key, newname);
+				window.location.href = 'rank.html';
+			}  
+		</script>
+   
+       <textarea id="text" cols="30" rows="5" wrap="soft"></textarea><br>
+       <input type="submit" onclick="saveC();" value="データを入れる">
+   </body>
+</html>
