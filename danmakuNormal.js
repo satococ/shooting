@@ -426,7 +426,7 @@ class DanmakuStgMainScene extends Scene {
             const scene = new DanmakuStgEndScene(this.renderingTarget);
             this.changeScene(scene);
         });
-    }
+       }
 }
 
 //開始画面？

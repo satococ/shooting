@@ -373,7 +373,6 @@ class DanmakuStgEndScene extends Scene {
         this._disposeDestroyedActors();
         this._clearScreen(gameInfo);
         this._renderAll();
-        if(input.getKey(' ')){location.reload();}
 
     }
 }

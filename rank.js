@@ -12,7 +12,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("first").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("first").textContent= m + ':' + s + ':' + ms;
 	
 	elapsedTime = localStorage.getItem("second");
 	if(elapsedTime==null){
@@ -25,7 +25,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("second").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("second").textContent= m + ':' + s + ':' + ms;
 	
 	elapsedTime = localStorage.getItem("third");
 	if(elapsedTime==null){
@@ -38,7 +38,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("third").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("third").textContent= m + ':' + s + ':' + ms;
 	
 	elapsedTime = localStorage.getItem("fourth");
 	if(elapsedTime==null){
@@ -51,7 +51,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("fourth").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("fourth").textContent= m + ':' + s + ':' + ms;
 	
 	elapsedTime = localStorage.getItem("fifth");
 	if(elapsedTime==null){
@@ -64,7 +64,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("fifth").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("fifth").textContent= m + ':' + s + ':' + ms;
 	
 	elapsedTime = localStorage.getItem("new");
 	if(elapsedTime==null){
@@ -77,7 +77,7 @@ function ranking(){
     m = ('0' + m).slice(-2); 
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
-	document.getElementById("new").textContent=m + ':' + s + ':' + ms;
+	document.getElementById("new").textContent= m + ':' + s + ':' + ms;
 	
 	if(localStorage.getItem("firstplayer")==null){
 		localStorage.setItem("firstplayer","NONAME")
