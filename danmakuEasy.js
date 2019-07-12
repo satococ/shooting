@@ -363,6 +363,7 @@ class DanmakuStgEndScene extends Scene {
         super('クリア', 'black', renderingTarget);
         const text = new TextLabel(160, 200, 'ゲームクリア！');
         this.add(text);
+		window.location.href = 'record.html';
 
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);
@@ -370,7 +371,6 @@ class DanmakuStgEndScene extends Scene {
         this._disposeDestroyedActors();
         this._clearScreen(gameInfo);
         this._renderAll();
-        if(input.getKey(' ')){location.reload();}
 
     }
 }
@@ -411,46 +411,14 @@ class DanmakuStgMainScene extends Scene {
         });
 
         // 敵がやられたらクリア画面にする
-        enemy.addEventListener('destroy', (e) => {
-         var m = Math.floor(elapsedTime / 60000);
-         var s = Math.floor(elapsedTime % 60000 / 1000);
-         var ms = elapsedTime % 1000;
-         m = ('0' + m).slice(-2);
-        s = ('0' + s).slice(-2);
-        ms = ('0' + ms).slice(-3);
-
-localStorage.setItem("new", elapsedTime);
-
-var rank5 = localStorage.getItem("fifth");
-if(elapsedTime<rank5){
-
-	localStorage.setItem("fifth", elapsedTime);
-	var rank4 = localStorage.getItem("fourth");
-
-	if(elapsedTime<rank4){
-		localStorage.setItem("fifth",rank4);
-		localStorage.setItem("fourth", elapsedTime);
-		var rank3 = localStorage.getItem("third");
-
-		if(elapsedTime<rank3){
-			localStorage.setItem("fourth",rank3);
-			localStorage.setItem("third", elapsedTime);
-			var rank2 = localStorage.getItem("second");
-
-			if(elapsedTime<rank2){
-				localStorage.setItem("third",rank2);
-				localStorage.setItem("second", elapsedTime);
-				var rank1 = localStorage.getItem("first");
-
-				if(elapsedTime<rank1){
-					localStorage.setItem("second",rank1);
-					localStorage.setItem("first", elapsedTime);
-				}
-
-			}
-		}
-	}
-}
+       enemy.addEventListener('destroy', (e) => {
+        	var m = Math.floor(elapsedTime / 60000);
+        	var s = Math.floor(elapsedTime % 60000 / 1000);
+        	var ms = elapsedTime % 1000;
+        	m = ('0' + m).slice(-2);
+        	s = ('0' + s).slice(-2);
+        	ms = ('0' + ms).slice(-3);
+			localStorage.setItem("new", elapsedTime);
 
 
          alert( m + ':' + s + ':' + ms);
