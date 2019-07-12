@@ -54,5 +54,10 @@ function ranking(){
     s = ('0' + s).slice(-2);
     ms = ('0' + ms).slice(-3);
 	document.getElementById("new").textContent=m + ':' + s + ':' + ms;
-
+	document.getElementById("firstplayer").textContent= localStorage.getItem("firstplayer");
+	document.getElementById("secondplayer").textContent= localStorage.getItem("secondplayer");
+	document.getElementById("thirdplayer").textContent= localStorage.getItem("thirdplayer");
+	document.getElementById("fourthplayer").textContent= localStorage.getItem("fourthplayer");
+	document.getElementById("fifthplayer").textContent= localStorage.getItem("fifthplayer");
+	document.getElementById("newplayer").textContent= localStorage.getItem("newplayer");
 }
