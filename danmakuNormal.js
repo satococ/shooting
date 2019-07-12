@@ -116,12 +116,12 @@ class Fighter extends SpriteActor {
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
-        this._interval = 5;		//初期値５
-        this._intervalS = 20;		//初期値30
+        this._interval = 5;		//(自機の弾幕の発射間隔)初期値５
+        this._intervalS = 30;		//(自機狙い弾の発射感覚)初期値30
         this._timeCount = 0;
         this._timeCountS = 0;
-        this._speed = 3; //自機のスピード
-        this._speedS = 1;
+        this._speed = 4; //自機のスピード
+        this._speedS = 1;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
 
@@ -179,8 +179,8 @@ class Fighter extends SpriteActor {
 
        this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
-            this.shootBulletA(6);		//自機狙い弾の発射
-            this.shootBulletB(6);
+           // this.shootBulletA(6);		//自機狙い弾の発射
+           // this.shootBulletB(6);
             this._timeCountS = 0;
         }
 
@@ -204,9 +204,9 @@ class Fighter extends SpriteActor {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
             	const bullet = new Bullet(this.x, this.y,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,3);
+            	const bullet2 = new Bullet(this.x, this.y,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-3);
+            	const bullet3 = new Bullet(this.x, this.y,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
@@ -272,12 +272,12 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 32, 32);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 35;		//敵の最大HP
+        this.maxHp = 50;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
         this._timeCount = 0;		//謎の値
-        this._velocityX = 0.5;		//敵の動くスピード(初期値は0.3でした)
+        this._velocityX = 1.5;		//敵の動くスピード(初期値は0.3でした)
 
         // プレイヤーの弾に当たったらHPを減らす
         this.addEventListener('hit', (e) => {
@@ -309,7 +309,7 @@ class Enemy extends SpriteActor {
     update(gameInfo, input) {
         // 左右に移動する
         this.x += this._velocityX;
-        if(this.x <= 100 || this.x >= 200) {		//敵が動く範囲？
+        if(this.x <= 100 || this.x >= 400) {		//敵が動く範囲？
         	this._velocityX *= -1;
         }
 
@@ -317,7 +317,8 @@ class Enemy extends SpriteActor {
         this._timeCount++;
         if(this._timeCount > this._interval) {
         this.shootCircularBullets(20, 5);
-            this.shootCircularBullets(40, 2);		//引数１は弾幕の密度、引数２は弾速
+            this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
+            this.shootCircularBullets(30, 5);
             this._timeCount = 0;
         }
 
