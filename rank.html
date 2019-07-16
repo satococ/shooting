@@ -2,57 +2,120 @@
 <html lang="ja-jp">
 <head>
 
-	<script src="rank.js"></script>
+	<script>
+function ranking(){
+	var elapsedTime;
+
+
+
+		elapsedTime = localStorage.getItem("first");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("first",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("first").textContent= m + ':' + s + ':' + ms;
+
+		elapsedTime = localStorage.getItem("second");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("second",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("second").textContent= m + ':' + s + ':' + ms;
+
+		elapsedTime = localStorage.getItem("third");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("third",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("third").textContent= m + ':' + s + ':' + ms;
+
+		elapsedTime = localStorage.getItem("fourth");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("fourth",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("fourth").textContent= m + ':' + s + ':' + ms;
+
+		elapsedTime = localStorage.getItem("fifth");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("fifth",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("fifth").textContent= m + ':' + s + ':' + ms;
+
+		elapsedTime = localStorage.getItem("new");
+		if(elapsedTime==null){
+			elapsedTime = 3599999;
+			localStorage.setItem("new",elapsedTime);
+		}
+		var m = Math.floor(elapsedTime / 60000);
+	    var s = Math.floor(elapsedTime % 60000 / 1000);
+	    var ms = elapsedTime % 1000;
+	    m = ('0' + m).slice(-2);
+	    s = ('0' + s).slice(-2);
+	    ms = ('0' + ms).slice(-3);
+		document.getElementById("new").textContent= m + ':' + s + ':' + ms;
+
+		if(localStorage.getItem("firstplayer")==null){
+			localStorage.setItem("firstplayer","NONAME")
+		}
+		if(localStorage.getItem("secondplayer")==null){
+			localStorage.setItem("secondplayer","NONAME")
+		}
+		if(localStorage.getItem("thirdplayer")==null){
+			localStorage.setItem("thirdplayer","NONAME")
+		}
+		if(localStorage.getItem("fourthplayer")==null){
+			localStorage.setItem("fourthplayer","NONAME")
+		}
+		if(localStorage.getItem("fifthplayer")==null){
+			localStorage.setItem("fifthplayer","NONAME")
+		}
+		if(localStorage.getItem("newplayer")==null){
+			localStorage.setItem("newplayer","NONAME")
+		}
+		document.getElementById("firstplayer").textContent= localStorage.getItem("firstplayer");
+		document.getElementById("secondplayer").textContent= localStorage.getItem("secondplayer");
+		document.getElementById("thirdplayer").textContent= localStorage.getItem("thirdplayer");
+		document.getElementById("fourthplayer").textContent= localStorage.getItem("fourthplayer");
+		document.getElementById("fifthplayer").textContent= localStorage.getItem("fifthplayer");
+		document.getElementById("newplayer").textContent= localStorage.getItem("newplayer");
+	}
+</script>
     <meta charset="UTF-8">
     <title>ランキング</title>
 </head>
 <body onload = "ranking()">
-<table>
-	<tr>
-	<h1>EASY</h1>
-	</tr>
-	<tr>
-	<td>1</td><td><div id="firstplayerE"></div></td><td><div id="firstE"></div></td>
-	</tr>
-	<tr>
-	<td>2</td><td><div id="secondplayerE"></div></td><td><div id="secondE"></div></td>
-	</tr>
-	<tr>
-	<td>3</td><td><div id="thirdplayerE"></div></td><td><div id="thirdE"></div></td>
-	</tr>
-	<tr>
-	<td>4</td><td><div id="fourthplayerE"></div></td><td><div id="fourthE"></div></td>
-	</tr>
-	<tr>
-	<td>5</td><td><div id="fifthplayerE"></div></td><td><div id="fifthE"></div></td>
-	</tr>
-	<tr>
-	<td>-</td><td><div id="newplayerE"></div></td><td><div id="newE"></div></td>
-	</tr>
-</table>
-<table>
-	<tr>
-	<h1>NORMAL</h1>
-	</tr>
-	<tr>
-	<td>1</td><td><div id="firstplayerN"></div></td><td><div id="firstN"></div></td>
-	</tr>
-	<tr>
-	<td>2</td><td><div id="secondplayerN"></div></td><td><div id="secondN"></div></td>
-	</tr>
-	<tr>
-	<td>3</td><td><div id="thirdplayerN"></div></td><td><div id="thirdN"></div></td>
-	</tr>
-	<tr>
-	<td>4</td><td><div id="fourthplayerN"></div></td><td><div id="fourthN"></div></td>
-	</tr>
-	<tr>
-	<td>5</td><td><div id="fifthplayerN"></div></td><td><div id="fifthN"></div></td>
-	</tr>
-	<tr>
-	<td>-</td><td><div id="newplayerN"></div></td><td><div id="newN"></div></td>
-	</tr>
-</table>
 <table>
 	<tr>
 	<h1>HARD</h1>
@@ -76,6 +139,7 @@
 	<td>-</td><td><div id="newplayer"></div></td><td><div id="new"></div></td>
 	</tr>
 </table>
+<a href="select.html">ステージセレクト画面に戻る</a>
 <style>
 *{
 	margin:0px;

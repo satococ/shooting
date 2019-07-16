@@ -212,7 +212,7 @@ class Fighter extends SpriteActor {
             	this._timeCount = 0;
             }
         }
-        
+
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	if(input.getKey('x')||input.getKey('X')){
@@ -261,7 +261,7 @@ class EnemyBullet extends SpriteActor {
          this.addEventListener('hit', (e) => {
            if(e.target.hasTag('bomb')) {
                this.destroy();
-           } 
+           }
         });
     }
 

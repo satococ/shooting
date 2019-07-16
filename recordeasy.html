@@ -17,7 +17,7 @@
                	if(olddata==null){
                		localStorage.setItem("oldE",3599999);
                	}
-               
+
                	if(elapsedTime!==olddata){
 					var rank5 = Number(localStorage.getItem("fifthE"));
 					if(elapsedTime<rank5){
@@ -27,7 +27,7 @@
 						var rank4 = Number(localStorage.getItem("fourthE"));
 						var rank4play = localStorage.getItem("fourthplayerE");
 						if(elapsedTime<rank4){
-							
+
 							localStorage.setItem("fifthE",rank4);
 							localStorage.setItem("fifthplayerE",rank4play);
 							localStorage.setItem("fourthE", elapsedTime);
@@ -66,10 +66,10 @@
 				localStorage.setItem("oldE",elapsedTime);
 				var key="newplayerE";
 				localStorage.setItem(key, newname);
-				window.location.href = 'rank.html';
-			}  
+				window.location.href = 'rankEasy.html';
+			}
 		</script>
-   
+
        <textarea id="text" cols="30" rows="5" wrap="soft"></textarea><br>
        <input type="submit" onclick="saveB();" value="データを入れる">
    </body>

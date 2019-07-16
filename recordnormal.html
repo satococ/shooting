@@ -17,7 +17,7 @@
                	if(olddata==null){
                		localStorage.setItem("oldN",3599999);
                	}
-               
+
                	if(elapsedTime!==olddata){
 					var rank5 = Number(localStorage.getItem("fifthN"));
 					if(elapsedTime<rank5){
@@ -27,11 +27,11 @@
 						var rank4 = Number(localStorage.getItem("fourth"));
 						var rank4play = localStorage.getItem("fourthplayer");
 						if(elapsedTime<rank4){
-							
+
 							localStorage.setItem("fifthN",rank4);
 							localStorage.setItem("fifthplayerN",rank4play);
 							localStorage.setItem("fourthN", elapsedTime);
-							localStorage.setItem("fourthplayer",newname);
+							localStorage.setItem("fourthplayerN",newname);
 							var rank3 = Number(localStorage.getItem("thirdN"));
 							var rank3play = localStorage.getItem("thirdplayerN");
 							if(elapsedTime<rank3){
@@ -62,13 +62,12 @@
 					}
 				}
 				localStorage.setItem("oldN",elapsedTime);
-               	alert("aaaa");
 				var key="newplayerN";
 				localStorage.setItem(key, newname);
-				window.location.href = 'rank.html';
-			}  
+				window.location.href = 'rankNormal.html';
+			}
 		</script>
-   
+
        <textarea id="text" cols="30" rows="5" wrap="soft"></textarea><br>
        <input type="submit" onclick="saveC();" value="データを入れる">
    </body>
