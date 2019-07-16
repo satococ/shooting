@@ -43,8 +43,6 @@ function updateTimetText(){
 
         //HTMLのid　timer部分に表示させる　
         timer.textContent ='Time ' + m + ':' + s + ':' + ms;
-        hp.textContent = 'HP';
-        bom.textContent = 'ボム';
         setu1.textContent = '十字キー　移動';
         setu2.textContent = 'Zキーorスペースキー　発射';
         setu3.textContent = 'Shift + 十字キー　低速移動';
@@ -118,12 +116,15 @@ class Fighter extends SpriteActor {
 
         this._interval = 4;		//(自機の発射間隔)初期値５
         this._intervalS = 30;		//（自機の狙い弾の弾速）初期値30
+        this._intervalB = 30;		//の間隔
         this._timeCount = 0;
+        this._timeCountB = 0;
         this._timeCountS = 0;
         this._speed = 5; //自機のスピード
         this._speedS = 1;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
+        this.bombval = 1000;
 
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
@@ -211,6 +212,39 @@ class Fighter extends SpriteActor {
             	this._timeCount = 0;
             }
         }
+        this._timeCountB++;
+        if(this._timeCountB > this._intervalB) {
+        	if(input.getKey('x')||input.getKey('X')){
+        		if(this.bombval>0){
+        			const bumb = new Bumb(this.x-256, this.y-160);
+        			this.spawnActor(bumb);
+        			this._timeCountB = 0;
+        			this.bombval -= 1;
+        		}
+        	}
+        }
+        bom.textContent = 'ボム :'+this.bombval;
+    }
+}
+
+class Bumb extends SpriteActor {
+    constructor(x, y) {
+        const sprite = new Sprite(assets.get('bom'), new Rectangle(0, 0, 512, 384));
+        const hitArea = new Rectangle(0, 0, 512, 384);
+        super(x, y, sprite, hitArea, ['bomb']);
+		this._timeCount = 0;
+		this._interval = 5;
+    }
+
+    update(gameInfo, input) {
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+        this._timeCount++;
+        if(this._timeCount > this._interval) {
+        	this.destroy();
+        	this._timeCount = 0;
+        }
     }
 }
 
@@ -222,14 +256,18 @@ class EnemyBullet extends SpriteActor {
 
         this.velocityX = velocityX;
         this.velocityY = velocityY;
+        
+        this.addEventListener('hit', (e) => {
+           if(e.target.hasTag('bomb')) {
+               this.destroy();
+           } 
+        });
     }
 
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
-		if(input.getKey('x')||input.getKey('X')){
-			this.destroy();
-		}
+		
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -307,6 +345,7 @@ class Enemy extends SpriteActor {
     }
 
     update(gameInfo, input) {
+    	hp.textContent = 'HP:'+this.currentHp;
         // 左右に移動する
         this.x += this._velocityX;
         if(this.x <= 100 || this.x >= 400) {		//敵が動く範囲？
@@ -458,6 +497,7 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
+assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
