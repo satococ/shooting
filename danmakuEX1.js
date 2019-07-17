@@ -451,7 +451,7 @@ class DanmakuStgEndScene extends Scene {
         super('クリア', 'black', renderingTarget);
         const text = new TextLabel(60, 200, 'ゲームクリア！');
         this.add(text);
-		window.location.href = 'ex.html';
+        setTimeout("location.reload()",2000);		//2秒後にタイトルに戻る(2000ms)
 
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);

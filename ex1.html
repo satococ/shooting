@@ -22,11 +22,11 @@
      Time 00:00:000<br>
 </div>
 <div id ="hp">
-     HP
+     HP:50
 </div>
 
 <div id ="bom">
-     ボム
+     ボム:5
 </div>
 
 <div id ="setu1">
@@ -45,9 +45,9 @@
      Xボタン　ボム
 </div>
 
-<div id = "rink1">
-     <a href = select.html>ステージセレクト画面に</a>
-</div>
+
+<a href=select.html class="rink1">ステージセレクト画面に戻る</a>
+
 
 <div id = "rink2">
      <a href=demo.html>デモプレイに</a>
@@ -68,7 +68,7 @@ p{
 	text-align: center;
 }
 body{
-
+     font-family: 'Bookman Old Style','Sawarabi Mincho', sans-serif;;
 	background-color:#BBBBBB;
 }
 #timer{
@@ -123,21 +123,33 @@ body{
      font-size: 30px;
 }
 
-#rink1{
+.rink1{
      position:  absolute;
      top:120px;
      left:40px;
      font-size: 30px;
+     display: inline-block;
+     padding: 0.5em 1em;
+     text-decoration: none;
+     background: #55FFFF;/*ボタン色*/
+     color: #CCFFFF;
+     border-bottom: solid 4px #75A9FF;
+     border-radius: 3px;
+}
+.rink1:active{
+     -webkit-transform: translateY(4px);
+     transform: translateY(4px);/*下に動く*/
+     border-bottom: none;/*線を消す*/
 }
 #rink2{
      position:  absolute;
-     top:240px;
+     top:260px;
      left:40px;
      font-size: 30px;
 }
 #rink3{
      position:  absolute;
-     top:480px;
+     top:380px;
      left:40px;
      font-size: 30px;
 }
