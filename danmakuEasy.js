@@ -121,7 +121,7 @@ class Fighter extends SpriteActor {
         this._timeCountB = 0;
         this._timeCountS = 0;
         this._speed = 5; //自機のスピード
-        this._speedS = 1;     //低速移動時のスピード
+        this._speedS = 3;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
         this.bombval = 1000;
@@ -299,7 +299,7 @@ class aBullet extends SpriteActor {
 //背景を表示させるクラス
 class BackG extends SpriteActor {
 constructor(x, y) {
-       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
+       const sprite = new Sprite(assets.get('mori'), new Rectangle(0, 0, 600, 1200));
        const hitArea = new Rectangle(0, 0, 0, 0);
        super(x, y, sprite, hitArea, ['back']);
    }
@@ -307,11 +307,11 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 0, 32, 32));
-        const hitArea = new Rectangle(0, 0, 32, 32);
+        const sprite = new Sprite(assets.get('yousei'), new Rectangle(0, 0, 48, 56));
+        const hitArea = new Rectangle(0, 0, 48, 56);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 110;		//敵の最大HP
+        this.maxHp = 140;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 70;		//弾幕の発射間隔(初期値は30)
@@ -369,6 +369,10 @@ class Enemy extends SpriteActor {
         this.spawnActor(abullet);
     }
 }
+
+
+
+
 //敵のHPバー
 class EnemyHpBar extends Actor {
     constructor(x, y, enemy) {
@@ -498,8 +502,10 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
+assets.addImage('yousei', '妖精.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
+assets.addImage('mori', '森.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();

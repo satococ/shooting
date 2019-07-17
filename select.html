@@ -4,19 +4,51 @@
 
 
                       <center>
-          <a href = easy.html>EASY</a>
-          <br>
-          優しいですわよ
-          <br>
-          <a href=normal.html>NORMAL</a>
-          <br>
-          普通ですわよ
-          <br>
-          <a href =hard.html>HARD</a>
-          <br>難しいですわよ<br>
-          <a href =ex1.html>EX1</a>
-          <br>難しいですわよ<br>
 
+
+
+                           <table>
+                             <tr>
+                               <th>EASY</th>
+                               <th>NORMAL</th>
+                               <th>HARD</th>
+                             </tr>
+                             <tr>
+                               <td>初心者向け</td>
+                               <td class="popular">中級者向け</td>
+                               <td>上級者向け</td>
+                             </tr>
+                             <tr>
+                               <td><a href="easy.html">プレイ</a></td>
+                               <td class="popular"><a href="normal.html">プレイ</a></td>
+                               <td><a href="hard.html">プレイ</a></td>
+                             </tr>
+                             <tr>
+
+                           </table>
+                           <br><br><br>
+
+
+                                                      <table>
+                                                        <tr>
+                                                          <th>EX1</th>
+                                                          <th>EX2</th>
+                                                          <th>EX3</th>
+                                                        </tr>
+                                                        <tr>
+                                                          <td></td>
+                                                          <td class="popular">中級者向け</td>
+                                                          <td>上級者向け</td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td><a href="ex1.html">プレイ</a></td>
+                                                          <td><a href="ex2.html">プレイ</a></td>
+                                                          <td><a href="ex3.html">プレイ</a></td>
+                                                        </tr>
+                                                        <tr>
+
+                                                      </table>
+                                                      <br>
 
 
               <input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;トップへ戻る&nbsp;&nbsp;&nbsp; "class="square_btn" onclick="kakunin()" style="width:150px;height:50px">
@@ -34,4 +66,85 @@ function kakunin(){
 
 }
 </script>
+
+<style>
+table{
+border-collapse: collapse;
+border-spacing: 0;
+table-layout: fixed;
+width: 490px;
+}
+
+table tr:last-child{
+border-bottom:solid 1px #ddd;
+}
+
+table th{
+text-align: center;
+padding: 7px 0;
+border-right:solid 1px #ddd;
+border-left:solid 1px #ddd;
+width: 155px;
+}
+
+table th:nth-child(1){
+background-color:#dddddd;
+}
+
+table th:nth-child(3){
+background-color:#f5b932;
+color: white;
+}
+
+table tr:nth-child(2) td{
+font-size: 30px;
+}
+
+table td{
+text-align: center;
+padding: 7px 0;
+border-right:solid 1px #ddd;
+border-left:solid 1px #ddd;
+width: 155px;
+}
+
+table td a{
+background-color: #25b327;
+color: white;
+padding:5px 20px;
+border-radius: 30px;
+font-weight: bold;
+}
+
+table .popular{
+width: 180px;
+}
+
+table th.popular{
+position: relative;
+}
+
+table th.popular span.no1{
+position: absolute;
+top: -10px;
+left:calc(50% - 30px);
+background: #bdcc28;
+width: 60px;
+font-size: 10px;
+border-radius: 15px;
+line-height: 1;
+padding: 5px;
+}
+
+table th.popular span.inner{
+position: absolute;
+color:white;
+background-color: #f34955;
+left: 0;
+bottom: 0;
+display: block;
+width: 180px;
+padding: 10px 0;
+}
+</style>
 </html>
