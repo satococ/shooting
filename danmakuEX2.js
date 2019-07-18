@@ -7,7 +7,7 @@
     var setu2 = document.getElementById('setu2');
     var setu3 = document.getElementById('setu3');
     var setu4 = document.getElementById('setu4');
-    var maxHp = 600;
+    var maxHp = 400;
     var currentHp = maxHp;
 
      //var rink1 = document.getElementById('rink1');
@@ -276,10 +276,10 @@ class EnemyBullet extends SpriteActor {
         }
     }
 }
-//エネミーマーカーのを表示させるクラス
+//エネミーマーカーを表示させるクラス
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('mark'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -377,7 +377,7 @@ class Enemy extends SpriteActor {
         if(currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
+        const abullet = new aBullet(this.x,882, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }
@@ -452,7 +452,7 @@ class Enemy2 extends SpriteActor {
         if(currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
+        const abullet = new aBullet(this.x,882, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }
@@ -492,7 +492,7 @@ class EnemyHpBar extends Actor {
 class DanmakuStgEndScene extends Scene {
     constructor(renderingTarget) {
         super('クリア', 'black', renderingTarget);
-        const text = new TextLabel(160, 200, 'ゲームクリア！');
+        const text = new TextLabel(125, 400, 'ゲームクリア！');
         this.add(text);
 		  setTimeout("location.reload()",2000);		//2秒後にタイトルに戻る(2000ms)
     }update(gameInfo, input) {		//すべての処理を司るメソッド
@@ -591,6 +591,7 @@ class DanamkuStgGame extends Game {
     }
 }
 assets.addImage('yousei', '妖精.png');
+assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('mori', '森.png');

@@ -363,7 +363,7 @@ class Enemy extends SpriteActor {
         if(this.currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
+        const abullet = new aBullet(this.x,882, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }

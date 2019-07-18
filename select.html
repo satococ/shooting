@@ -5,8 +5,7 @@
 
                       <center>
 
-
-
+                           <br>
                            <table>
                              <tr>
                                <th>EASY</th>
@@ -23,33 +22,29 @@
                                <td class="popular"><a href="normal.html">プレイ</a></td>
                                <td><a href="hard.html">プレイ</a></td>
                              </tr>
-                             <tr>
 
                            </table>
                            <br><br><br>
 
+                         <table>
+                              <tr>
+                                <th>EX1</th>
+                                <th>EX2</th>
+                                <th>EX3</th>
+                              </tr>
 
-                                                      <table>
-                                                        <tr>
-                                                          <th>EX1</th>
-                                                          <th>EX2</th>
-                                                          <th>EX3</th>
-                                                        </tr>
-                                                        <tr>
-                                                          <td></td>
-                                                          <td class="popular">中級者向け</td>
-                                                          <td>上級者向け</td>
-                                                        </tr>
-                                                        <tr>
-                                                          <td><a href="ex1.html">プレイ</a></td>
-                                                          <td><a href="ex2.html">プレイ</a></td>
-                                                          <td><a href="ex3.html">プレイ</a></td>
-                                                        </tr>
-                                                        <tr>
-
-                                                      </table>
-                                                      <br>
-
+                              <tr>
+                                   <td>闇の力</td>
+                                   <td class="popular">光の力</td>
+                                   <td>闇と光</td>
+                              </tr>
+                              <tr>
+                                   <td><a href="ex1.html">プレイ</a></td>
+                                   <td><a href="ex2.html">プレイ</a></td>
+                                   <td><a href="ex3.html">プレイ</a></td>
+                              </tr>
+                         </table>
+                         <br>
 
               <input type="button" value="&nbsp;&nbsp;&nbsp;&nbsp;トップへ戻る&nbsp;&nbsp;&nbsp; "class="square_btn" onclick="kakunin()" style="width:150px;height:50px">
             </center>
@@ -68,83 +63,66 @@ function kakunin(){
 </script>
 
 <style>
+body{
+     //background-color: #BBBBBB;
+     //background-image: url("背景.png");
+}
 table{
-border-collapse: collapse;
-border-spacing: 0;
-table-layout: fixed;
-width: 490px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 490px;
 }
 
 table tr:last-child{
-border-bottom:solid 1px #ddd;
+  border-bottom:solid 1px #ddd;
 }
 
 table th{
-text-align: center;
-padding: 7px 0;
-border-right:solid 1px #ddd;
-border-left:solid 1px #ddd;
-width: 155px;
+  text-align: center;
+  padding: 7px 0;
+  border-right:solid 1px #ddd;
+  border-left:solid 1px #ddd;
+  width: 155px;
 }
 
 table th:nth-child(1){
-background-color:#dddddd;
+  background-color:#dddddd;
 }
 
+table th:nth-child(2){
+  background-color:#b0c4de;
+}
+
+
 table th:nth-child(3){
-background-color:#f5b932;
-color: white;
+  background-color:#f5b932;
+  color: white;
 }
 
 table tr:nth-child(2) td{
-font-size: 30px;
+  font-size: 30px;
 }
 
 table td{
-text-align: center;
-padding: 7px 0;
-border-right:solid 1px #ddd;
-border-left:solid 1px #ddd;
-width: 155px;
+  text-align: center;
+  padding: 7px 0;
+  border-right:solid 1px #ddd;
+  border-left:solid 1px #ddd;
+  width: 155px;
 }
 
 table td a{
-background-color: #25b327;
-color: white;
-padding:5px 20px;
-border-radius: 30px;
-font-weight: bold;
+  background-color: #25b327;
+  color: white;
+  padding:5px 20px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
-table .popular{
-width: 180px;
-}
 
-table th.popular{
-position: relative;
-}
 
-table th.popular span.no1{
-position: absolute;
-top: -10px;
-left:calc(50% - 30px);
-background: #bdcc28;
-width: 60px;
-font-size: 10px;
-border-radius: 15px;
-line-height: 1;
-padding: 5px;
-}
 
-table th.popular span.inner{
-position: absolute;
-color:white;
-background-color: #f34955;
-left: 0;
-bottom: 0;
-display: block;
-width: 180px;
-padding: 10px 0;
-}
+
 </style>
 </html>

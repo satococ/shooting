@@ -110,7 +110,7 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
+        const sprite = new Sprite(assets.get('my'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
@@ -124,7 +124,7 @@ class Fighter extends SpriteActor {
         this._speedS = 3;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
-        this.bombval = 1000;
+        this.bombval = 10;
 
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
@@ -203,11 +203,11 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
@@ -274,10 +274,10 @@ class EnemyBullet extends SpriteActor {
         }
     }
 }
-//エネミーマーカーのを表示させるクラス
+//エネミーマーカーを表示させるクラス
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('mark'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -307,7 +307,7 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('yousei'), new Rectangle(0, 0, 48, 56));
+        const sprite = new Sprite(assets.get('yousei'), new Rectangle(0, 0, 64, 64));
         const hitArea = new Rectangle(0, 0, 48, 56);
         super(x, y, sprite, hitArea, ['enemy']);
 
@@ -365,7 +365,7 @@ class Enemy extends SpriteActor {
         if(this.currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
+        const abullet = new aBullet(this.x,882, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }
@@ -502,7 +502,10 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
-assets.addImage('yousei', '妖精.png');
+
+assets.addImage('yousei', 'fairy5.png');
+assets.addImage('my', 'godhand.png');
+assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('mori', '森.png');
