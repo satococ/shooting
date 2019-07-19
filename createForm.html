@@ -1,0 +1,127 @@
+<head>
+    <meta charset="UTF-8">
+    <title>作ってあそぼう！！！</title>
+</head>
+<body>
+       <script type="text/javascript" >
+			function saveA() {
+				var fighterHp = document.getElementById("fighterinterval").value;
+				document.getElementById("aaa").textContent= fighterHp;
+				//window.location.href = 'createStage.html';
+			}
+		</script>
+
+<div id="aaa"></div>
+<table> 
+		<tr>
+       		<td class="heading">自機</td>
+       	</tr>
+       	<tr>
+       		<td>ボム</td><td><input type="number" id="fighterbomb" min="0"value="0"></td>
+       	</tr>
+       	 <tr>
+       		<td>発射間隔</td><td><input type="number" id="fighterinterval" min="1"value="1"></td>
+       	</tr>
+		<tr>
+       		<td class="heading">敵機</td>
+       	</tr>
+       	<tr>
+       		<td>HP</td><td><input type="number" id="enemyhp" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td class="heading">通常弾幕1</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td class="heading">通常弾幕2</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+		<tr>
+			<td>角度</td><td><input type="number" id="" min="1"value="1"></td>
+		</tr>
+		<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	
+       	<tr>
+       		<td class="heading">自機狙い</td><td class="heading">*密度偶数は自機外し</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	
+       	<tr>
+       		<td class="heading">誘導弾</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	
+       	<tr>
+       		<td class="heading">花火</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	
+       	<tr>
+       		<td class="heading">渦巻</td>
+       	</tr>
+       	<tr>
+       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       	</tr>
+       	<tr>
+       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       	</tr>
+       	
+       	<tr><td>
+       	<input type="submit" onclick="saveA();" value="データを入れる">
+		</td>
+		<tr><td></td></tr>
+		</tr>
+</table>
+
+
+</body>
+
+<style>
+.heading{
+     font-size: 30px;
+}
+
+</style>
+</html>

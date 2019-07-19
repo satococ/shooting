@@ -119,7 +119,7 @@ class Fighter extends SpriteActor {
         this._timeCount = 0;
         this._timeCountS = 0;
         this._speed = 4; //自機のスピード
-        this._speedS = 1;     //低速移動時のスピード
+        this._speedS = 2;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
         this._intervalB = 30;		//の間隔
@@ -134,22 +134,22 @@ class Fighter extends SpriteActor {
            }
         });
     }
-     shootBulletA(speed) {
-        const a = this.x - 0;
+     shootBulletA(speed,i) {
+        const a = this.x - 50;
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
 
-        const bullet = new EnemyBullet(0, 0, velocityX, velocityY);
+        const bullet = new EnemyBullet(50, 0, velocityX+i, velocityY);
         this.spawnActor(bullet);
     }
-    shootBulletB(speed) {
-        const a = this.x - 290;
+    shootBulletB(speed,j) {
+        const a = this.x - 450;
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
 
-        const bullet = new EnemyBullet(290, 0, velocityX, velocityY);
+        const bullet = new EnemyBullet(450, 0, velocityX+j, velocityY);
         this.spawnActor(bullet);
     }
 
@@ -181,8 +181,12 @@ class Fighter extends SpriteActor {
 
        this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
-           // this.shootBulletA(6);		//自機狙い弾の発射
-            //this.shootBulletB(6);
+        	for(let i = -1.5; i <= 1.5; i++) {
+            	this.shootBulletA(7,i);		//自機狙い弾の発射
+            }
+            for(let j = -2; j <= 2; j++) {
+            	this.shootBulletB(7,j);		//自機狙い弾の発射
+            }
             this._timeCountS = 0;
         }
 
@@ -313,8 +317,12 @@ class Enemy extends SpriteActor {
         this.maxHp = 9999;		//敵の最大HP
         this.currentHp = this.maxHp;
 
-        this._interval = 30;		//弾幕の発射間隔(初期値は30)
-        this._timeCount = 0;		//謎の値
+		this._intervalA = 60;
+		this._intervalB = 60;
+        this._interval = 60;		//弾幕の発射間隔(初期値は30)
+        this._timeCount = 30;		//謎の値
+        this._timeCountA = 15;
+        this._timeCountB = 0;
         this._velocityX = 1.5;		//敵の動くスピード(初期値は0.3でした)
 
         // プレイヤーの弾に当たったらHPを減らす
@@ -343,22 +351,42 @@ class Enemy extends SpriteActor {
             this.shootBullet(degree * i, speed);
         }
     }
+    shootCircularBulletsA(num, speed) {
+        const degree = 360 / num;		//初期値は360
+        for(let i = 0; i < num; i++) {
+            this.shootBullet(degree * i+2, speed);
+        }
+    }
 
     update(gameInfo, input) {
     	hp.textContent = 'HP:'+this.currentHp;
         // 左右に移動する
-        this.x += this._velocityX;
+        //this.x += this._velocityX;
         if(this.x <= 100 || this.x >= 400) {		//敵が動く範囲？
         	this._velocityX *= -1;
         }
 
         // インターバルを経過していたら弾を撃つ
+        this._timeCountA++;
+        if(this._timeCountA > this._intervalA) {
+        //this.shootCircularBulletsA(90, 5);
+            //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
+            //this.shootCircularBullets(30, 5);
+            this._timeCountA = 0;
+        }
         this._timeCount++;
         if(this._timeCount > this._interval) {
-        this.shootCircularBullets(20, 5);
+        //this.shootCircularBullets(90, 5); 
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCount = 0;
+        }
+        this._timeCountB++;
+        if(this._timeCountB > this._intervalB) {
+        //this.shootCircularBullets(90, 5); 
+            //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
+            //this.shootCircularBullets(30, 5);
+            this._timeCountB = 0;
         }
 
         // HPがゼロになったらdestroyする
@@ -438,7 +466,7 @@ class DanmakuStgMainScene extends Scene {
         super('メイン', 'black', renderingTarget);
 		const backg = new BackG(0,0);
         const fighter = new Fighter(230, 550);    //自機の初期座標
-        const enemy = new Enemy(150, 100);
+        const enemy = new Enemy(300, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
 		this.add(backg);
         this.add(fighter);
