@@ -110,21 +110,21 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
+        const sprite = new Sprite(assets.get('my'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
         this._interval = 5;		//(自機の弾幕の発射間隔)初期値５
         this._intervalS = 30;		//(自機狙い弾の発射感覚)初期値30
-        this._intervalB = 30;		//の間隔
         this._timeCount = 0;
         this._timeCountS = 0;
-         this._timeCountB = 0;
         this._speed = 4; //自機のスピード
         this._speedS = 1;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
-        this.bombval = 5;
+        this._intervalB = 30;		//の間隔
+		this._timeCountB = 0;
+		this.bombval = 5;
 
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
@@ -180,8 +180,8 @@ class Fighter extends SpriteActor {
 
        this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
-            this.shootBulletA(6);		//自機狙い弾の発射
-            this.shootBulletB(6);
+           // this.shootBulletA(6);		//自機狙い弾の発射
+           // this.shootBulletB(6);
             this._timeCountS = 0;
         }
 
@@ -206,13 +206,12 @@ class Fighter extends SpriteActor {
             	const bullet = new Bullet(this.x, this.y,0);
             	this.spawnActor(bullet);
             	const bullet2 = new Bullet(this.x, this.y,1);
-            	//this.spawnActor(bullet2);
+            	this.spawnActor(bullet2);
             	const bullet3 = new Bullet(this.x, this.y,-1);
-            	//this.spawnActor(bullet3);
+            	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
         }
-
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	if(input.getKey('x')||input.getKey('X')){
@@ -250,6 +249,7 @@ class Bumb extends SpriteActor {
     }
 }
 
+
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
@@ -258,7 +258,7 @@ class EnemyBullet extends SpriteActor {
 
         this.velocityX = velocityX;
         this.velocityY = velocityY;
-         this.addEventListener('hit', (e) => {
+        this.addEventListener('hit', (e) => {
            if(e.target.hasTag('bomb')) {
                this.destroy();
            }
@@ -287,6 +287,9 @@ class aBullet extends SpriteActor {
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
+		if(input.getKey('x')||input.getKey('X')){
+			this.destroy();
+		}
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -303,11 +306,11 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 0, 32, 32));
+        const sprite = new Sprite(assets.get('yurei'), new Rectangle(0, 0, 32, 37));
         const hitArea = new Rectangle(0, 0, 32, 32);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 35;		//敵の最大HP
+        this.maxHp = 50;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
@@ -352,7 +355,6 @@ class Enemy extends SpriteActor {
         // インターバルを経過していたら弾を撃つ
         this._timeCount++;
         if(this._timeCount > this._interval) {
-        this.shootCircularBullets(5, 30);
         this.shootCircularBullets(20, 5);
             this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             this.shootCircularBullets(30, 5);
@@ -401,7 +403,7 @@ class DanmakuStgEndScene extends Scene {
         super('クリア', 'black', renderingTarget);
         const text = new TextLabel(60, 200, 'ゲームクリア！');
         this.add(text);
-		window.location.href = 'record.html';
+		window.location.href = 'recordnormal.html';
 
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);
@@ -456,14 +458,14 @@ class DanmakuStgMainScene extends Scene {
         	m = ('0' + m).slice(-2);
         	s = ('0' + s).slice(-2);
         	ms = ('0' + ms).slice(-3);
-			localStorage.setItem("new", elapsedTime);
+			localStorage.setItem("newN", elapsedTime);
 
 
          alert( m + ':' + s + ':' + ms);
             const scene = new DanmakuStgEndScene(this.renderingTarget);
             this.changeScene(scene);
         });
-    }
+       }
 }
 
 //開始画面？
@@ -496,8 +498,10 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
-assets.addImage('bom', 'bomb2.png');
+assets.addImage('my', 'godhand.png');
+assets.addImage('yurei', 'yurei.png');
 assets.addImage('mark', 'マーカー.png');
+assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
