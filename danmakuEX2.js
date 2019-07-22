@@ -112,7 +112,7 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
+        const sprite = new Sprite(assets.get('my'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
@@ -205,11 +205,11 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
@@ -590,6 +590,7 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
+assets.addImage('my', 'godhand.png');
 assets.addImage('yousei', '妖精.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');

@@ -203,11 +203,11 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	//this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	//this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
@@ -435,7 +435,7 @@ class DanmakuStgMainScene extends Scene {
         super('メイン', 'black', renderingTarget);
 		const backg = new BackG(0,0);
         const fighter = new Fighter(230, 550);    //自機の初期座標
-        const enemy = new Enemy(150, 100);
+        const enemy = new Enemy(230, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
 		this.add(backg);
         this.add(fighter);
@@ -499,7 +499,7 @@ class DanamkuStgGame extends Game {
 assets.addImage('my', 'godhand.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('mark', 'マーカー.png');
-assets.addImage('uchu', 'ダウンロード.jpg');
+assets.addImage('uchu', '月面1.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
