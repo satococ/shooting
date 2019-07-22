@@ -670,8 +670,8 @@ assets.addImage('tensi1', '天使2.png');
 assets.addImage('my', 'godhand.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
-assets.addImage('uchu', 'ダウンロード.jpg');
-assets.addImage('mori', '森.png');
+assets.addImage('uchu', 'ex3.png');
+assets.addImage('mori', 'ex3.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();

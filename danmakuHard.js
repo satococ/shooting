@@ -203,11 +203,11 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
@@ -252,7 +252,7 @@ class Bumb extends SpriteActor {
 
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('mark'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -298,7 +298,7 @@ class aBullet extends SpriteActor {
 //背景を表示させるクラス
 class BackG extends SpriteActor {
 constructor(x, y) {
-       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
+       const sprite = new Sprite(assets.get('uchu'), new Rectangle(400, 0, 1280, 1024));
        const hitArea = new Rectangle(0, 0, 0, 0);
        super(x, y, sprite, hitArea, ['back']);
    }
@@ -306,11 +306,11 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('yurei'), new Rectangle(0, 0, 32, 37));
-        const hitArea = new Rectangle(0, 0, 32, 32);
+        const sprite = new Sprite(assets.get('goremu'), new Rectangle(0, 0, 64, 67));
+        const hitArea = new Rectangle(0, 0, 64, 67);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 50;		//敵の最大HP
+        this.maxHp = 150;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
@@ -437,7 +437,7 @@ class DanmakuStgMainScene extends Scene {
         super('メイン', 'black', renderingTarget);
 		const backg = new BackG(0,0);
         const fighter = new Fighter(230, 550);    //自機の初期座標
-        const enemy = new Enemy(150, 100);
+        const enemy = new Enemy(230, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
 		this.add(backg);
         this.add(fighter);
@@ -499,10 +499,10 @@ class DanamkuStgGame extends Game {
     }
 }
 assets.addImage('my', 'godhand.png');
-assets.addImage('yurei', 'yurei.png');
+assets.addImage('goremu', 'fantasy_golem.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
-assets.addImage('uchu', 'ダウンロード.jpg');
+assets.addImage('uchu', 'nc188489.jpg');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
