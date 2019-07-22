@@ -5,109 +5,131 @@
 <body>
        <script type="text/javascript" >
 			function saveA() {
-				var fighterHp = document.getElementById("fighterinterval").value;
-				document.getElementById("aaa").textContent= fighterHp;
+				var fighterInterval = document.getElementById("fighterinterval").value;
+				var fighterBomb = document.getElementById("fighterbomb").value;
+				var enemyHp = document.getElementById("enemyhp").value;
+				var commonStr1 = document.getElementById("commonstr1").value;
+				var commonSpeed1 = document.getElementById("commonspeed1").value;
+				var commonInterval1 = document.getElementById("commoninterval1").value;
+				var commonStr2 = document.getElementById("commonstr2").value;
+				var commonSpeed2 = document.getElementById("commonspeed2").value;
+				var commonAngle2 = document.getElementById("commonangle2").value;
+				var commonInterval2 = document.getElementById("commoninterval2").value;
+				var targetStr = document.getElementById("targetstr").value;
+				var targetSpeed = document.getElementById("targetspeed").value;
+				var targetInterval = document.getElementById("targetinterval").value;
+				var inductionStr = document.getElementById("inductionstr").value;
+				var inductionSpeed = document.getElementById("inductionspeed").value;
+				var inductionInterval = document.getElementById("inductioninterval").value;
+				var fireworkSpeed = document.getElementById("fireworkspeed").value;
+				var fireworkInterval = document.getElementById("fireworkinterval").value;
+				var onFire = document.getElementById("onfire").value;
+				var spiralStr = document.getElementById("spiralstr").value;
+				var spiralSpeed = document.getElementById("spiralspeed").value;
+				var spiralInterval = document.getElementById("spiralinterval").value;
+
 				//window.location.href = 'createStage.html';
+
+
+				location.href = 'createStage.html?fighterInterval='+encodeURIComponent(fighterInterval)+'&fighterBomb='+encodeURIComponent(fighterBomb)+'&enemyHp='+encodeURIComponent(enemyHp)+'&commonStr1='+encodeURIComponent(commonStr1)+'&commonSpeed1='+encodeURIComponent(commonSpeed1)+'&commonInterval1='+encodeURIComponent(commonInterval1)+'&commonStr2='+encodeURIComponent(commonStr2)+'&commonSpeed2='+encodeURIComponent(commonSpeed2)+'&commonAngle2='+encodeURIComponent(commonAngle2)+'&commonInterval2='+encodeURIComponent(commonInterval2)+'&targetStr='+encodeURIComponent(targetStr)+'&targetSpeed='+encodeURIComponent(targetSpeed)+'&targetInterval='+encodeURIComponent(targetInterval)+'&inductionStr='+encodeURIComponent(inductionStr)+'&inductionSpeed='+encodeURIComponent(inductionSpeed)+'&inductionInterval='+encodeURIComponent(inductionInterval)+'&fireworkSpeed='+encodeURIComponent(fireworkSpeed)+'&fireworkInterval='+encodeURIComponent(fireworkInterval)+'&onFire='+encodeURIComponent(onFire)+'&spiralStr='+encodeURIComponent(spiralStr)+'&spiralSpeed='+encodeURIComponent(spiralSpeed)+'&spiralInterval='+encodeURIComponent(spiralInterval);
 			}
 		</script>
 
-<div id="aaa"></div>
-<table> 
+<table>
 		<tr>
        		<td class="heading">自機</td>
        	</tr>
        	<tr>
-       		<td>ボム</td><td><input type="number" id="fighterbomb" min="0"value="0"></td>
+       		<td>ボム</td><td><input type="number" id="fighterbomb" min="0"value="0"></td><td>※Hardは5</td>
        	</tr>
        	 <tr>
-       		<td>発射間隔</td><td><input type="number" id="fighterinterval" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="fighterinterval" min="1"value="1"></td><td>※Hardは5</td>
        	</tr>
 		<tr>
        		<td class="heading">敵機</td>
        	</tr>
        	<tr>
-       		<td>HP</td><td><input type="number" id="enemyhp" min="1"value="1"></td>
+       		<td>HP</td><td><input type="number" id="enemyhp" min="1"value="1"></td><td>※Hardは50</td>
        	</tr>
        	<tr>
        		<td class="heading">通常弾幕1</td>
        	</tr>
        	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td>密度</td><td><input type="number" id="commonstr1" min="0"value="0"></td><td>※Hardは20～30</td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>速度</td><td><input type="number" id="commonspeed1" min="1"value="1"></td><td>※Hardは2～5</td>
        	</tr>
        	<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="commoninterval1" min="1"value="1"></td><td>※Hardは30</td>
        	</tr>
        	<tr>
        		<td class="heading">通常弾幕2</td>
        	</tr>
        	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td>密度</td><td><input type="number" id="commonstr2" min="0"value="0"></td><td>※Hardは20～30</td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>速度</td><td><input type="number" id="commonspeed2" min="1"value="1"></td><td>※Hardは2～5</td>
        	</tr>
 		<tr>
-			<td>角度</td><td><input type="number" id="" min="1"value="1"></td>
+			<td>角度</td><td><input type="number" id="commonangle2" min="1"value="1"></td><td>※Hardは6</td>
 		</tr>
 		<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="commoninterval2" min="1"value="1"></td><td>※Hardは20～30</td>
        	</tr>
-       	
+
        	<tr>
-       		<td class="heading">自機狙い</td><td class="heading">*密度偶数は自機外し</td>
-       	</tr>
-       	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td class="heading">自機狙い</td><td class="heading">※密度偶数は自機外し</td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>密度</td><td><input type="number" id="targetstr" min="0"value="0"></td><td>※Lunaticは1</td>
        	</tr>
        	<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>速度</td><td><input type="number" id="targetspeed" min="1"value="1"></td><td>※Lunaticは6</td>
        	</tr>
-       	
+       	<tr>
+       		<td>発射間隔</td><td><input type="number" id="targetinterval" min="1"value="1"></td><td>※Lunaticは30</td>
+       	</tr>
+
        	<tr>
        		<td class="heading">誘導弾</td>
        	</tr>
        	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td>密度</td><td><input type="number" id="inductionstr" min="0"value="0"></td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>速度</td><td><input type="number" id="inductionspeed" min="1"value="1"></td>
        	</tr>
        	<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="inductioninterval" min="1"value="1"></td>
        	</tr>
-       	
+
        	<tr>
        		<td class="heading">花火</td>
        	</tr>
        	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td>速度</td><td><input type="number" id="fireworkspeed" min="1"value="1"></td><td>※Ex1は10</td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="fireworkinterval" min="1"value="1"></td><td>※Ex1は10</td>
        	</tr>
        	<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>着火時間</td><td><input type="number" id="onfire" min="1"value="1"></td><td>※Ex1は60</td>
        	</tr>
-       	
        	<tr>
        		<td class="heading">渦巻</td>
        	</tr>
        	<tr>
-       		<td>密度</td><td><input type="number" id="" min="0"value="0"></td>
+       		<td>密度</td><td><input type="number" id="spiralstr" min="0"value="0"></td><td>※Normalは13</td>
        	</tr>
        	<tr>
-       		<td>速度</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>速度</td><td><input type="number" id="spiralspeed" min="1"value="1"></td><td>※Normalは4</td>
        	</tr>
        	<tr>
-       		<td>発射間隔</td><td><input type="number" id="" min="1"value="1"></td>
+       		<td>発射間隔</td><td><input type="number" id="spiralinterval" min="1"value="1"></td><td>※Normalは300</td>
        	</tr>
-       	
+
        	<tr><td>
        	<input type="submit" onclick="saveA();" value="データを入れる">
 		</td>
