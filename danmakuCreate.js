@@ -5,94 +5,94 @@
 	var originalfighterInterval = value[0].split('=');
 	var fighterInterval = Number(decodeURIComponent(originalfighterInterval[1]));
 	console.log(decodeURIComponent(originalfighterInterval));
-	
+
 	var originalfighterBomb = value[1].split('=');
 	var fighterBomb = Number(decodeURIComponent(originalfighterBomb[1]));
 	console.log(decodeURIComponent(originalfighterBomb));
-	
+
 	var originalenemyHp = value[2].split('=');
 	var enemyHp = Number(decodeURIComponent(originalenemyHp[1]));
 	console.log(decodeURIComponent(originalenemyHp));
-	
+
 	var originalcommonStr1 = value[3].split('=');
 	var commonStr1 = Number(decodeURIComponent(originalcommonStr1[1]));
 	console.log(decodeURIComponent(originalcommonStr1));
-	
+
 	var originalcommonSpeed1 = value[4].split('=');
 	var commonSpeed1 = Number(decodeURIComponent(originalcommonSpeed1[1]));
 	console.log(decodeURIComponent(originalcommonSpeed1));
-	
+
 	var originalcommonInterval1 = value[5].split('=');
 	var commonInterval1 = Number(decodeURIComponent(originalcommonInterval1[1]));
 	console.log(decodeURIComponent(originalcommonInterval1));
-	
+
 	var originalcommonStr2 = value[6].split('=');
 	var commonStr2 = Number(decodeURIComponent(originalcommonStr2[1]));
 	console.log(decodeURIComponent(originalcommonStr2));
-	
+
 	var originalcommonSpeed2 = value[7].split('=');
 	var commonSpeed2 = Number(decodeURIComponent(originalcommonSpeed2[1]));
 	console.log(decodeURIComponent(originalcommonSpeed2));
-	
+
 	var originalcommonAngle2 = value[8].split('=');
 	var commonAngle2 = Number(decodeURIComponent(originalcommonAngle2[1]));
 	console.log(decodeURIComponent(originalcommonAngle2));
-	
+
 	var originalcommonInterval2 = value[9].split('=');
 	var commonInterval2 = Number(decodeURIComponent(originalcommonInterval2[1]));
 	console.log(decodeURIComponent(originalcommonInterval2));
-	
+
 	var originaltargetStr = value[10].split('=');
 	var targetStr = decodeURIComponent(originaltargetStr[1]);
 	console.log(decodeURIComponent(originaltargetStr));
-	
+
 	var originaltargetSpeed = value[11].split('=');
 	var targetSpeed = Number(decodeURIComponent(originaltargetSpeed[1]));
 	console.log(decodeURIComponent(originaltargetSpeed));
-	
+
 	var originaltargetInterval = value[12].split('=');
 	var targetInterval = Number(decodeURIComponent(originaltargetInterval[1]));
 	console.log(decodeURIComponent(originaltargetInterval));
-	
+
 	var originalinductionStr = value[13].split('=');
 	var inductionStr = Number(decodeURIComponent(originalinductionStr[1]));
 	console.log(decodeURIComponent(originalinductionStr));
-	
+
 	var originalinductionSpeed= value[14].split('=');
 	var inductionSpeed = Number(decodeURIComponent(originalinductionSpeed[1]));
 	console.log(decodeURIComponent(originalinductionSpeed));
-	
+
 	var originalinductionInterval = value[15].split('=');
 	var inductionInterval = Number(decodeURIComponent(originalinductionInterval[1]));
 	console.log(decodeURIComponent(originalinductionInterval));
-	
-	
-	
+
+
+
 	var originalfireworkSpeed = value[16].split('=');
 	var fireworkSpeed = Number(decodeURIComponent(originalfireworkSpeed[1]));
 	console.log(decodeURIComponent(originalfireworkSpeed));
-	
+
 	var originalfireworkInterval = value[17].split('=');
 	var fireworkInterval = Number(decodeURIComponent(originalfireworkInterval[1]));
 	console.log(decodeURIComponent(originalfireworkInterval));
-	
+
 	var originalonFire = value[18].split('=');
 	var onFire = Number(decodeURIComponent(originalonFire[1]));
 	console.log(decodeURIComponent(originalonFire));
-	
+
 	var originalspiralStr= value[19].split('=');
 	var spiralStr = Number(decodeURIComponent(originalspiralStr[1]));
 	console.log(decodeURIComponent(originalspiralStr));
-	
+
 	var originalspiralSpeed= value[20].split('=');
 	var spiralSpeed = Number(decodeURIComponent(originalspiralSpeed[1]));
 	console.log(decodeURIComponent(originalspiralSpeed));
-	
+
 	var originalspiralInterval= value[21].split('=');
 	var spiralInterval = Number(decodeURIComponent(originalspiralInterval[1]));
 	console.log(decodeURIComponent(originalspiralInterval));
-	
-	
+
+
    	var timer = document.getElementById('timer');
     var start = document.getElementById('start');
     var hp = document.getElementById('hp');
@@ -114,7 +114,7 @@
     var elapsedTime = 0;
  //タイマーを止めるにはclearTimeoutを使う必要があり、そのためにはclearTimeoutの引数に渡すためのタイマーのidが必要
     var timerId;
-    
+
     var fiX;
     var fiY;
 
@@ -207,7 +207,7 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
+        const sprite = new Sprite(assets.get('my'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
@@ -307,16 +307,16 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
         }
-        
+
 		this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	if(input.getKey('x')||input.getKey('X')){
@@ -407,14 +407,14 @@ class Enemy extends SpriteActor {
         	this.shootCircularBullets(commonStr1, commonSpeed1);//引数１は弾幕の密度、引数２は弾速
             this._timeCountA = 0;
         }
-        
+
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	this.shootCircularBulletsA(commonStr2,commonSpeed2,commonAngle2); //引数１は弾幕の密度、引数２は弾速,3は追加角度
             this._timeCountB = 0;
         }
         this._timeCountC++;
-        
+
         if(this._timeCountC > this._intervalC) {
         	const spawner = new SpiralBulletsSpawner(this.x, this.y,spiralStr);
             this.spawnActor(spawner);
@@ -470,11 +470,11 @@ class inductionBullet extends SpriteActor {
 	 	this._timeCount = 0;
 	 	this.currentx;
 	 	this.currenty;
-	 	
+
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('bomb')) {
                this.destroy();
-           } 
+           }
         });
     }
 
@@ -580,14 +580,14 @@ class EnemyBullet extends SpriteActor {
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('bomb')) {
                this.destroy();
-           } 
+           }
         });
     }
 
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
-		
+
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -654,7 +654,7 @@ class aBullet extends SpriteActor {
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
-		
+
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -831,6 +831,8 @@ class DanamkuStgGame extends Game {
     }
 }
 
+assets.addImage('mark', 'マーカー.png');
+assets.addImage('my', 'godhand.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('sprite', 'sprite.png');
