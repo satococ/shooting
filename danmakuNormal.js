@@ -258,6 +258,11 @@ class EnemyBullet extends SpriteActor {
         this.velocityX = velocityX;
         this.velocityY = velocityY;
         this.isFrozen = isFrozen;
+        this.addEventListener('hit', (e) => {
+          if(e.target.hasTag('bomb')) {
+              this.destroy();
+          }
+       });
     }
 
     update(gameInfo, input) {
