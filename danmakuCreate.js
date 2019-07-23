@@ -643,7 +643,7 @@ class FireworksBullet extends EnemyBullet {
 //エネミーマーカーのを表示させるクラス
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('mark'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
