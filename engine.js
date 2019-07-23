@@ -319,6 +319,8 @@ class Game {
         this.height = height;
         this.maxFps = maxFps;
         this.currentFps = 0;
+        this._interval = 60;
+        this._timeCount = 0;
 
         this.screenCanvas = document.createElement('canvas');
         this.screenCanvas.height = height;
@@ -351,7 +353,7 @@ class Game {
 
         this._prevTimestamp = timestamp;
         this.currentFps = 1 / elapsedSec;
-
+       
         const screenRectangle = new Rectangle(0, 0, this.width, this.height);
         const info = new GameInformation(this.title, screenRectangle,
                                          this.maxFps, this.currentFps);

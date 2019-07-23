@@ -66,17 +66,19 @@
 	var inductionInterval = Number(decodeURIComponent(originalinductionInterval[1]));
 	console.log(decodeURIComponent(originalinductionInterval));
 	
-	var originalonFire = value[16].split('=');
-	var onFire = Number(decodeURIComponent(originalonFire[1]));
-	console.log(decodeURIComponent(originalonFire));
 	
-	var originalfireworkSpeed = value[17].split('=');
+	
+	var originalfireworkSpeed = value[16].split('=');
 	var fireworkSpeed = Number(decodeURIComponent(originalfireworkSpeed[1]));
 	console.log(decodeURIComponent(originalfireworkSpeed));
 	
-	var originalfireworkInterval = value[18].split('=');
+	var originalfireworkInterval = value[17].split('=');
 	var fireworkInterval = Number(decodeURIComponent(originalfireworkInterval[1]));
 	console.log(decodeURIComponent(originalfireworkInterval));
+	
+	var originalonFire = value[18].split('=');
+	var onFire = Number(decodeURIComponent(originalonFire[1]));
+	console.log(decodeURIComponent(originalonFire));
 	
 	var originalspiralStr= value[19].split('=');
 	var spiralStr = Number(decodeURIComponent(originalspiralStr[1]));
@@ -112,6 +114,9 @@
     var elapsedTime = 0;
  //タイマーを止めるにはclearTimeoutを使う必要があり、そのためにはclearTimeoutの引数に渡すためのタイマーのidが必要
     var timerId;
+    
+    var fiX;
+    var fiY;
 
 
 function updateTimetText(){
@@ -222,7 +227,7 @@ class Fighter extends SpriteActor {
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('enemyBullet')) {
-              // this.destroy();
+              //this.destroy();
            }
         });
     }
@@ -246,6 +251,8 @@ class Fighter extends SpriteActor {
     }
 
     update(gameInfo, input) {
+    	fiX = this.x;
+    	fiY = this.y;
         // キーを押されたら移動する
         this._velocityX = 0;
         this._velocityY = 0;
@@ -326,79 +333,6 @@ class Fighter extends SpriteActor {
     }
 }
 
-
-class Bumb extends SpriteActor {
-    constructor(x, y) {
-        const sprite = new Sprite(assets.get('bom'), new Rectangle(0, 0, 512, 384));
-        const hitArea = new Rectangle(0, 0, 512, 384);
-        super(x, y, sprite, hitArea, ['bomb']);
-		this._timeCount = 0;
-		this._interval = 5;
-    }
-
-    update(gameInfo, input) {
-        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
-            this.destroy();
-        }
-        this._timeCount++;
-        if(this._timeCount > this._interval) {
-        	this.destroy();
-        	this._timeCount = 0;
-        }
-    }
-}
-class EnemyBullet extends SpriteActor {
-    constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
-        const hitArea = new Rectangle(8, 8, 16, 16);
-        super(x, y, sprite, hitArea, ['enemyBullet']);
-
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.addEventListener('hit', (e) => {
-           if(e.target.hasTag('bomb')) {
-               this.destroy();
-           } 
-        });
-    }
-
-    update(gameInfo, input) {
-        this.x += this.velocityX;
-        this.y += this.velocityY;
-		
-        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
-            this.destroy();
-        }
-    }
-}
-//エネミーマーカーのを表示させるクラス
-class aBullet extends SpriteActor {
-    constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
-        const hitArea = new Rectangle(8, 8, 16, 16);
-        super(x, y, sprite, hitArea, ['enemyBullet']);
-
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-    }
-
-    update(gameInfo, input) {
-        this.x += this.velocityX;
-        this.y += this.velocityY;
-		
-        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
-            this.destroy();
-        }
-    }
-}
-//背景を表示させるクラス
-class BackG extends SpriteActor {
-constructor(x, y) {
-       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
-       const hitArea = new Rectangle(0, 0, 0, 0);
-       super(x, y, sprite, hitArea, ['back']);
-   }
-}
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
@@ -411,10 +345,14 @@ class Enemy extends SpriteActor {
 
 		this._intervalA = commonInterval1;
 		this._intervalB = commonInterval2;
-        this._interval = 60;		//弾幕の発射間隔(初期値は30)
-        this._timeCount = 30;		//謎の値
+        this._interval = inductionInterval;		//弾幕の発射間隔(初期値は30)
+        this._intervalC =spiralInterval;
+        this._intervalD = fireworkInterval;
+        this._timeCount =  0;		//謎の値
         this._timeCountA = 0;
         this._timeCountB = 0;
+        this._timeCountC = 0;
+        this._timeCountD = 0;
         this._velocityX = 1.5;		//敵の動くスピード(初期値は0.3でした)
 
         // プレイヤーの弾に当たったらHPを減らす
@@ -453,30 +391,44 @@ class Enemy extends SpriteActor {
     update(gameInfo, input) {
     	hp.textContent = 'HP:'+this.currentHp;
         // 左右に移動する
-        //this.x += this._velocityX;
+        this.x += this._velocityX;
         if(this.x <= 100 || this.x >= 400) {		//敵が動く範囲？
         	this._velocityX *= -1;
         }
-
+		this._timeCount++;
+        if(this._timeCount > this._interval) {
+        	const bullet = new inductionBullet(this.x, this.y);
+        	this.spawnActor(bullet); 		//引数１は弾幕の密度、引数２は弾速
+            this._timeCount = 0;
+        }
         // インターバルを経過していたら弾を撃つ
         this._timeCountA++;
         if(this._timeCountA > this._intervalA) {
-        this.shootCircularBullets(commonStr1, commonSpeed1);//引数１は弾幕の密度、引数２は弾速
+        	this.shootCircularBullets(commonStr1, commonSpeed1);//引数１は弾幕の密度、引数２は弾速
             this._timeCountA = 0;
         }
-        this._timeCount++;
-        if(this._timeCount > this._interval) {
-        //this.shootCircularBullets(90, 5); 
-            //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
-            //this.shootCircularBullets(30, 5);
-            this._timeCount = 0;
-        }
+        
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
-        this.shootCircularBulletsA(commonStr2,commonSpeed2,commonAngle2); 
-            //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
-            //this.shootCircularBullets(30, 5);
+        	this.shootCircularBulletsA(commonStr2,commonSpeed2,commonAngle2); //引数１は弾幕の密度、引数２は弾速,3は追加角度
             this._timeCountB = 0;
+        }
+        this._timeCountC++;
+        
+        if(this._timeCountC > this._intervalC) {
+        	const spawner = new SpiralBulletsSpawner(this.x, this.y,spiralStr);
+            this.spawnActor(spawner);
+            this._timeCountC = 0;
+        }
+         this._timeCountD++;
+        if(this._timeCountD > this._intervalD) {
+            var spdX = Math.random() *  10  - 2; // -2〜+2
+            var spdY = Math.random() *  8  +1;
+            var explosionTime = onFire ;
+            var bulletEX = new FireworksBullet(this.x, this.y, spdX, spdY,explosionTime);
+            this.spawnActor(bulletEX);
+
+            this._timeCountD = 0;
         }
 
         // HPがゼロになったらdestroyする
@@ -486,6 +438,230 @@ class Enemy extends SpriteActor {
         const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
+}
+
+class Bumb extends SpriteActor {
+    constructor(x, y) {
+        const sprite = new Sprite(assets.get('bom'), new Rectangle(0, 0, 512, 384));
+        const hitArea = new Rectangle(0, 0, 512, 384);
+        super(x, y, sprite, hitArea, ['bomb']);
+		this._timeCount = 0;
+		this._interval = 5;
+    }
+
+    update(gameInfo, input) {
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+        this._timeCount++;
+        if(this._timeCount > this._interval) {
+        	this.destroy();
+        	this._timeCount = 0;
+        }
+    }
+}
+
+class inductionBullet extends SpriteActor {
+    constructor(x, y) {
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const hitArea = new Rectangle(8, 8, 16, 16);
+        super(x, y, sprite, hitArea, ['enemyBullet']);
+	 	this._interval = inductionStr;
+	 	this._timeCount = 0;
+	 	this.currentx;
+	 	this.currenty;
+	 	
+        this.addEventListener('hit', (e) => {
+           if(e.target.hasTag('bomb')) {
+               this.destroy();
+           } 
+        });
+    }
+
+    update(gameInfo, input) {
+		this._timeCount++;
+        if(this._timeCount < this._interval) {
+	     	const a = fiX - this.x;
+	        const b = fiY -this.y;
+	        this.currentx= a/Math.sqrt(a*a+b*b) *inductionSpeed;
+	        this.currenty= b/Math.sqrt(a*a+b*b) *inductionSpeed
+	        this.x += this.currentx;
+	        this.y += this.currenty;
+		}else{
+			this.x += this.currentx;
+			this.y += this.currenty;
+		}
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+class SpiralBulletsSpawner extends Actor {
+    constructor(x, y, rotations) {
+        const hitArea = new Rectangle(0, 0, 0, 0);
+        super(x, y, hitArea);
+
+        this._rotations = rotations;
+        this._interval = 2;
+        this._timeCount = 0;
+        this._angle = 0;      //角度
+        this._radius = 10;    //半径
+        this._bullets = [];
+    }
+
+    update(gameInfo, input) {
+        // 指定回数回転したらやめる
+        const rotation = this._angle / 360;
+        if(rotation >= this._rotations) {
+            this._bullets.forEach((b) => b.isFrozen = false); // 凍結解除
+            this.destroy();
+            return;
+        }
+
+
+        // インターバル経過までは何もしない
+        this._timeCount ++;
+        if(this._timeCount < this._interval) { return;}
+        this._timeCount = 0;
+
+        // 角度と半径を増加させていく
+        this._angle += 20;
+        this._radius += 2;
+
+        // 弾を発射する
+        const rad = this._angle / 180 * Math.PI;
+        const bX = this.x + Math.cos(rad) * this._radius;
+        const bY = this.y + Math.sin(rad) * this._radius;
+        const bSpdX = Math.random() *  spiralSpeed - 1; // -1?+1
+        const bSpdY = Math.random() *  spiralSpeed - 1;
+        const bullet = new EnemyBullet2(bX, bY, bSpdX, bSpdY, true);
+        this._bullets.push(bullet);
+
+        this.spawnActor(bullet);
+    }
+}
+
+//spiral用のエネミーバレット
+class EnemyBullet2 extends SpriteActor {
+    constructor(x, y, velocityX, velocityY, isFrozen = false) {
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const hitArea = new Rectangle(8, 8, 16, 16);
+        super(x, y, sprite, hitArea, ['enemyBullet']);
+
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+        this.isFrozen = isFrozen;
+    }
+
+    update(gameInfo, input) {
+        if(!this.isFrozen) {
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+        }
+
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+class EnemyBullet extends SpriteActor {
+    constructor(x, y, velocityX, velocityY) {
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const hitArea = new Rectangle(8, 8, 16, 16);
+        super(x, y, sprite, hitArea, ['enemyBullet']);
+
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+        this.addEventListener('hit', (e) => {
+           if(e.target.hasTag('bomb')) {
+               this.destroy();
+           } 
+        });
+    }
+
+    update(gameInfo, input) {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+		
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+
+
+class FireworksBullet extends EnemyBullet {
+    constructor(x, y, velocityX, velocityY, explosionTime) {
+        super(x, y, velocityX, velocityY);
+        	console.log(explosionTime);
+
+        this._eplasedTime = 0;
+        this.explosionTime = explosionTime;
+    }
+
+    // degree度の方向にspeedの速さで弾を発射する
+    shootBullet(degree, speed) {
+        const rad = degree / 180 * Math.PI;
+        const velocityX = Math.cos(rad) * speed;
+        const velocityY = Math.sin(rad) * speed;
+
+        const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY);
+        this.spawnActor(bullet);
+    }
+
+    // num個の弾を円形に発射する
+    shootCircularBullets(num, speed) {
+        const degree = 360 / num;
+        for(let i = 0; i < num; i++) {
+            this.shootBullet(degree * i, speed);
+        }
+    }
+
+    update(gameInfo, input) {
+        super.update(gameInfo, input);
+
+        // 経過時間を記録する
+        this._eplasedTime++;
+
+        // 爆発時間を超えたら弾を生成して自身を破棄する
+        if(this._eplasedTime > this.explosionTime) {
+            this.shootCircularBullets(10, fireworkSpeed);
+            this.destroy();
+        }
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+             this.shootCircularBullets(10, fireworkSpeed);
+            this.destroy();
+        }
+    }
+}
+
+//エネミーマーカーのを表示させるクラス
+class aBullet extends SpriteActor {
+    constructor(x, y, velocityX, velocityY) {
+        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const hitArea = new Rectangle(8, 8, 16, 16);
+        super(x, y, sprite, hitArea, ['enemyBullet']);
+
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+    }
+
+    update(gameInfo, input) {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+		
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+//背景を表示させるクラス
+class BackG extends SpriteActor {
+constructor(x, y) {
+       const sprite = new Sprite(assets.get('uchu'), new Rectangle(0, 0, 600, 1200));
+       const hitArea = new Rectangle(0, 0, 0, 0);
+       super(x, y, sprite, hitArea, ['back']);
+   }
 }
 //敵のHPバー
 class EnemyHpBar extends Actor {
@@ -529,7 +705,7 @@ class DanmakuStgEndScene extends Scene {
         this._clearScreen(gameInfo);
         this._renderAll();
         if(input.getKey(' ')){location.reload();}
-        alert("こんな け゛－むに まし゛に なっちゃって と゛うするの");
+        alert("おめでとう！！！");
 
     }
 }

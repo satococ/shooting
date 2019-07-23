@@ -124,7 +124,7 @@ class Fighter extends SpriteActor {
         this._velocityY = 0;		//Y(ry
         this._intervalB = 30;		//の間隔
 		this._timeCountB = 0;
-		this.bombval = 5;
+		this.bombval = 500000;
 
 
         // 敵の弾に当たったらdestroyする
@@ -179,7 +179,7 @@ class Fighter extends SpriteActor {
         	if(input.getKey('ArrowDown')) { this._velocityY = this._speed; }
         }
 
-       this._timeCountS++;
+       //this._timeCountS++;
         if(this._timeCountS > this._intervalS) {
         	for(let i = -1.5; i <= 1.5; i++) {
             	this.shootBulletA(7,i);		//自機狙い弾の発射
@@ -207,7 +207,7 @@ class Fighter extends SpriteActor {
         this._timeCount++;
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
-        	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')){
+        	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')&&input.getKey('Shift')){
             	const bullet = new Bullet(this.x, this.y,0);
             	this.spawnActor(bullet);
             	const bullet2 = new Bullet(this.x, this.y,1);
@@ -220,7 +220,7 @@ class Fighter extends SpriteActor {
         
 		this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
-        	if(input.getKey('x')||input.getKey('X')){
+        	if(input.getKey('x')||input.getKey('X')&&input.getKey('Shift')){
         		if(this.bombval>0){
         			const bumb = new Bumb(this.x-256, this.y-160);
         			this.spawnActor(bumb);
@@ -369,21 +369,21 @@ class Enemy extends SpriteActor {
         // インターバルを経過していたら弾を撃つ
         this._timeCountA++;
         if(this._timeCountA > this._intervalA) {
-        //this.shootCircularBulletsA(90, 5);
+        this.shootCircularBulletsA(90, 5);
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCountA = 0;
         }
         this._timeCount++;
         if(this._timeCount > this._interval) {
-        //this.shootCircularBullets(90, 5); 
+        this.shootCircularBullets(90, 5); 
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCount = 0;
         }
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
-        //this.shootCircularBullets(90, 5); 
+        this.shootCircularBullets(90, 5); 
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCountB = 0;
