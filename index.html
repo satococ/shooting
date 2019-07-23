@@ -2,8 +2,38 @@
      <head><title>ホーム画面</title></head>
      <body>
           <center>
-               <a href = select.html>ステージセレクト画面に</a>
-               <a href =rank.html>ランキング画面に</a>
+               <img src="あ_0000.bmp" width="70%" height="70%">
+               <br>
+
+               <a href=select.html class="rink1">ステージセレクト</a>
+
+               <br><br>
+
+               <a href=rank.html class="rink1">ランキング</a>
+
           </center>
+
      </body>
+     <style>
+               body{
+                    //background-image:url("ｊｊ_0000.bmp");
+                    background-color: #00FF00;
+               }
+               .rink1{
+                    font-size: 40px;
+                    display: inline-block;
+                    padding: 0.5em 1em;
+                    text-decoration: none;
+                    background: #444444;/*ボタン色*/
+                    color: #ffffff;
+                    -webkit-text-stroke: 1px #ff0000;
+                    border-bottom: solid 4px #000000;
+                    border-radius: 3px;
+               }
+               .rink1:active{
+                    -webkit-transform: translateY(4px);
+                    transform: translateY(4px);/*下に動く*/
+                    border-bottom: none;/*線を消す*/
+               }
+     </style>
 </html>
