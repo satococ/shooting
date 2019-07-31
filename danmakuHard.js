@@ -403,7 +403,7 @@ class DanmakuStgEndScene extends Scene {
         super('クリア', 'black', renderingTarget);
         const text = new TextLabel(60, 200, 'ゲームクリア！');
         this.add(text);
-		window.location.href = 'recordnormal.html';
+		window.location.href = 'recordhard.html';
 
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);
@@ -458,7 +458,7 @@ class DanmakuStgMainScene extends Scene {
         	m = ('0' + m).slice(-2);
         	s = ('0' + s).slice(-2);
         	ms = ('0' + ms).slice(-3);
-			localStorage.setItem("newN", elapsedTime);
+			localStorage.setItem("new", elapsedTime);
 
 
          alert( m + ':' + s + ':' + ms);
