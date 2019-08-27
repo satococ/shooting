@@ -54,6 +54,10 @@
 	var targetInterval = Number(decodeURIComponent(originaltargetInterval[1]));
 	console.log(decodeURIComponent(originaltargetInterval));
 
+	var originalinductionTime = value[22].split('=');
+	var inductionTime = Number(decodeURIComponent(originalinductionTime[1]));
+	console.log(decodeURIComponent(originalinductionTime));
+
 	var originalinductionStr = value[13].split('=');
 	var inductionStr = Number(decodeURIComponent(originalinductionStr[1]));
 	console.log(decodeURIComponent(originalinductionStr));
@@ -66,7 +70,9 @@
 	var inductionInterval = Number(decodeURIComponent(originalinductionInterval[1]));
 	console.log(decodeURIComponent(originalinductionInterval));
 
-
+	var originalfireworkStr = value[23].split('=');
+	var fireworkStr = Number(decodeURIComponent(originalfireworkStr[1]));
+	console.log(decodeURIComponent(originalfireworkStr));
 
 	var originalfireworkSpeed = value[16].split('=');
 	var fireworkSpeed = Number(decodeURIComponent(originalfireworkSpeed[1]));
@@ -395,39 +401,47 @@ class Enemy extends SpriteActor {
         if(this.x <= 100 || this.x >= 400) {		//敵が動く範囲？
         	this._velocityX *= -1;
         }
+        //誘導弾
 		this._timeCount++;
         if(this._timeCount > this._interval) {
-        	const bullet = new inductionBullet(this.x, this.y);
-        	this.spawnActor(bullet); 		//引数１は弾幕の密度、引数２は弾速
-            this._timeCount = 0;
+        	if(inductionStr==0){
+            	this._timeCount = 0;
+        	}else{
+        		const bullet = new inductionBullet(this.x, this.y);
+        		this.spawnActor(bullet);
+        		this._timeCount=inductionStr*inductionInterval/40;
+        	} 
         }
         // インターバルを経過していたら弾を撃つ
+        //通常弾
         this._timeCountA++;
         if(this._timeCountA > this._intervalA) {
         	this.shootCircularBullets(commonStr1, commonSpeed1);//引数１は弾幕の密度、引数２は弾速
             this._timeCountA = 0;
         }
-
+		//通常弾2
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	this.shootCircularBulletsA(commonStr2,commonSpeed2,commonAngle2); //引数１は弾幕の密度、引数２は弾速,3は追加角度
             this._timeCountB = 0;
         }
+        //渦巻
         this._timeCountC++;
-
         if(this._timeCountC > this._intervalC) {
         	const spawner = new SpiralBulletsSpawner(this.x, this.y,spiralStr);
             this.spawnActor(spawner);
             this._timeCountC = 0;
         }
+        //花火
          this._timeCountD++;
         if(this._timeCountD > this._intervalD) {
-            var spdX = Math.random() *  10  - 2; // -2〜+2
-            var spdY = Math.random() *  8  +1;
-            var explosionTime = onFire ;
-            var bulletEX = new FireworksBullet(this.x, this.y, spdX, spdY,explosionTime);
-            this.spawnActor(bulletEX);
-
+	        for(let fw=1;fw<=fireworkStr;fw++){
+	            var spdX = Math.random() *  10  - 2; // -2〜+2
+	            var spdY = Math.random() *  8  +1;
+	            var explosionTime = onFire ;
+	            var bulletEX = new FireworksBullet(this.x, this.y, spdX, spdY,explosionTime);
+	            this.spawnActor(bulletEX);
+			}
             this._timeCountD = 0;
         }
 
@@ -466,7 +480,7 @@ class inductionBullet extends SpriteActor {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
-	 	this._interval = inductionStr;
+	 	this._interval = inductionTime;
 	 	this._timeCount = 0;
 	 	this.currentx;
 	 	this.currenty;

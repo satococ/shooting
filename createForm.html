@@ -19,8 +19,10 @@
 				var targetSpeed = document.getElementById("targetspeed").value;
 				var targetInterval = document.getElementById("targetinterval").value;
 				var inductionStr = document.getElementById("inductionstr").value;
+				var inductionTime = document.getElementById("inductiontime").value;
 				var inductionSpeed = document.getElementById("inductionspeed").value;
 				var inductionInterval = document.getElementById("inductioninterval").value;
+				var fireworkStr = document.getElementById("fireworkstr").value;
 				var fireworkSpeed = document.getElementById("fireworkspeed").value;
 				var fireworkInterval = document.getElementById("fireworkinterval").value;
 				var onFire = document.getElementById("onfire").value;
@@ -31,7 +33,30 @@
 				//window.location.href = 'createStage.html';
 
 
-				location.href = 'createStage.html?fighterInterval='+encodeURIComponent(fighterInterval)+'&fighterBomb='+encodeURIComponent(fighterBomb)+'&enemyHp='+encodeURIComponent(enemyHp)+'&commonStr1='+encodeURIComponent(commonStr1)+'&commonSpeed1='+encodeURIComponent(commonSpeed1)+'&commonInterval1='+encodeURIComponent(commonInterval1)+'&commonStr2='+encodeURIComponent(commonStr2)+'&commonSpeed2='+encodeURIComponent(commonSpeed2)+'&commonAngle2='+encodeURIComponent(commonAngle2)+'&commonInterval2='+encodeURIComponent(commonInterval2)+'&targetStr='+encodeURIComponent(targetStr)+'&targetSpeed='+encodeURIComponent(targetSpeed)+'&targetInterval='+encodeURIComponent(targetInterval)+'&inductionStr='+encodeURIComponent(inductionStr)+'&inductionSpeed='+encodeURIComponent(inductionSpeed)+'&inductionInterval='+encodeURIComponent(inductionInterval)+'&fireworkSpeed='+encodeURIComponent(fireworkSpeed)+'&fireworkInterval='+encodeURIComponent(fireworkInterval)+'&onFire='+encodeURIComponent(onFire)+'&spiralStr='+encodeURIComponent(spiralStr)+'&spiralSpeed='+encodeURIComponent(spiralSpeed)+'&spiralInterval='+encodeURIComponent(spiralInterval);
+				location.href = 'createStage.html?fighterInterval='+encodeURIComponent(fighterInterval)
+				+'&fighterBomb='+encodeURIComponent(fighterBomb)
+				+'&enemyHp='+encodeURIComponent(enemyHp)
+				+'&commonStr1='+encodeURIComponent(commonStr1)
+				+'&commonSpeed1='+encodeURIComponent(commonSpeed1)
+				+'&commonInterval1='+encodeURIComponent(commonInterval1)
+				+'&commonStr2='+encodeURIComponent(commonStr2)
+				+'&commonSpeed2='+encodeURIComponent(commonSpeed2)
+				+'&commonAngle2='+encodeURIComponent(commonAngle2)
+				+'&commonInterval2='+encodeURIComponent(commonInterval2)
+				+'&targetStr='+encodeURIComponent(targetStr)
+				+'&targetSpeed='+encodeURIComponent(targetSpeed)
+				+'&targetInterval='+encodeURIComponent(targetInterval)
+				+'&inductionStr='+encodeURIComponent(inductionStr)
+				+'&inductionSpeed='+encodeURIComponent(inductionSpeed)
+				+'&inductionInterval='+encodeURIComponent(inductionInterval)
+				+'&fireworkSpeed='+encodeURIComponent(fireworkSpeed)
+				+'&fireworkInterval='+encodeURIComponent(fireworkInterval)
+				+'&onFire='+encodeURIComponent(onFire)
+				+'&spiralStr='+encodeURIComponent(spiralStr)
+				+'&spiralSpeed='+encodeURIComponent(spiralSpeed)
+				+'&spiralInterval='+encodeURIComponent(spiralInterval)
+				+'&inductionTime='+encodeURIComponent(inductionTime)
+				+'&fireworkStr='+encodeURIComponent(fireworkStr);
 			}
 		</script>
           <h1>ゲームを作成する</h1>
@@ -110,8 +135,12 @@
             <input type="checkbox" id="Panel7" class="on-off" />
             <div>
              <table>
+             
                   <tr>
-                       <td>追尾時間</td><td><input type="number" id="inductionstr" min="0"value="180"></td>
+                       <td>密度</td><td><input type="number" id="inductionstr" min="0" max="30"value="0"></td>
+                  </tr>
+                  <tr>
+                       <td>追尾時間</td><td><input type="number" id="inductiontime" min="0"value="180"></td>
                   </tr>
                   <tr>
                        <td>速度</td><td><input type="number" id="inductionspeed" min="1"value="3"></td>
@@ -125,6 +154,9 @@
             <input type="checkbox" id="Panel8" class="on-off" />
             <div>
              <table>
+                  <tr>
+                       <td>密度</td><td><input type="number" id="fireworkstr" min="0"value="0"></td><td>※Ex1は1</td>
+                  </tr>
                   <tr>
                        <td>速度</td><td><input type="number" id="fireworkspeed" min="1"value="3"></td><td>※Ex1は3</td>
                   </tr>
