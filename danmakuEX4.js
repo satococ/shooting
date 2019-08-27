@@ -286,7 +286,7 @@ class inductionBullet extends SpriteActor {
         const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
-	 	this._interval = 70;
+	 	this._interval = 160;
 	 	this._timeCount = 0;
 	 	this.currentx;
 	 	this.currenty;
@@ -303,8 +303,8 @@ class inductionBullet extends SpriteActor {
         if(this._timeCount < this._interval) {
              const a = fiX - this.x;
 	        const b = fiY -this.y;
-	        this.currentx= a/Math.sqrt(a*a+b*b) *8;
-	        this.currenty= b/Math.sqrt(a*a+b*b) *8;
+	        this.currentx= a/Math.sqrt(a*a+b*b) *4;
+	        this.currenty= b/Math.sqrt(a*a+b*b) *4;
 	        this.x += this.currentx;
 	        this.y += this.currenty;
 		}else{
@@ -354,7 +354,7 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 48, 56);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 140;		//敵の最大HP
+        this.maxHp = 200;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 30;		//弾幕の発射間隔(初期値は30)
@@ -395,12 +395,29 @@ class Enemy extends SpriteActor {
         	this._velocityX *= -1;
         }
 
-        this._timeCount++;
-        if(this._timeCount > this._interval) {
-             const bullet = new inductionBullet(this.x, this.y);
-             this.spawnActor(bullet); 		//引数１は弾幕の密度、引数２は弾速
-             this._timeCount = 0;
+        if(this.currentHp >= 100){
+             this._timeCount++;
+             if(this._timeCount > this._interval) {
+                  const bullet = new inductionBullet(this.x, this.y);
+                  this.spawnActor(bullet); 		//引数１は弾幕の密度、引数２は弾速
+                  this.shootCircularBullets(20, 5);
+                 //this.shootCircularBullets(20, 2);		//引数１は弾幕の密度、引数２は弾速
+                 this._timeCount = 0;
+                this._timeCount = 0;
+             }
+        }else {
+             this._timeCount++;
+             if(this._timeCount > this._interval) {
+                  const bullet = new inductionBullet(this.x, this.y); //追尾弾
+                  this.spawnActor(bullet); 		//引数１は弾幕の密度、引数２は弾速
+                  this.shootCircularBullets(25, 6);    //通常弾幕
+                  this.shootCircularBullets(20, 2);		//引数１は弾幕の密度、引数２は弾速
+                  this._timeCount = 0;
+                  this._timeCount = 0;
+             }
         }
+
+
 
         // HPがゼロになったらdestroyする
         if(this.currentHp <= 0) {
