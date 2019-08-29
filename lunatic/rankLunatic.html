@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+
+	<script>
+function ranking(){
+	var elapsedTime;
+
+elapsedTime = localStorage.getItem("firstL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("firstL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("firstL").textContent= m + ':' + s + ':' + ms;
+
+	elapsedTime = localStorage.getItem("secondL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("secondL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("secondL").textContent= m + ':' + s + ':' + ms;
+
+	elapsedTime = localStorage.getItem("thirdL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("thirdL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("thirdL").textContent= m + ':' + s + ':' + ms;
+
+	elapsedTime = localStorage.getItem("fourthL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("fourthL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("fourthL").textContent= m + ':' + s + ':' + ms;
+
+	elapsedTime = localStorage.getItem("fifthL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("fifthL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("fifthL").textContent= m + ':' + s + ':' + ms;
+
+	elapsedTime = localStorage.getItem("newL");
+	if(elapsedTime==null){
+		elapsedTime = 3599999;
+		localStorage.setItem("newL",elapsedTime);
+	}
+	var m = Math.floor(elapsedTime / 60000);
+    var s = Math.floor(elapsedTime % 60000 / 1000);
+    var ms = elapsedTime % 1000;
+    m = ('0' + m).slice(-2);
+    s = ('0' + s).slice(-2);
+    ms = ('0' + ms).slice(-3);
+	document.getElementById("newL").textContent= m + ':' + s + ':' + ms;
+
+	if(localStorage.getItem("firstplayerL")==null){
+		localStorage.setItem("firstplayerL","NONAME")
+	}
+	if(localStorage.getItem("secondplayerL")==null){
+		localStorage.setItem("secondplayerL","NONAME")
+	}
+	if(localStorage.getItem("thirdplayerL")==null){
+		localStorage.setItem("thirdplayerL","NONAME")
+	}
+	if(localStorage.getItem("fourthplayerL")==null){
+		localStorage.setItem("fourthplayerL","NONAME")
+	}
+	if(localStorage.getItem("fifthplayerL")==null){
+		localStorage.setItem("fifthplayerL","NONAME")
+	}
+	if(localStorage.getItem("newplayerL")==null){
+		localStorage.setItem("newplayerL","NONAME")
+	}
+	document.getElementById("firstplayerL").textContent= localStorage.getItem("firstplayerL");
+	document.getElementById("secondplayerL").textContent= localStorage.getItem("secondplayerL");
+	document.getElementById("thirdplayerL").textContent= localStorage.getItem("thirdplayerL");
+	document.getElementById("fourthplayerL").textContent= localStorage.getItem("fourthplayerL");
+	document.getElementById("fifthplayerL").textContent= localStorage.getItem("fifthplayerL");
+	document.getElementById("newplayerL").textContent= localStorage.getItem("newplayerL");
+}
+	</script>
+    <meta charset="UTF-8">
+    <title>ランキング</title>
+</head>
+<body onload = "ranking()">
+<table>
+	<tr>
+	<h1>Lunatic</h1>
+	</tr>
+	<tr>
+	<td>1</td><td><div id="firstplayerL"></div></td><td><div id="firstL"></div></td>
+	</tr>
+	<tr>
+	<td>2</td><td><div id="secondplayerL"></div></td><td><div id="secondL"></div></td>
+	</tr>
+	<tr>
+	<td>3</td><td><div id="thirdplayerL"></div></td><td><div id="thirdL"></div></td>
+	</tr>
+	<tr>
+	<td>4</td><td><div id="fourthplayerL"></div></td><td><div id="fourthL"></div></td>
+	</tr>
+	<tr>
+	<td>5</td><td><div id="fifthplayerL"></div></td><td><div id="fifthL"></div></td>
+	</tr>
+	<tr>
+	<td>-</td><td><div id="newplayerL"></div></td><td><div id="newL"></div></td>
+	</tr>
+</table>
+<a href="lunatic.html">もう一度</a><br>
+<a href="../select.html">ステージセレクト画面に戻る</a>
+<style>
+*{
+	margin:0px;
+	padding:0px;
+}
+body{
+
+	background-color:#BBBBBB;
+}
+
+</style>
+</body>
+</html>

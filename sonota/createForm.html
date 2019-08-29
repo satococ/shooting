@@ -1,0 +1,274 @@
+<head>
+    <meta charset="UTF-8">
+    <title>作ってあそぼう！！！</title>
+</head>
+<body>
+       <script type="text/javascript" >
+			function saveA() {
+				var fighterInterval = document.getElementById("fighterinterval").value;
+				var fighterBomb = document.getElementById("fighterbomb").value;
+				var enemyHp = document.getElementById("enemyhp").value;
+				var commonStr1 = document.getElementById("commonstr1").value;
+				var commonSpeed1 = document.getElementById("commonspeed1").value;
+				var commonInterval1 = document.getElementById("commoninterval1").value;
+				var commonStr2 = document.getElementById("commonstr2").value;
+				var commonSpeed2 = document.getElementById("commonspeed2").value;
+				var commonAngle2 = document.getElementById("commonangle2").value;
+				var commonInterval2 = document.getElementById("commoninterval2").value;
+				var targetStr = document.getElementById("targetstr").value;
+				var targetSpeed = document.getElementById("targetspeed").value;
+				var targetInterval = document.getElementById("targetinterval").value;
+				var inductionStr = document.getElementById("inductionstr").value;
+				var inductionTime = document.getElementById("inductiontime").value;
+				var inductionSpeed = document.getElementById("inductionspeed").value;
+				var inductionInterval = document.getElementById("inductioninterval").value;
+				var fireworkStr = document.getElementById("fireworkstr").value;
+				var fireworkSpeed = document.getElementById("fireworkspeed").value;
+				var fireworkInterval = document.getElementById("fireworkinterval").value;
+				var onFire = document.getElementById("onfire").value;
+				var spiralStr = document.getElementById("spiralstr").value;
+				var spiralSpeed = document.getElementById("spiralspeed").value;
+				var spiralInterval = document.getElementById("spiralinterval").value;
+
+				//window.location.href = 'createStage.html';
+
+
+				location.href = 'createStage.html?fighterInterval='+encodeURIComponent(fighterInterval)
+				+'&fighterBomb='+encodeURIComponent(fighterBomb)
+				+'&enemyHp='+encodeURIComponent(enemyHp)
+				+'&commonStr1='+encodeURIComponent(commonStr1)
+				+'&commonSpeed1='+encodeURIComponent(commonSpeed1)
+				+'&commonInterval1='+encodeURIComponent(commonInterval1)
+				+'&commonStr2='+encodeURIComponent(commonStr2)
+				+'&commonSpeed2='+encodeURIComponent(commonSpeed2)
+				+'&commonAngle2='+encodeURIComponent(commonAngle2)
+				+'&commonInterval2='+encodeURIComponent(commonInterval2)
+				+'&targetStr='+encodeURIComponent(targetStr)
+				+'&targetSpeed='+encodeURIComponent(targetSpeed)
+				+'&targetInterval='+encodeURIComponent(targetInterval)
+				+'&inductionStr='+encodeURIComponent(inductionStr)
+				+'&inductionSpeed='+encodeURIComponent(inductionSpeed)
+				+'&inductionInterval='+encodeURIComponent(inductionInterval)
+				+'&fireworkSpeed='+encodeURIComponent(fireworkSpeed)
+				+'&fireworkInterval='+encodeURIComponent(fireworkInterval)
+				+'&onFire='+encodeURIComponent(onFire)
+				+'&spiralStr='+encodeURIComponent(spiralStr)
+				+'&spiralSpeed='+encodeURIComponent(spiralSpeed)
+				+'&spiralInterval='+encodeURIComponent(spiralInterval)
+				+'&inductionTime='+encodeURIComponent(inductionTime)
+				+'&fireworkStr='+encodeURIComponent(fireworkStr);
+			}
+		</script>
+          <h1>ゲームを作成する</h1>
+          <div class="ac_menu">
+            <label for="Panel1">自機</label>
+            <input type="checkbox" id="Panel1" class="on-off" />
+            <div>
+              <table>
+                   <tr>
+                        <td>ボム</td><td><input type="number" id="fighterbomb" min="0"value="5"></td><td>※Hardは5</td>
+                   </tr>
+                    <tr>
+                        <td>発射間隔</td><td><input type="number" id="fighterinterval" min="1"value="5"></td><td>※Hardは5</td>
+                   </tr>
+              </table>
+            </div>
+            <label for="Panel2">敵機</label>
+            <input type="checkbox" id="Panel2" class="on-off" />
+            <div>
+              <table>
+                   <tr>
+                        <td>HP</td><td><input type="number" id="enemyhp" min="1"value="50"></td><td>※Hardは50</td>
+                   </tr>
+              </table>
+            </div>
+            <label for="Panel3">通常弾幕1</label>
+            <input type="checkbox" id="Panel3" class="on-off" />
+            <div>
+              <table>
+                   <tr>
+                        <td>密度</td><td><input type="number" id="commonstr1" min="0"value="0"></td><td>※Hardは20～30</td>
+                   </tr>
+                   <tr>
+                        <td>速度</td><td><input type="number" id="commonspeed1" min="1"value="3"></td><td>※Hardは2～5</td>
+                   </tr>
+                   <tr>
+                        <td>発射間隔</td><td><input type="number" id="commoninterval1" min="1"value="30"></td><td>※Hardは30</td>
+                   </tr>
+              </table>
+            </div>
+            <label for="Panel4">通常弾幕2</label>
+            <input type="checkbox" id="Panel4" class="on-off" />
+            <div>
+             <table>
+                  <tr>
+                       <td>密度</td><td><input type="number" id="commonstr2" min="0"value="0"></td><td>※Hardは20～30</td>
+                  </tr>
+                  <tr>
+                       <td>速度</td><td><input type="number" id="commonspeed2" min="1"value="2"></td><td>※Hardは2～5</td>
+                  </tr>
+                  <tr>
+                       <td>角度</td><td><input type="number" id="commonangle2" min="1"value="6"></td><td>※Hardは6</td>
+                  </tr>
+                  <tr>
+                       <td>発射間隔</td><td><input type="number" id="commoninterval2" min="1"value="17"></td><td>※Hardは20～30</td>
+                  </tr>
+             </table>
+            </div>
+
+            <label for="Panel5">自機狙い ※密度偶数は自機外し</label>
+            <input type="checkbox" id="Panel5" class="on-off" />
+            <div>
+             <table>
+                  <tr>
+                       <td>密度</td><td><input type="number" id="targetstr" min="0"value="0"></td><td>※Lunaticは1</td>
+                  </tr>
+                  <tr>
+                       <td>速度</td><td><input type="number" id="targetspeed" min="1"value="6"></td><td>※Lunaticは6</td>
+                  </tr>
+                  <tr>
+                       <td>発射間隔</td><td><input type="number" id="targetinterval" min="1"value="30"></td><td>※Lunaticは30</td>
+                  </tr>
+             </table>
+            </div>
+            <label for="Panel7">誘導弾</label>
+            <input type="checkbox" id="Panel7" class="on-off" />
+            <div>
+             <table>
+             
+                  <tr>
+                       <td>密度</td><td><input type="number" id="inductionstr" min="0" max="30"value="0"></td>
+                  </tr>
+                  <tr>
+                       <td>追尾時間</td><td><input type="number" id="inductiontime" min="0"value="180"></td>
+                  </tr>
+                  <tr>
+                       <td>速度</td><td><input type="number" id="inductionspeed" min="1"value="3"></td>
+                  </tr>
+                  <tr>
+                       <td>発射間隔</td><td><input type="number" id="inductioninterval" min="1"value="180"></td>
+                  </tr>
+             </table>
+            </div>
+            <label for="Panel8">花火</label>
+            <input type="checkbox" id="Panel8" class="on-off" />
+            <div>
+             <table>
+                  <tr>
+                       <td>密度</td><td><input type="number" id="fireworkstr" min="0"value="0"></td><td>※Ex1は1</td>
+                  </tr>
+                  <tr>
+                       <td>速度</td><td><input type="number" id="fireworkspeed" min="1"value="3"></td><td>※Ex1は3</td>
+                  </tr>
+                  <tr>
+                       <td>発射間隔</td><td><input type="number" id="fireworkinterval" min="1"value="10"></td><td>※Ex1は10</td>
+                  </tr>
+                  <tr>
+                       <td>着火時間</td><td><input type="number" id="onfire" min="1"value="60"></td><td>※Ex1は60</td>
+                  </tr>
+             </table>
+            </div>
+            <label for="Panel9">渦巻</label>
+            <input type="checkbox" id="Panel9" class="on-off" />
+            <div>
+             <table>
+                  <tr>
+                       <td>密度</td><td><input type="number" id="spiralstr" min="0"value="0"></td><td>※Normalは4</td>
+                  </tr>
+                  <tr>
+                       <td>速度</td><td><input type="number" id="spiralspeed" min="1"value="4"></td><td>※Normalは4</td>
+                  </tr>
+                  <tr>
+                       <td>発射間隔</td><td><input type="number" id="spiralinterval" min="1"value="300"></td><td>※Normalは300</td>
+                  </tr>
+             </table>
+            </div>
+          </div>
+          <br>
+
+<a class="btn-square" id="but" id="but" onclick="saveA();">ゲームを開始する</a>
+<br>
+<br>
+<a href="../select.html" class="btn-square">ステージセレクト画面に戻る</a>
+<a href="demo.html" class="btn-square">デモプレイに</a>
+<a href="../rank.html" class="btn-square">ランキング画面に</a>
+
+</body>
+
+<style>
+     body{
+          background-color:#00FFFF;
+          /* background-image: url("matrix_binary-wide.jpg");
+          background-repeat: no-repeat;
+          background-size:contain; */
+          text-align:center;
+          font-family:MS Mincho;
+          font-size:20px;
+     }
+     h1{
+          width:50%;
+          margin-left:auto;
+          margin-right:auto;
+          padding-bottom: .1em;
+          border-bottom: 1px solid #ccc;
+     }
+     #but{
+          padding: 1em 2em;
+     }
+     .ac_menu{
+       position:relative;
+       left:20%;
+       width: 800px;
+     }
+
+     /* メニューの部分 */
+     .ac_menu label{
+       background: #333;
+       color: #fff;
+       padding: 10px;
+       display: block;
+       margin: 0;
+       border: 1px solid #fff;
+       cursor:pointer;
+     }
+     .ac_menu input[type="checkbox"].on-off{
+       display: none;
+     }
+
+     /* コンテンツの部分 */
+     /* .ac_menu div{
+       -webkit-transition: all 0.5s;
+       -moz-transition: all 0.5s;
+       -ms-transition: all 0.5s;
+       -o-transition: all 0.5s;
+       transition: all 0.5s;
+       margin: 0;
+       padding: 0 10px;
+       list-style: none;
+     } */
+     .ac_menu input[type="checkbox"].on-off + div{
+       height: 0;
+       overflow: hidden;
+     }
+     .ac_menu input[type="checkbox"].on-off:checked + div{
+       height: auto;
+     }
+     .btn-square {
+       cursor:pointer;
+       display: inline-block;
+       padding: 0.5em 1em;
+       text-decoration: none;
+       background: #333;/*ボタン色*/
+       color: #FFF;
+       border-bottom: solid 4px #black;
+       border-radius: 3px;
+     }
+     .btn-square:active {
+       /*ボタンを押したとき*/
+       -webkit-transform: translateY(4px);
+       transform: translateY(4px);/*下に動く*/
+       border-bottom: none;/*線を消す*/
+     }
+
+</style>
+</html>
