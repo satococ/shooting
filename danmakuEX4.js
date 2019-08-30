@@ -128,7 +128,7 @@ class Fighter extends SpriteActor {
         this._speedS = 3;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
-        this.bombval = 10;
+        this.bombval = 5; //ボムの数
 
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
@@ -230,7 +230,7 @@ class Fighter extends SpriteActor {
         		}
         	}
         }
-        bom.textContent = 'ボム :'+this.bombval;
+        bom.textContent = 'ボム:'+this.bombval;
     }
 }
 
@@ -566,7 +566,7 @@ assets.addImage('my', 'godhand.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
-assets.addImage('mori', '森.png');
+assets.addImage('mori', '地獄.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
