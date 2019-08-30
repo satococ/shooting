@@ -1,0 +1,90 @@
+<html>
+   <head>
+       <meta charset="UTF-8" />
+       <title>Sample</title>
+   </head>
+   <body>
+       <script type="text/javascript" >
+			function saveA() {
+        	var newname;
+        	var elapsedTime;
+        		var olddata=localStorage.getItem("old");
+               	elapsedTime = Number(localStorage.getItem("new"));
+        		newname = document.getElementById("text").value;
+        		if(newname==''){
+        			 newname = "NONAME";
+        		}
+               	if(olddata==null){
+               		localStorage.setItem("old",3599999);
+               	}
+
+               	if(elapsedTime!==olddata){
+					var rank5 = Number(localStorage.getItem("fifth"));
+					if(elapsedTime<rank5){
+
+						localStorage.setItem("fifth", elapsedTime);
+						localStorage.setItem("fifthplayer", newname);
+						var rank4 = Number(localStorage.getItem("fourth"));
+						var rank4play = localStorage.getItem("fourthplayer");
+						if(elapsedTime<rank4){
+
+							localStorage.setItem("fifth",rank4);
+							localStorage.setItem("fifthplayer",rank4play);
+							localStorage.setItem("fourth", elapsedTime);
+							localStorage.setItem("fourthplayer",newname);
+							var rank3 = Number(localStorage.getItem("third"));
+							var rank3play = localStorage.getItem("thirdplayer");
+							if(elapsedTime<rank3){
+								localStorage.setItem("fourth",rank3);
+								localStorage.setItem("fourthplayer",rank3play);
+								localStorage.setItem("third", elapsedTime);
+								localStorage.setItem("thirdplayer",newname);
+								var rank2 = Number(localStorage.getItem("second"));
+								var rank2play = localStorage.getItem("secondplayer");
+
+								if(elapsedTime<rank2){
+									localStorage.setItem("third",rank2);
+									localStorage.setItem("thirdplayer",rank2play);
+									localStorage.setItem("second", elapsedTime);
+									localStorage.setItem("secondplayer",newname);
+									var rank1 = Number(localStorage.getItem("first"));
+									var rank1play = localStorage.getItem("firstplayer");
+
+									if(elapsedTime<rank1){
+										localStorage.setItem("second",rank1);
+										localStorage.setItem("secondplayer",rank1play);
+										localStorage.setItem("first", elapsedTime);
+										localStorage.setItem("firstplayer",newname);
+									}
+								}
+							}
+						}
+					}
+				}
+				localStorage.setItem("old",elapsedTime);
+				var key="newplayer";
+				localStorage.setItem(key, newname);
+				window.location.href = 'rank.html';
+			}
+		</script>
+		<center>
+			<h1 class="a">ここに名前を入力</h1>
+               <p>名前を入力してください。</p>
+       		<textarea id="text" cols="30" rows="5" wrap="soft"></textarea><br>
+       		<input type="submit" onclick="saveA();" value="データを入れる">
+       </center>
+       <style>
+       body{
+     		background-image:url("nc188489.jpg");
+		}
+		.a{
+			color: #ffffff;
+     		-webkit-text-stroke: 1px #ff0000;
+     		text-stroke: 1px #ff0000;
+		}
+		p{
+			color: #ff0000;
+		}
+		</style>
+   </body>
+</html>

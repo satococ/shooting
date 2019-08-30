@@ -1,0 +1,92 @@
+<html>
+   <head>
+       <meta charset="UTF-8" />
+       <title>Sample</title>
+   </head>
+   <body>
+       <script type="text/javascript" >
+			function saveB() {
+        	var newname;
+        	var elapsedTime;
+        		var olddata=Number(localStorage.getItem("oldL"));
+               	elapsedTime = Number(localStorage.getItem("newL"));
+        		newname = document.getElementById("text").value;
+        		if(newname==''){
+        			 newname = "Lunatic";
+        		}
+               	if(olddata==null){
+               		localStorage.setItem("oldL",3599999);
+               	}
+
+               	if(elapsedTime!==olddata){
+					var rank5 = Number(localStorage.getItem("fifthL"));
+					if(elapsedTime<rank5){
+
+						localStorage.setItem("fifthL", elapsedTime);
+						localStorage.setItem("fifthplayerL", newname);
+						var rank4 = Number(localStorage.getItem("fourthL"));
+						var rank4play = localStorage.getItem("fourthplayerL");
+						if(elapsedTime<rank4){
+
+							localStorage.setItem("fifthL",rank4);
+							localStorage.setItem("fifthplayerL",rank4play);
+							localStorage.setItem("fourthL", elapsedTime);
+							localStorage.setItem("fourthplayerL",newname);
+							var rank3 = Number(localStorage.getItem("thirdL"));
+							var rank3play = localStorage.getItem("thirdplayerL");
+							if(elapsedTime<rank3){
+								localStorage.setItem("fourthL",rank3);
+								localStorage.setItem("fourthplayerL",rank3play);
+								localStorage.setItem("thirdL", elapsedTime);
+								localStorage.setItem("thirdplayerL",newname);
+								var rank2 = Number(localStorage.getItem("secondL"));
+								var rank2play = localStorage.getItem("secondplayerL");
+
+								if(elapsedTime<rank2){
+									localStorage.setItem("thirdL",rank2);
+									localStorage.setItem("thirdplayerL",rank2play);
+									localStorage.setItem("secondL", elapsedTime);
+									localStorage.setItem("secondplayerL",newname);
+									var rank1 = Number(localStorage.getItem("firstL"));
+									var rank1play = localStorage.getItem("firstplayerL");
+
+									if(elapsedTime<rank1){
+										localStorage.setItem("secondL",rank1);
+										localStorage.setItem("secondplayerL",rank1play);
+										localStorage.setItem("firstL", elapsedTime);
+										localStorage.setItem("firstplayerL",newname);
+									}
+								}
+							}
+						}
+					}
+				}else{
+					alert("同じ値");
+				}
+				localStorage.setItem("oldL",elapsedTime);
+				var key="newplayerL";
+				localStorage.setItem(key, newname);
+				window.location.href = 'rankLunatic.html';
+			}
+		</script>
+          <center>
+               <h1 class="a">ここに名前を入力</h1>
+               <p>名前を入力してください。</p>
+               <textarea id="text" cols="30" rows="5" wrap="soft" placeholder="名前"></textarea><br><br>
+               <input type="submit" onclick="saveB();" value="データを入れる">
+          </center>
+          <style>
+       body{
+     		background-image:url("ダウンロード.jpg");
+		}
+		.a{
+			color: #ffffff;
+     		-webkit-text-stroke: 1px #ffcc00;
+     		text-stroke: 1px #ffcc00;
+		}
+		p{
+			color: #ffcc00;
+		}
+		</style>
+   </body>
+</html>
