@@ -31,16 +31,35 @@
 	<td>-</td><td><div id="newplayerN"></div></td><td><div id="newN"></div></td>
 	</tr>
 </table>
-<a href="normal.html">戻る</a><br><br>
-<a href="../select.html">ステージセレクト画面に戻る</a>
+<br>
+<a href="normal.html" class="rink1">戻る</a><br>
+<a href="../select.html" class="rink1">ステージセレクト画面に戻る</a>
 <style>
 *{
 	margin:0px;
 	padding:0px;
 }
 body{
-
-	background-color:#BBBBBB;
+	background-image:url("夜城.png");
+	//background-color:#BBBBBB;
+	color: #ffffff;
+	font-size: 19px;
+}
+.rink1{
+	font-size: 20px;
+	display: inline-block;
+	padding: 0.5em 1em;
+	text-decoration: none;
+	background: #444444;/*ボタン色*/
+	color: #ffffff;
+	-webkit-text-stroke: 1px #ff0000;
+	border-bottom: solid 4px #000000;
+	border-radius: 3px;
+}
+.rink1:active{
+	-webkit-transform: translateY(4px);
+	transform: translateY(4px);/*下に動く*/
+	border-bottom: none;/*線を消す*/
 }
 
 </style>
