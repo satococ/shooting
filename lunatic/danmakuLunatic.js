@@ -399,9 +399,9 @@ class EnemyHpBar extends Actor {
 class DanmakuStgEndScene extends Scene {
     constructor(renderingTarget) {
         super('クリア', 'black', renderingTarget);
-        const text = new TextLabel(60, 200, 'ゲームクリア！');
+        setTimeout("location.reload()",2000);		//2秒後にタイトルに戻る(2000ms)
         this.add(text);
-		window.location.href = 'recordelunatic.html';
+
 
     }update(gameInfo, input) {		//すべての処理を司るメソッド
         this._updateAll(gameInfo, input);
@@ -458,6 +458,11 @@ class DanmakuStgMainScene extends Scene {
         	ms = ('0' + ms).slice(-3);
 			localStorage.setItem("newL", elapsedTime);
 
+               var rank5 = Number(localStorage.getItem("fifthL"));
+               if(elapsedTime<rank5){
+                    localStorage.setItem("newL", elapsedTime);
+                    window.location.href = 'recordelunatic.html';
+               }
 
          alert( m + ':' + s + ':' + ms);
             const scene = new DanmakuStgEndScene(this.renderingTarget);
