@@ -110,7 +110,7 @@ this.velocityX = velocityX;
 
 class Fighter extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(0, 0, 32, 32));
+        const sprite = new Sprite(assets.get('my'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(16, 16, 4, 4);
         super(x, y, sprite, hitArea);
 
@@ -208,16 +208,16 @@ class Fighter extends SpriteActor {
         const isFireReady = this._timeCount > this._interval;
         if(isFireReady) {
         	if(input.getKey(' ')||input.getKey('z')||input.getKey('Z')&&input.getKey('Shift')){
-            	const bullet = new Bullet(this.x, this.y,0);
+            	const bullet = new Bullet(this.x-2, this.y-20,0);
             	this.spawnActor(bullet);
-            	const bullet2 = new Bullet(this.x, this.y,1);
+            	const bullet2 = new Bullet(this.x-2, this.y-20,1);
             	this.spawnActor(bullet2);
-            	const bullet3 = new Bullet(this.x, this.y,-1);
+            	const bullet3 = new Bullet(this.x-2, this.y-20,-1);
             	this.spawnActor(bullet3);
             	this._timeCount = 0;
             }
         }
-        
+
 		this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
         	if(input.getKey('x')||input.getKey('X')&&input.getKey('Shift')){
@@ -266,14 +266,14 @@ class EnemyBullet extends SpriteActor {
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('bomb')) {
                this.destroy();
-           } 
+           }
         });
     }
 
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
-		
+
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -293,7 +293,7 @@ class aBullet extends SpriteActor {
     update(gameInfo, input) {
         this.x += this.velocityX;
         this.y += this.velocityY;
-		
+
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -376,14 +376,14 @@ class Enemy extends SpriteActor {
         }
         this._timeCount++;
         if(this._timeCount > this._interval) {
-        this.shootCircularBullets(90, 5); 
+        this.shootCircularBullets(90, 5);
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCount = 0;
         }
         this._timeCountB++;
         if(this._timeCountB > this._intervalB) {
-        this.shootCircularBullets(90, 5); 
+        this.shootCircularBullets(90, 5);
             //this.shootCircularBullets(30, 2);		//引数１は弾幕の密度、引数２は弾速
             //this.shootCircularBullets(30, 5);
             this._timeCountB = 0;
@@ -464,11 +464,11 @@ class DanmakuStgGameOverScene extends Scene {
 class DanmakuStgMainScene extends Scene {
     constructor(renderingTarget) {
         super('メイン', 'black', renderingTarget);
-		const backg = new BackG(0,0);
+        const backg = new BackG(0,0);
         const fighter = new Fighter(230, 550);    //自機の初期座標
-        const enemy = new Enemy(300, 100);
+        const enemy = new Enemy(230, 100);
         const hpBar = new EnemyHpBar(50, 20, enemy);
-		this.add(backg);
+        this.add(backg);
         this.add(fighter);
         this.add(enemy);
         this.add(hpBar);
@@ -561,6 +561,7 @@ class DanamkuStgGame extends Game {
 }
 
 assets.addImage('bom', 'bomb2.png');
+assets.addImage('my', 'godhand.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
