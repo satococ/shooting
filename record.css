@@ -1,0 +1,14 @@
+ body{
+  	background-image: url("./夜城.png");
+}
+.a{
+	color: #000000;
+    -webkit-text-stroke: 1px #ffffff;
+    text-stroke: 1px #ffcc00;
+}
+#aaa{
+	zoom: 450%;
+}
+p{
+	color: #ffffff;
+}

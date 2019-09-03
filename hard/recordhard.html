@@ -2,6 +2,7 @@
    <head>
        <meta charset="UTF-8" />
        <title>Sample</title>
+        <link rel="stylesheet" type="text/css" href="../record.css">
    </head>
    <body>
        <script type="text/javascript" >
@@ -67,24 +68,15 @@
 				window.location.href = 'rankHard.html';
 			}
 		</script>
-		<center>
-			<h1 class="a">ここに名前を入力</h1>
-               <p>名前を入力してください。</p>
-       		<textarea id="text" cols="30" rows="5" wrap="soft"></textarea><br>
-       		<input type="submit" onclick="saveA();" value="データを入れる">
-       </center>
-       <style>
-       body{
-     		background-image: url("../夜城.png");
-		}
-		.a{
-			color: #ffffff;
-     		-webkit-text-stroke: 1px #ff0000;
-     		text-stroke: 1px #ff0000;
-		}
-		p{
-			color: #ff0000;
-		}
-		</style>
+          <div id="aaa">
+               <center>
+                    <h1 class="a">ランキング登録</h1>
+                    <p>名前を入力してください。</p>
+                    <textarea id="text" cols="30" rows="1" wrap="soft" placeholder="名前" maxlength="6" autofocus></textarea><br><br>
+                    <input type="submit" onclick="saveB();" value="データを入れる">
+
+               </center>
+          </div>
+
    </body>
 </html>
