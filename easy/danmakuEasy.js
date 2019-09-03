@@ -63,7 +63,7 @@ function countUp(){
             updateTimetText()
 
             //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
-            countUp();
+           countUp(); 
 
         //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
         },10);
