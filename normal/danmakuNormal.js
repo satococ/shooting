@@ -251,7 +251,7 @@ class Bumb extends SpriteActor {
 
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY, isFrozen = false) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('ame'), new Rectangle(0, 0, 30, 38));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -567,6 +567,7 @@ assets.addImage('my', 'godhand.png');
 assets.addImage('yurei', 'yurei.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
+assets.addImage('ame', 'sweets_candy.png');
 assets.addImage('uchu', 'kumo.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {

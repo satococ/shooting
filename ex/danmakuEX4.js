@@ -283,7 +283,7 @@ class EnemyBullet extends SpriteActor {
 
 class inductionBullet extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('tuibi'), new Rectangle(0, 0, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 	 	this._interval = 160;
@@ -565,6 +565,7 @@ assets.addImage('maou', 'maou.png');
 assets.addImage('my', 'godhand.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
+assets.addImage('tuibi', '弾幕.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('zigoku', '地獄.png');
 assets.addImage('sprite', 'sprite.png');

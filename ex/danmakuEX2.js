@@ -253,7 +253,7 @@ class Bumb extends SpriteActor {
 
 class EnemyBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('hosi'), new Rectangle(0, 0, 30, 30));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -595,7 +595,8 @@ assets.addImage('yousei', '妖精.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
-assets.addImage('mori', '背景.png');
+assets.addImage('mori', '森.png');
+assets.addImage('hosi', '星.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
