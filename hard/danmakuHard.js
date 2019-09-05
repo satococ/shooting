@@ -461,15 +461,15 @@ class DanmakuStgMainScene extends Scene {
 			localStorage.setItem("new", elapsedTime);
 
                var rank5 = Number(localStorage.getItem("fifthH"));
+                alert( m + ':' + s + ':' + ms);
                if(elapsedTime<rank5){
                     localStorage.setItem("new", elapsedTime);
                     window.location.href = 'recordhard.html';
+               }else{
+                    const scene = new DanmakuStgEndScene(this.renderingTarget);
+                    this.changeScene(scene);
                }
 
-
-         alert( m + ':' + s + ':' + ms);
-            const scene = new DanmakuStgEndScene(this.renderingTarget);
-            this.changeScene(scene);
         });
        }
 }

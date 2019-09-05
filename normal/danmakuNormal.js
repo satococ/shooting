@@ -518,17 +518,17 @@ class DanmakuStgMainScene extends Scene {
         	s = ('0' + s).slice(-2);
         	ms = ('0' + ms).slice(-3);
 			localStorage.setItem("newN", elapsedTime);
-
+               alert( m + ':' + s + ':' + ms);
                var rank5 = Number(localStorage.getItem("fifthN"));
                if(elapsedTime<rank5){
                     localStorage.setItem("newN", elapsedTime);
                     window.location.href = 'recordnormal.html';
-               }
+               }else{
+                  const scene = new DanmakuStgEndScene(this.renderingTarget);
+                  this.changeScene(scene);}
 
 
-         alert( m + ':' + s + ':' + ms);
-            const scene = new DanmakuStgEndScene(this.renderingTarget);
-            this.changeScene(scene);
+
         });
        }
 }

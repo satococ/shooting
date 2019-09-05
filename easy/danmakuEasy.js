@@ -63,7 +63,7 @@ function countUp(){
             updateTimetText()
 
             //countUp関数自身を呼ぶことで10ミリ秒毎に以下の計算を始める
-           countUp(); 
+           countUp();
 
         //1秒以下の時間を表示するために10ミリ秒後に始めるよう宣言
         },10);
@@ -462,15 +462,18 @@ class DanmakuStgMainScene extends Scene {
         	s = ('0' + s).slice(-2);
         	ms = ('0' + ms).slice(-3);
           var rank5 = Number(localStorage.getItem("fifthE"));
+          alert( m + ':' + s + ':' + ms);
           if(elapsedTime<rank5){
 			localStorage.setItem("newE", elapsedTime);
                window.location.href = 'recordeasy.html';
+          }else{
+               const scene = new DanmakuStgEndScene(this.renderingTarget);
+               this.changeScene(scene);
           }
 
 
-         alert( m + ':' + s + ':' + ms);
-            const scene = new DanmakuStgEndScene(this.renderingTarget);
-            this.changeScene(scene);
+
+
         });
     }
 }

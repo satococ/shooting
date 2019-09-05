@@ -595,7 +595,7 @@ assets.addImage('yousei', '妖精.png');
 assets.addImage('mark', 'マーカー.png');
 assets.addImage('bom', 'bomb2.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
-assets.addImage('mori', '森.png');
+assets.addImage('mori', '背景.png');
 assets.addImage('sprite', 'sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
