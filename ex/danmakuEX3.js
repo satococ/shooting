@@ -225,7 +225,7 @@ class Fighter extends SpriteActor {
         		}
         	}
         }
-        bom.textContent = 'ボム :'+this.bombval;
+        bom.textContent = 'ボム:'+this.bombval;
     }
 }
 
