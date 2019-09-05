@@ -298,7 +298,7 @@ class EnemyBullet extends SpriteActor {
 class Enemylaser extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('laser'), new Rectangle(0, 0, 45, 600));
-        const hitArea = new Rectangle(0, 0, 30, 500);
+        const hitArea = new Rectangle(0, 0, 30, 540);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
         this.velocityX = velocityX;
@@ -430,7 +430,7 @@ class Enemy extends SpriteActor {
         // インターバルを経過していたら弾を撃つ
 
         if(this.currentHp >= 20){
-             this.x += this._velocityX;
+             this.x += this._velocityX*(1+Math.random());
              if(this.x <= 10 || this.x >= 450) {		//敵が動く範囲？
              	this._velocityX *= -1;
              }
@@ -443,7 +443,7 @@ class Enemy extends SpriteActor {
                  this._timeCount = 0;
              }
         }else{
-             this.x += this._velocityX*2;
+             this.x += this._velocityX*(2+Math.random() );
              if(this.x <= 10 || this.x >= 450) {		//敵が動く範囲？
              	this._velocityX *= -1;
              }
@@ -453,7 +453,7 @@ class Enemy extends SpriteActor {
                  this.shootCircularBarrier(10, 5);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
                   this.shootCircularBarrier(13, 8);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
                   this.shootCircularBullets(20, 5);
-                  
+
                 this._timeCount = 0;
             }
         }
