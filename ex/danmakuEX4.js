@@ -562,13 +562,12 @@ class DanamkuStgGame extends Game {
 }
 
 assets.addImage('maou', 'maou.png');
-assets.addImage('my', 'godhand.png');
-assets.addImage('mark', 'マーカー.png');
-assets.addImage('bom', 'bomb2.png');
+assets.addImage('my', '../image/godhand.png');
+assets.addImage('mark', '../image/マーカー.png');
+assets.addImage('bom', '../image/bomb2.png');
 assets.addImage('tuibi', '弾幕.png');
-assets.addImage('uchu', 'ダウンロード.jpg');
 assets.addImage('zigoku', '地獄.png');
-assets.addImage('sprite', 'sprite.png');
+assets.addImage('sprite', '../image/sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
     var kon = document.body.childNodes[1];

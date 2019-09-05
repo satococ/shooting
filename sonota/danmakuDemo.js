@@ -282,7 +282,7 @@ class EnemyBullet extends SpriteActor {
 //エネミーマーカーのを表示させるクラス
 class aBullet extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('sprite'), new Rectangle(32, 32, 32, 32));
+        const sprite = new Sprite(assets.get('mark'), new Rectangle(32, 32, 32, 32));
         const hitArea = new Rectangle(8, 8, 16, 16);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
@@ -393,7 +393,7 @@ class Enemy extends SpriteActor {
         if(this.currentHp <= 0) {
             this.destroy();
         }
-        const abullet = new aBullet(this.x,875, 0, 5);      //エネミーマーカーの場所を指定
+        const abullet = new aBullet(this.x,882, 0, 5);      //エネミーマーカーの場所を指定
         this.spawnActor(abullet);
     }
 }
@@ -560,10 +560,11 @@ class DanamkuStgGame extends Game {
     }
 }
 
-assets.addImage('bom', 'bomb2.png');
-assets.addImage('my', 'godhand.png');
+assets.addImage('mark', '../image/マーカー.png');
+assets.addImage('bom', '../image/bomb2.png');
+assets.addImage('my', '../image/godhand.png');
 assets.addImage('uchu', 'ダウンロード.jpg');
-assets.addImage('sprite', 'sprite.png');
+assets.addImage('sprite', '../image/sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
     var kon = document.body.childNodes[1];

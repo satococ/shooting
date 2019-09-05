@@ -501,11 +501,11 @@ class DanamkuStgGame extends Game {
         this.changeScene(titleScene);
     }
 }
-assets.addImage('my', 'godhand.png');
-assets.addImage('bom', 'bomb2.png');
-assets.addImage('mark', 'マーカー.png');
+assets.addImage('my', '../image/godhand.png');
+assets.addImage('bom', '../image/bomb2.png');
+assets.addImage('mark', '../image/マーカー.png');
 assets.addImage('uchu', '月面1.png');
-assets.addImage('sprite', 'sprite.png');
+assets.addImage('sprite', '../image/sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
     var kon = document.body.childNodes[1];

@@ -667,13 +667,12 @@ class DanamkuStgGame extends Game {
 
 assets.addImage('zeusu', 'zeusu.png');
 assets.addImage('tensi1', '天使2.png');
-assets.addImage('my', 'godhand.png');
+assets.addImage('my', '../image/godhand.png');
 assets.addImage('kaminari', 'kaminari.png');
-assets.addImage('mark', 'マーカー.png');
-assets.addImage('bom', 'bomb2.png');
-assets.addImage('uchu', 'ex3.png');
+assets.addImage('mark', '../image/マーカー.png');
+assets.addImage('bom', '../image/bomb2.png');
 assets.addImage('mori', 'ex3.png');
-assets.addImage('sprite', 'sprite.png');
+assets.addImage('sprite', '../image/sprite.png');
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
     var kon = document.body.childNodes[1];
