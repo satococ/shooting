@@ -372,17 +372,22 @@ class Enemy extends SpriteActor {
            }
         });
     }
-
-    // degree度の方向にspeedの速さで弾を発射する
     shootBullet(degree, speed) {
         const rad = degree / 180 * Math.PI;		//初期値は180
         const velocityX = Math.cos(rad) * speed;
         const velocityY = Math.sin(rad) * speed;
-
-
         const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY);
-        const laser1 = new Enemylaser(this.x, this.y-400, velocityX, velocityY);
         this.spawnActor(bullet);
+    }
+
+    // degree度の方向にspeedの速さでレーザーを発射する
+    shootLaser(degree, speed) {
+        const rad = degree / 180 * Math.PI;		//初期値は180
+        const velocityX = Math.cos(rad) * speed;
+        const velocityY = Math.sin(rad) * speed;
+
+        const laser1 = new Enemylaser(this.x, this.y-400, velocityX, velocityY);
+
         this.spawnActor(laser1);
     }
 
@@ -397,10 +402,16 @@ class Enemy extends SpriteActor {
     }
 
     // num個の弾を円形に発射する
-    shootCircularBullets(num, speed) {
+    shootCircularLaser(num, speed) {
         const degree = 90;		//初期値は360
         for(let i = 0; i < num; i++) {
-            this.shootBullet(degree, speed);
+            this.shootLaser(degree, speed);
+        }
+    }
+    shootCircularBullets(num, speed) {
+        const degree = 1 + Math.random() * 90 - 2 / num;		//初期値は360
+        for(let i = 0; i < num; i++) {
+            this.shootBullet(degree * i, speed);
         }
     }
 
@@ -425,8 +436,9 @@ class Enemy extends SpriteActor {
              }
               this._timeCount++;
              if(this._timeCount > this._intervalEX) {
-                  this.shootCircularBullets(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
+                  this.shootCircularLaser(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
                   this.shootCircularBarrier(10, 5);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
+                   this.shootCircularBullets(20, 5);
 
                  this._timeCount = 0;
              }
@@ -437,10 +449,11 @@ class Enemy extends SpriteActor {
              }
              this._timeCount++;
             if(this._timeCount > this._intervalEX2) {
-                 this.shootCircularBullets(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
+                 this. shootCircularLaser(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
                  this.shootCircularBarrier(10, 5);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
                   this.shootCircularBarrier(13, 8);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
-
+                  this.shootCircularBullets(20, 5);
+                  
                 this._timeCount = 0;
             }
         }
