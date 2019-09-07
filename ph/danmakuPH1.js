@@ -240,8 +240,8 @@ class Bumb extends SpriteActor {
 //バリア弾のクラス
 class EnemyBarrier extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
-        const sprite = new Sprite(assets.get('barrier'), new Rectangle(0, 0, 32, 32));
-        const hitArea = new Rectangle(8, 8, 16, 16);
+        const sprite = new Sprite(assets.get('barrier'), new Rectangle(0, 0, 50, 50));
+        const hitArea = new Rectangle(2, 2, 48, 48);
         super(x, y, sprite, hitArea, ['EnemyBarrier']);
 
         this.velocityX = velocityX;
@@ -262,7 +262,7 @@ class EnemyBarrier extends SpriteActor {
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
-        if(dame>=10){
+        if(dame>=5){
              this.destroy();
              dame = 0;
         }
@@ -294,7 +294,7 @@ class EnemyBullet extends SpriteActor {
     }
 }
 
-//レーザー弾のクラス
+//レーザーのクラス
 class Enemylaser extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('laser'), new Rectangle(0, 0, 45, 600));
@@ -401,7 +401,7 @@ class Enemy extends SpriteActor {
         this.spawnActor(barrier);
     }
 
-    // num個の弾を円形に発射する
+    // レーザー
     shootCircularLaser(num, speed) {
         const degree = 90;		//初期値は360
         for(let i = 0; i < num; i++) {
@@ -431,9 +431,11 @@ class Enemy extends SpriteActor {
 
         if(this.currentHp >= 20){
              this.x += this._velocityX*(1+Math.random());
-             if(this.x <= 10 || this.x >= 450) {		//敵が動く範囲？
+             if(this.x <= 20 || this.x >= 450) {		//敵が動く範囲？
              	this._velocityX *= -1;
-             }
+          }else{
+               this._velocityX *= +1;
+          }
               this._timeCount++;
              if(this._timeCount > this._intervalEX) {
                   this.shootCircularLaser(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
@@ -444,14 +446,16 @@ class Enemy extends SpriteActor {
              }
         }else{
              this.x += this._velocityX*(2+Math.random() );
-             if(this.x <= 10 || this.x >= 450) {		//敵が動く範囲？
+             if(this.x <= 20 || this.x >= 440) {		//敵が動く範囲？
              	this._velocityX *= -1;
+             }else{
+                  this._velocityX *= +1;
              }
              this._timeCount++;
             if(this._timeCount > this._intervalEX2) {
                  this. shootCircularLaser(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
                  this.shootCircularBarrier(10, 5);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
-                  this.shootCircularBarrier(13, 8);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
+                  this.shootCircularBarrier(5, 8);    	//バリア弾を発射する。引数１は弾幕の密度、引数２は弾速
                   this.shootCircularBullets(20, 5);
 
                 this._timeCount = 0;
@@ -603,7 +607,7 @@ assets.addImage('sprite', '../image/sprite.png');
 assets.addImage('tenshi', '../image/天使1.png');
 assets.addImage('tenkai', '../image/PH1.png');
 assets.addImage('laser', '../image/レーザー.png');
-assets.addImage('barrier', '../image/弾幕.png');
+assets.addImage('barrier', '../image/バリア.png');
 
 assets.loadAll().then((a) => {
     const game = new DanamkuStgGame();
