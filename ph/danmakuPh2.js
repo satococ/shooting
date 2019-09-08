@@ -121,7 +121,7 @@ class Fighter extends SpriteActor {
         this._timeCount = 0;
         this._timeCountB = 0;
         this._timeCountS = 0;
-        this._speed = 5; //自機のスピード
+        this._speed = 4; //自機のスピード
         this._speedS = 3;     //低速移動時のスピード
         this._velocityX = 0;		//X方向のスピード。上書きされるので意味ないかも？
         this._velocityY = 0;		//Y(ry
@@ -578,7 +578,7 @@ class DanamkuStgGame extends Game {
 assets.addImage('my', '../image/godhand.png');
 assets.addImage('mark', '../image/マーカー.png');
 assets.addImage('bom', '../image/bomb2.png');
-assets.addImage('mori', '森.png');
+assets.addImage('mori', '../image/PH2.png');
 assets.addImage('zonbi', '../image/zonbi.png');
 assets.addImage('sprite', '../image/sprite.png');
 assets.addImage('kunai', '../image/クナイ.png');

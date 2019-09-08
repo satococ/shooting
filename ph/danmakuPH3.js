@@ -335,10 +335,10 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 358, 400);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 100000;		//敵の最大HP
+        this.maxHp = 1000000;		//敵の最大HP
         this.currentHp = this.maxHp;
 
-        this._interval = 30;		//弾幕の発射間隔(初期値は30)
+        this._interval = 28;		//弾幕の発射間隔(初期値は30)
         this._timeCount = 0;		//謎の値
         this._velocityX = 2.3;		//敵の動くスピード(初期値は0.3でした)
 
@@ -356,8 +356,8 @@ class Enemy extends SpriteActor {
         const rad = degree / 180 * Math.PI;		//初期値は180
         const velocityX = Math.cos(rad) * speed;
         const velocityY = Math.sin(rad) * speed;
-        const bullet = new EnemyBullet(this.x+300, this.y+200, velocityX*(Math.random())+(Math.random()), velocityY*(Math.random()*2));
-        const bullet2 = new EnemyBullet(this.x+60, this.y+200, velocityX*(Math.random())+(Math.random()), velocityY*(Math.random()*2));
+        const bullet = new EnemyBullet(this.x+300, this.y+220, velocityX*(Math.random())+(Math.random()), velocityY*(Math.random()*2));
+        const bullet2 = new EnemyBullet(this.x+50, this.y+220, velocityX*(Math.random())+(Math.random()), velocityY*(Math.random()*2));
         this.spawnActor(bullet);
           this.spawnActor(bullet2);
     }
@@ -378,7 +378,7 @@ class Enemy extends SpriteActor {
           this._timeCount++;
           if(this._timeCount > this._interval) {
             //  this.shootCircularBullets(8, 2);
-               this.shootCircularBullets(10, 3);		//引数１は弾幕の密度、引数２は弾速
+               this.shootCircularBullets(12, 3);		//引数１は弾幕の密度、引数２は弾速
                this._timeCount = 0;
           }
      }else {
@@ -421,7 +421,7 @@ class Mahouzin extends SpriteActor {
         this.maxHp = 50;		//敵の最大HP
         this.currentHp = this.maxHp;
 
-        this._interval = 50;		//弾幕の発射間隔(初期値は30)
+        this._interval = 60;		//弾幕の発射間隔(初期値は30)
         this._timeCount = 0;		//謎の値
         this._velocityX = 2.3;		//敵の動くスピード(初期値は0.3でした)
 
@@ -546,7 +546,7 @@ class DanmakuStgMainScene extends Scene {
         super('メイン', 'black', renderingTarget);
         const backg = new BackG(0,0);
         const fighter = new Fighter(230, 550);    //自機の初期座標
-        const enemy = new Enemy(80, 10);
+        const enemy = new Enemy(75, 10);
         const hpBar = new EnemyHpBar(50, 20, enemy);
         this.add(backg);
         this.add(fighter);

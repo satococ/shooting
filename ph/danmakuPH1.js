@@ -355,14 +355,15 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 64, 85);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 50;		//敵の最大HP
+        this.maxHp = 70;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._intervalEX = 50;		//レーザーの発射間隔(初期値は30)
-        this._intervalEX2 = 40;		//レーザーの発射間隔(初期値は30)
+        this._intervalEX2 = 35;		//レーザーの発射間隔(初期値は30)
 
         this._timeCount = 0;		//謎の値
-        this._velocityX = 2;		//敵の動くスピード(初期値は0.3でした)
+        this._velocityX = 8 ;		//敵の動くスピード(初期値は0.3でした)
+         this._velocityXX = 15 ;		//敵の動くスピード(初期値は0.3でした)
 
         // プレイヤーの弾に当たったらHPを減らす
         this.addEventListener('hit', (e) => {
@@ -429,12 +430,10 @@ class Enemy extends SpriteActor {
 
         // インターバルを経過していたら弾を撃つ
 
-        if(this.currentHp >= 20){
-             this.x += this._velocityX*(1+Math.random());
+        if(this.currentHp >= 30){
+             this.x += this._velocityX;
              if(this.x <= 20 || this.x >= 450) {		//敵が動く範囲？
              	this._velocityX *= -1;
-          }else{
-               this._velocityX *= +1;
           }
               this._timeCount++;
              if(this._timeCount > this._intervalEX) {
@@ -445,11 +444,9 @@ class Enemy extends SpriteActor {
                  this._timeCount = 0;
              }
         }else{
-             this.x += this._velocityX*(2+Math.random() );
+             this.x += this._velocityXX;
              if(this.x <= 20 || this.x >= 440) {		//敵が動く範囲？
-             	this._velocityX *= -1;
-             }else{
-                  this._velocityX *= +1;
+             	this._velocityXX *= -1;
              }
              this._timeCount++;
             if(this._timeCount > this._intervalEX2) {
