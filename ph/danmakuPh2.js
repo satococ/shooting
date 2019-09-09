@@ -291,7 +291,7 @@ class SpiralBulletsSpawner extends Actor {
 
     update(gameInfo, input) {
         // 指定回数回転したらやめる
-        const rotation = this._angle / 360;
+        const rotation = this._angle / 520;
         if(rotation >= this._rotations) {
             this._bullets.forEach((b) => b.isFrozen = false); // 凍結解除
             this.destroy();
@@ -305,8 +305,9 @@ class SpiralBulletsSpawner extends Actor {
         this._timeCount = 0;
 
         // 角度と半径を増加させていく
-        this._angle += 80;
-        this._radius += 2;
+        this._angle += 180;
+        this._radius += 30;
+
 
         // 弾を発射する
         const rad = this._angle / 90 * Math.PI;
@@ -315,9 +316,10 @@ class SpiralBulletsSpawner extends Actor {
         const bSpdX = Math.random() * 4-2 ; // -1〜+1
         const bSpdY = Math.random() * 4 ;
         const bullet = new EnemyBullet(bX, bY, bSpdX, bSpdY, true);
-        this._bullets.push(bullet);
-
         this.spawnActor(bullet);
+
+
+
     }
 }
 
@@ -410,13 +412,12 @@ class Enemy extends SpriteActor {
          if(this._timeCount > this._interval) {
              const spawner = new SpiralBulletsSpawner(this.x, this.y+100, 4);
              this.spawnActor(spawner);
-             //this.shootCircularBullets(10, 3);
              this._timeCount = 0;
          }
 
+
          this._timeCountS++;
          if(this._timeCountS > this._intervalS) {
-            //this.shootCircularBullets(10, 3);
             this._timeCountS = 0;
           }
 
