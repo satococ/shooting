@@ -6,14 +6,14 @@
    </head>
    <body>
        <script type="text/javascript" >
-			function save() {
+			function save(){
         	var newname;
         	var elapsedTime;
         		var olddata=Number(localStorage.getItem("oldL"));
                	elapsedTime = Number(localStorage.getItem("newL"));
         		newname = document.getElementById("text").value;
         		if(newname==''){
-        			 newname = "NONAME"";
+        			 newname = "NONAME";
         		}
                	if(olddata==null){
                		localStorage.setItem("oldL",3599999);

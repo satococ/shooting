@@ -294,7 +294,7 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('kappa'), new Rectangle(0, 0, 64, 87));
+        const sprite = new Sprite(assets.get('torento'), new Rectangle(0, 0, 120, 128));
         const hitArea = new Rectangle(0, 0, 64, 85);
         super(x, y, sprite, hitArea, ['enemy']);
 
@@ -487,7 +487,7 @@ assets.addImage('my', '../image/godhand.png');
 assets.addImage('mark', '../image/マーカー.png');
 assets.addImage('bom', '../image/bomb2.png');
 assets.addImage('sprite', '../image/sprite.png');
-assets.addImage('kappa', '../image/河童.png');
+assets.addImage('torento', '../image/トレント.png');
 assets.addImage('haikei', '../image/BI3.jpg');
 
 
