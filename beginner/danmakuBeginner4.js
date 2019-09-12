@@ -255,8 +255,8 @@ class EnemyBullet extends SpriteActor {
     }
 
     update(gameInfo, input) {
-        this.x += this.velocityX;
-        this.y += this.velocityY;
+       this.x += (this.velocityX+Math.random()*2);
+        this.y += (this.velocityY+Math.random()*2);
         if(this.isOutOfBounds(gameInfo.screenRectangle)) {
             this.destroy();
         }
@@ -298,7 +298,7 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 64, 85);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 150;		//敵の最大HP
+        this.maxHp = 120;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._intervalEX = 50;		//レーザーの発射間隔(初期値は30)
@@ -319,7 +319,7 @@ class Enemy extends SpriteActor {
         const rad = degree / 180 * Math.PI;		//初期値は180
         const velocityX = Math.cos(rad) * speed;
         const velocityY = Math.sin(rad) * speed;
-        const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY*(Math.random()));
+        const bullet = new EnemyBullet(this.x, this.y, velocityX-(Math.random()*2), velocityY*(Math.random()));
         this.spawnActor(bullet);
     }
 
@@ -341,7 +341,7 @@ class Enemy extends SpriteActor {
           }
               this._timeCount++;
              if(this._timeCount > this._intervalEX) {
-                   this.shootCircularBullets(10, 5);
+                   this.shootCircularBullets(8, 5);
 
                  this._timeCount = 0;
              }
