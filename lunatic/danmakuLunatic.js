@@ -92,7 +92,7 @@ class Bullet extends SpriteActor {
         super(x, y, sprite, hitArea, ['playerBullet']);
 
         this._speed = 6;		//自機の発射間隔(初期値６)
-this.velocityX = velocityX;
+        this.velocityX = velocityX;
         // 敵に当たったら消える
         this.addEventListener('hit', (e) => {
            if(e.target.hasTag('enemy')) { this.destroy(); }
@@ -143,12 +143,12 @@ class Fighter extends SpriteActor {
         this.spawnActor(bullet);
     }
     shootBulletB(speed) {
-        const a = this.x - 290;
+        const a = this.x - 400;
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
 
-        const bullet = new EnemyBullet(290, 0, velocityX, velocityY);
+        const bullet = new EnemyBullet(470, 0, velocityX, velocityY);
         this.spawnActor(bullet);
     }
 

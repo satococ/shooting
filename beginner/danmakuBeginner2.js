@@ -263,6 +263,31 @@ class EnemyBullet extends SpriteActor {
     }
 }
 
+//レーザーのクラス
+class Enemylaser extends SpriteActor {
+    constructor(x, y, velocityX, velocityY) {
+        const sprite = new Sprite(assets.get('laser'), new Rectangle(0, 0, 45, 600));
+        const hitArea = new Rectangle(7.5, 0, 30, 540);
+        super(x, y, sprite, hitArea, ['enemyBullet']);
+
+        this.velocityX = velocityX;
+        this.velocityY = velocityY;
+         this.addEventListener('hit', (e) => {
+           if(e.target.hasTag('bomb')) {
+               //this.destroy();
+           }
+        });
+    }
+
+    update(gameInfo, input) {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        if(this.isOutOfBounds(gameInfo.screenRectangle)) {
+            this.destroy();
+        }
+    }
+}
+
 
 //エネミーマーカーを表示させるクラス
 class aBullet extends SpriteActor {
@@ -294,11 +319,11 @@ constructor(x, y) {
 //敵のクラス
 class Enemy extends SpriteActor {
     constructor(x, y) {
-        const sprite = new Sprite(assets.get('kappa'), new Rectangle(0, 0, 64, 87));
-        const hitArea = new Rectangle(0, 0, 64, 85);
+        const sprite = new Sprite(assets.get('teki'), new Rectangle(0, 0, 50, 59));
+        const hitArea = new Rectangle(0, 0, 50, 59);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 150;		//敵の最大HP
+        this.maxHp = 120;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._intervalEX = 50;		//レーザーの発射間隔(初期値は30)
@@ -316,7 +341,7 @@ class Enemy extends SpriteActor {
         });
     }
     shootBullet(degree, speed) {
-        const rad = degree / 180 * Math.PI;		//初期値は180
+        const rad = degree / 360 * Math.PI;		//初期値は180
         const velocityX = Math.cos(rad) * speed;
         const velocityY = Math.sin(rad) * speed;
         const bullet = new EnemyBullet(this.x, this.y, velocityX, velocityY*(Math.random()));
@@ -330,18 +355,38 @@ class Enemy extends SpriteActor {
         }
     }
 
+    // degree度の方向にspeedの速さでレーザーを発射する
+    shootLaser(degree, speed) {
+        const rad = degree / 180 * Math.PI;		//初期値は180
+        const velocityX = Math.cos(rad) * speed;
+        const velocityY = Math.sin(rad) * speed;
+
+        const laser1 = new Enemylaser(this.x, this.y-400, velocityX, velocityY);
+
+        this.spawnActor(laser1);
+    }
+
+
+    shootCircularLaser(num, speed) {
+        const degree = 90;		//初期値は360
+        for(let i = 0; i < num; i++) {
+            this.shootLaser(degree, speed);
+        }
+    }
+
 
     update(gameInfo, input) {
     	hp.textContent = 'HP:'+this.currentHp;
         // 左右に移動する
         // インターバルを経過していたら弾を撃つ
              this.x += this._velocityX;
-             if(this.x <= 20 || this.x >= 450) {		//敵が動く範囲？
+             if(this.x <= 10 || this.x >= 460) {		//敵が動く範囲？
              	this._velocityX *= -1;
           }
               this._timeCount++;
              if(this._timeCount > this._intervalEX) {
                    this.shootCircularBullets(10, 5);
+                    this.shootCircularLaser(3, 20);    	//レーザーを発射する。引数１は弾幕の密度、引数２は弾速
 
                  this._timeCount = 0;
              }
@@ -487,8 +532,9 @@ assets.addImage('my', '../image/godhand.png');
 assets.addImage('mark', '../image/マーカー.png');
 assets.addImage('bom', '../image/bomb2.png');
 assets.addImage('sprite', '../image/sprite.png');
-assets.addImage('kappa', '../image/河童.png');
-assets.addImage('haikei', '../image/BI2.jpg');
+assets.addImage('teki', '../image/魔導書.png');
+assets.addImage('haikei', '../image/BI2.png');
+assets.addImage('laser', '../image/レーザー.png');
 
 
 assets.loadAll().then((a) => {

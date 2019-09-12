@@ -276,7 +276,7 @@ class EnemyBullet extends SpriteActor {
 class Enemylaser extends SpriteActor {
     constructor(x, y, velocityX, velocityY) {
         const sprite = new Sprite(assets.get('laser'), new Rectangle(0, 0, 45, 600));
-        const hitArea = new Rectangle(0, 0, 30, 540);
+        const hitArea = new Rectangle(7.5, 0, 30, 540);
         super(x, y, sprite, hitArea, ['enemyBullet']);
 
         this.velocityX = velocityX;
@@ -423,7 +423,7 @@ class Mahouzin extends SpriteActor {
 
         this._interval = 60;		//弾幕の発射間隔(初期値は30)
         this._timeCount = 0;		//謎の値
-        this._velocityX = 2.3;		//敵の動くスピード(初期値は0.3でした)
+        this._velocityX = 3;		//敵の動くスピード(初期値は0.3でした)
 
         // プレイヤーの弾に当たったらHPを減らす
         this.addEventListener('hit', (e) => {
@@ -456,7 +456,7 @@ class Mahouzin extends SpriteActor {
     update(gameInfo, input) {
 
          this.x+=this._velocityX;
-         if(this.x <= 80 || this.x >= 400) {		//敵が動く範囲？
+         if(this.x <= 10 || this.x >= 400) {		//敵が動く範囲？
               this._velocityX *= -1;
         }
 

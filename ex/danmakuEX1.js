@@ -143,12 +143,12 @@ class Fighter extends SpriteActor {
         this.spawnActor(bullet);
     }
     shootBulletB(speed) {
-        const a = this.x - 290;
+        const a = this.x - 400;
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;
 
-        const bullet = new EnemyBullet(290, 0, velocityX, velocityY);
+        const bullet = new EnemyBullet(470, 0, velocityX, velocityY);
         this.spawnActor(bullet);
     }
 
