@@ -1,0 +1,202 @@
+ body{
+                 background-image:url("../image/夜城.png");
+            }
+
+            #nanid{
+               position:  absolute;
+               top:60px;
+               left:40px;
+               font-size: 30px;
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               text-stroke: 1px #ff0000;
+          }
+          
+
+
+            .rink{
+                 font-size: 44px;
+                 display: inline-block;
+                 padding: 0.5em 1em;
+                 text-decoration: none;
+                 background: #444444;/*ボタン色*/
+                 color: #ffffff;
+                 -webkit-text-stroke: 1px #ff0000;
+                 border-bottom: solid 4px #000000;
+                 border-radius: 3px;
+            }
+            .rink:active{
+                 -webkit-transform: translateY(4px);
+                 transform: translateY(4px);/*下に動く*/
+                 border-bottom: none;/*線を消す*/
+            }
+
+
+            .rink1{
+                 position:  absolute;
+                 top:400px;
+                 left:550px;
+                 font-size: 40px;
+                 display: inline-block;
+                 padding: 0.5em 1em;
+                 text-decoration: none;
+                 background: #444444;/*ボタン色*/
+                 color: #ffffff;
+                 -webkit-text-stroke: 1px #ff0000;
+                 border-bottom: solid 4px #000000;
+                 border-radius: 3px;
+            }
+            .rink1:active{
+                 -webkit-transform: translateY(4px);
+                 transform: translateY(4px);/*下に動く*/
+                 border-bottom: none;/*線を消す*/
+            }
+
+            .rink2{
+               position:  absolute;
+               top:400px;
+               right:550px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+          .rink2:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+
+          .rink3{
+               position:  absolute;
+               top:120px;
+               left:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+          .rink3:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+          .rink4{
+               position:  absolute;
+               top:280px;
+               left:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+
+          .rink4:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+
+          .rink5{
+               position:  absolute;
+               top:440px;
+               left:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+
+          .rink5:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+
+          .rink6{
+               position:  absolute;
+               top:120px;
+               right:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+          .rink6:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+          .rink7{
+               position:  absolute;
+               top:280px;
+               right:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+
+          .rink7:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+
+          .rink8{
+               position:  absolute;
+               top:440px;
+               right:40px;
+               font-size: 40px;
+               display: inline-block;
+               padding: 0.5em 1em;
+               text-decoration: none;
+               background: #444444;/*ボタン色*/
+               color: #ffffff;
+               -webkit-text-stroke: 1px #ff0000;
+               border-bottom: solid 4px #000000;
+               border-radius: 3px;
+          }
+
+          .rink8:active{
+               -webkit-transform: translateY(4px);
+               transform: translateY(4px);/*下に動く*/
+               border-bottom: none;/*線を消す*/
+          }
+
+          .MOZI{
+               font-size: 30px;
+               color: #ffffff;
+          }
+
+

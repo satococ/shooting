@@ -218,7 +218,7 @@ class Fighter extends SpriteActor {
         super(x, y, sprite, hitArea);
 
         this._interval = fighterInterval;		//(自機の弾幕の発射間隔)初期値５
-        this._intervalS = targetInterval;		//(自機狙い弾の発射感覚)初期値30
+        this._intervalS = targetInterval;		//(自機狙い弾の発射間隔)初期値30
         this._timeCount = 0;
         this._timeCountS = 0;
         this._speed = 4; //自機のスピード

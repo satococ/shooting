@@ -134,7 +134,7 @@ class Fighter extends SpriteActor {
         });
     }
      shootBulletA(speed) {
-        const a = this.x - 0;
+        const a = this.x - 50;
         const b = this.y - 0;
         const velocityX = a/Math.sqrt(a*a+b*b) * speed;
         const velocityY = b/Math.sqrt(a*a+b*b) * speed;

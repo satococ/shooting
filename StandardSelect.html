@@ -1,0 +1,98 @@
+<html>
+<head>
+     <title>ステージセレクト</title>
+     <link rel="stylesheet" type="text/css" href="./css/select.css">
+</head>
+    <body>
+
+    <p class="rink1" onclick="slideshowR()">←</p>
+    <p class="rink2" onclick="slideshowL()">→</p>
+    <center>
+         <p style="display:inline;" id = "E" div class="MOZI" onclick="slideshowL(3,1)">Easy</p>
+         <p style="display:inline" div class="MOZI">|</p>
+         <p id = "N" div class="MOZI" style="display:inline;" onclick="slideshowL(0,1)">Normal</p>
+          <p style="display:inline" div class="MOZI">|</p>
+         <p style="display:inline;"  id = "H" div class="MOZI" onclick="slideshowL(1,1)">Hard</p>
+          <p style="display:inline" div class="MOZI">|</p>
+         <p style="display:inline;" id = "L" div class="MOZI" onclick="slideshowL(2,1)">Lunatic</p>
+     </center>
+    <center>
+         <div id ="nanid">
+              Standard
+         </div>
+
+         <a id="m1">
+              <img id="mypic1"  src="" width="440px" height="796px" >
+         </a>
+         <br><br>
+         <a href="" class="rink" id="R">ゲームをプレイ</a>
+
+
+    </center>
+
+    <a href=./index.html class="rink3">トップへ</a>
+
+    <a href=sonota/createForm.html class="rink4">クリエイトモードへ</a>
+
+    <a href=./rank.html class="rink5">ランキングへ</a>
+
+
+
+    <a href=./index.html class="rink6">Beginnerステージへ</a>
+
+    <a href=./rank.html class="rink7">Extraステージへ</a>
+
+    <a href=sonota/createForm.html class="rink8">Phantasmステージへ</a>
+            <script>
+            var pics_src = new Array("./image/select/e.GIF","./image/select/n.GIF","./image/select/h.GIF","./image/select/l.GIF");
+            var pics_href = new Array("./easy/easy.html","./normal/normal.html","./hard/hard.html","./lunatic/lunatic.html");
+            var num1 = 3;
+
+
+            window.onload = function () {    //ページ読み込み時に実行される
+                    slideshowL(3);
+               };
+
+            function slideshowL(num2,flg){
+                 if(flg==1){
+                      num1 = num2;
+                      flg=0;
+               }
+                if (num1 == 3) {
+                    num1 = 0;
+                }
+                else {
+                    num1 ++;
+                }
+
+                document.getElementById("mypic1").src=pics_src[num1];
+                document.getElementById("m1").href=pics_href[num1];
+                document.getElementById("R").href=pics_href[num1];
+                if(num1==0){document.getElementById("E").style.color = "red";}else{document.getElementById("E").style.color = "White";}
+                 if(num1==1){document.getElementById("N").style.color = "red";}else{document.getElementById("N").style.color = "White";}
+                  if(num1==2){document.getElementById("H").style.color = "red";}else{document.getElementById("H").style.color = "White";}
+                   if(num1==3){document.getElementById("L").style.color = "red";}else{document.getElementById("L").style.color = "White";}
+
+
+            }
+            function slideshowR(){
+                if (num1 == 0) {
+                    num1 = 3;
+                }
+                else {
+                    num1 --;
+                }
+
+                document.getElementById("mypic1").src=pics_src[num1];
+                document.getElementById("m1").href=pics_href[num1];
+                document.getElementById("R").href=pics_href[num1];
+                if(num1==0){document.getElementById("E").style.color = "red";}else{document.getElementById("E").style.color = "White";}
+                 if(num1==1){document.getElementById("N").style.color = "red";}else{document.getElementById("N").style.color = "White";}
+                  if(num1==2){document.getElementById("H").style.color = "red";}else{document.getElementById("H").style.color = "White";}
+                   if(num1==3){document.getElementById("L").style.color = "red";}else{document.getElementById("L").style.color = "White";}
+
+
+                }
+            </script>
+
+</html>
