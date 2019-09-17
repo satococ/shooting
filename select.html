@@ -1,229 +1,157 @@
 <html>
-     <head><title>ホーム画面</title></head>
-     <body>
+<head>
+     <title>ステージセレクト</title>
+     <link rel="stylesheet" type="text/css" href="./css/select.css">
+</head>
+    <body>
+
+    <p class="rink1" onclick="slideshowR()">←</p>
+    <p class="rink2" onclick="slideshowL()">→</p>
+    <center>
+         <p style="display:inline;" id = "E" div class="MOZI" onclick="GOD1(3)">Easy</p>
+         <p style="display:inline" div class="MOZI">|</p>
+         <p id = "N" div class="MOZI" style="display:inline;" onclick="GOD1(0)">Normal</p>
+          <p style="display:inline" div class="MOZI">|</p>
+         <p style="display:inline;"  id = "H" div class="MOZI" onclick="GOD1(1)">Hard</p>
+          <p style="display:inline" div class="MOZI">|</p>
+         <p style="display:inline;" id = "L" div class="MOZI" onclick="GOD1(2)">Lunatic</p>
+     </center>
+    <center>
+         <div id ="nanid">
+
+         </div>
+
+         <a id="m1">
+              <img id="mypic1"  src="" width="440px" height="796px" >
+         </a>
+         <br><br>
+         <a href="" class="rink" id="R">ゲームをプレイ</a>
 
 
-                      <center>
-     <a href="index.html"><img src="image/ロゴ.png" width="20%" height="20%" ></a>
-     <br>
-                           <br>
-                           <table>
-                             <tr>
-                               <th>EASY</th>
-                               <th>NORMAL</th>
-                               <th>HARD</th>
-                               <th>Lunatic</th>
-                             </tr>
-                             <tr>
-                               <td>初心者向け</td>
-                               <td class="popular">中級者向け</td>
-                               <td>上級者向け</td>
-                               <td>凄い人向け</td>
-                             </tr>
-                             <tr>
-                               <td><a href="easy/easy.html">プレイ</a></td>
-                               <td class="popular"><a href="normal/normal.html">プレイ</a></td>
-                               <td><a href="hard/hard.html">プレイ</a></td>
-                               <td><a href="lunatic/lunatic.html">プレイ</a></td>
-                             </tr>
+    </center>
 
-                           </table>
-                           <br><br><br>
+    <a href=./index.html class="rink3">トップへ</a>
 
-                         <table>
-                              <tr>
-                                <th>Beginner1</th>
-                                <th>Beginner2</th>
-                                <th>Beginner3</th>
-                                <th>Beginner4</th>
-                              </tr>
+    <a href=sonota/createForm.html class="rink4">クリエイトモードへ</a>
 
-                              <tr>
-                                   <td>雪の章</td>
-                                   <td class="popular">天国の章</td>
-                                   <td>自然の章</td>
-                                   <td>水の章</td>
-                              </tr>
-                              <tr>
-                                   <td><a href="beginner/beginner1.html">プレイ</a></td>
-                                   <td><a href="beginner/beginner2.html">プレイ</a></td>
-                                   <td><a href="beginner/beginner3.html">プレイ</a></td>
-                                   <td><a href="beginner/beginner4.html">プレイ</a></td>
-                              </tr>
-                         </table>
-
-                              <br><br><br>
-
-                         <table>
-                              <tr>
-                                <th>Extra1</th>
-                                <th>Extra2</th>
-                                <th>Extra3</th>
-                                <th>Extra4</th>
-                              </tr>
-
-                              <tr>
-                                   <td>闇の章</td>
-                                   <td class="popular">光の章</td>
-                                   <td>神の章</td>
-                                   <td>悪魔の章</td>
-                              </tr>
-                              <tr>
-                                   <td><a href="ex/ex1.html">プレイ</a></td>
-                                   <td><a href="ex/ex2.html">プレイ</a></td>
-                                   <td><a href="ex/ex3.html">プレイ</a></td>
-                                   <td><a href="ex/ex4.html">プレイ</a></td>
-                              </tr>
-                         </table>
-
-                              <br><br><br>
-
-                              <table>
-                                   <tr>
-                                     <th>Phantasm1</th>
-                                     <th>Phantasm2</th>
-                                     <th>Phantasm3</th>
-                                     <th>Phantasm4</th>
-                                   </tr>
-
-                                   <tr>
-                                        <td>黒の章</td>
-                                        <td class="popular">死の章</td>
-                                        <td>混沌の章</td>
-                                        <td>偶像の章</td>
-                                   </tr>
-                                   <tr>
-                                        <td><a href="ph/ph1.html">プレイ</a></td>
-                                        <td><a href="ph/ph5.html">プレイ</a></td>
-                                        <td><a href="ph/ph3.html">プレイ</a></td>
-                                        <td><a href="ph/ph4.html">プレイ</a></td>
-                                   </tr>
-                              </table>
-
-                                   <br><br><br>
-
-                         <table>
-                              <tr>
-                                <th>クリエイトモード</th>
-                                <th>デモプレイ</th>
-                                <th>ランキング</th>
-                              </tr>
-
-                              <tr>
-                                   <td>創造の章</td>
-                                   <td class="popular">実演の章</td>
-                                   <td>記録の章</td>
-
-                              </tr>
-                              <tr>
-                                   <td><a href="sonota/createForm.html">プレイ</a></td>
-                                   <td><a href="sonota/demo.html">プレイ</a></td>
-                                   <td><a href="rank.html">プレイ</a></td>
-                              </tr>
-                         </table>
-
-
-                         <br>
-
-             <a href=index.html class="rink1">&nbsp;トップへ戻る&nbsp;</a>
-            </center>
-
-     </body>
-     <style>
-
-     </style>
+    <a href=./rank.html class="rink5">ランキングへ</a>
 
 
 
+    <a class="rink6" onclick=GOD5()>Standardステージへ</a>
+
+    <a  class="rink7" onclick=GOD2()>Beginnerステージへ</a>
+
+    <a class="rink8" onclick=GOD3()>Extraステージへ</a>
+
+     <a class="rink9" onclick=GOD4()>Phantasmステージへ</a>
+            <script>
+
+            var pics_href = new Array("./easy/easy.html","./normal/normal.html","./hard/hard.html","./lunatic/lunatic.html");
+
+            var pics_src = [
+              ["./image/select/e.GIF","./image/select/n.GIF","./image/select/h.GIF","./image/select/l.GIF"],
+              ["./image/select/b1.GIF","./image/select/b2.GIF","./image/select/b3.GIF","./image/select/b4.GIF"],
+              ["./image/select/e1.GIF","./image/select/e2.GIF","./image/select/e3.GIF","./image/select/e4.GIF"],
+              ["./image/select/p1.GIF","./image/select/p2.GIF","./image/select/p3.GIF","./image/select/p4.GIF"]
+            ];
 
 
-<style>
-body{
-     background-image:url("image/夜城.png");
-}
-table{
-  border-collapse: collapse;
-  border-spacing: 0;
-  table-layout: fixed;
-  width: 790px;
-}
+            var pics_href = [
+            ["./easy/easy.html","./normal/normal.html","./hard/hard.html","./lunatic/lunatic.html"],
+            ["./beginner/beginner1.html","./beginner/beginner2.html","./beginner/beginner3.html","./beginner/beginner4.html"],
+            ["./ex/ex1.html","./ex/ex2.html","./ex/ex3.html","./ex/ex4.html"],
+            ["./ph/ph1.html","./ph/ph2.html","./ph/ph3.html","./ph/ph4.html"]
+          ];
 
-table tr:last-child{
-  border-bottom:solid 1px #ddd;
-}
-
-table th{
-  text-align: center;
-  padding: 7px 0;
-  border-right:solid 1px #ddd;
-  border-left:solid 1px #ddd;
-  width: 155px;
-}
-
-table th:nth-child(1){
-  background-color:#dddddd;
-
-}
-
-table th:nth-child(2){
-  background-color:#b0c4de;
-
-}
-
-
-table th:nth-child(3){
-  background-color:#FF44FF;
-  color: white;
-}
-table th:nth-child(4){
-     background-color:#6a5acd;
-     color: white;
-}
-
-table tr:nth-child(2) td{
-  font-size: 30px;
-  color: #ffffff;
-  -webkit-text-stroke: 1px #000000;
-
-
-    border-bottom:solid 1px #fff;
-}
-
-table td{
-  text-align: center;
-  padding: 7px 0;
-  border-right:solid 1px #ddd;
-  border-left:solid 1px #ddd;
-  width: 155px;
-}
-
-table td a{
-  background-color: #FF0000;
-  color: white;
-  padding:5px 20px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-.rink1{
-     font-size: 40px;
-     display: inline-block;
-     padding: 0.5em 1em;
-     text-decoration: none;
-     background: #444444;/*ボタン色*/
-     color: #ffffff;
-     -webkit-text-stroke: 1px #ff0000;
-     border-bottom: solid 4px #000000;
-     border-radius: 3px;
-}
-.rink1:active{
-     -webkit-transform: translateY(4px);
-     transform: translateY(4px);/*下に動く*/
-     border-bottom: none;/*線を消す*/
-}
+            var num1 = 3;
+            var num3 = 0;
 
 
 
+            window.onload = function () {    //ページ読み込み時に実行される
+                    GOD1(3);
+                    num3 = 0;
+               };
 
-</style>
+
+               function GOD1(num2){
+                    num1 = num2;
+                    slideshowL();
+               }
+               function GOD2(){
+                    document.getElementById("E").innerText = "Bi1"
+                    document.getElementById("N").innerText = "Bi2"
+                    document.getElementById("H").innerText = "Bi3"
+                    document.getElementById("L").innerText = "Bi4"
+                    num3 = 1;
+                    GOD1(3);
+               }
+               function GOD3(){
+                    document.getElementById("E").innerText = "EX1"
+                    document.getElementById("N").innerText = "EX2"
+                    document.getElementById("H").innerText = "EX3"
+                    document.getElementById("L").innerText = "EX4"
+                    num3 = 2;
+                    GOD1(3);
+               }
+               function GOD4(){
+                    document.getElementById("E").innerText = "Ph1"
+                    document.getElementById("N").innerText = "Ph2"
+                    document.getElementById("H").innerText = "Ph3"
+                    document.getElementById("L").innerText = "Ph4"
+                    num3 = 3;
+                    GOD1(3);
+               }
+               function GOD5(){
+                    document.getElementById("E").innerText = "Easy"
+                    document.getElementById("N").innerText = "Normal"
+                    document.getElementById("H").innerText = "Hard"
+                    document.getElementById("L").innerText = "Lunatic"
+                    num3 = 0;
+                    GOD1(3);
+               }
+
+            function slideshowL(){
+                 console.log(num1);
+                if (num1 == 3) {
+                    num1 = 0;
+                }
+                else {
+                    num1 ++;
+
+                }
+                     console.log(num1);
+
+                document.getElementById("mypic1").src=pics_src[num3][num1];
+                document.getElementById("m1").href=pics_href[num3][num1];
+                document.getElementById("R").href=pics_href[num3][num1];
+                if(num1==0){document.getElementById("E").style.color = "red";}else{document.getElementById("E").style.color = "White";}
+                if(num1==1){document.getElementById("N").style.color = "red";}else{document.getElementById("N").style.color = "White";}
+                if(num1==2){document.getElementById("H").style.color = "red";}else{document.getElementById("H").style.color = "White";}
+                if(num1==3){document.getElementById("L").style.color = "red";}else{document.getElementById("L").style.color = "White";}
+
+            }
+            function slideshowR(){
+                 console.log(num1);
+                if (num1 == 0) {
+                    num1 = 3;
+                }
+                else {
+                    num1 --;
+                }
+                     console.log(num1);
+
+                     document.getElementById("mypic1").src=pics_src[num3][num1];
+                     document.getElementById("m1").href=pics_href[num3][num1];
+                     document.getElementById("R").href=pics_href[num3][num1];
+                     if(num1==0){document.getElementById("E").style.color = "red";}else{document.getElementById("E").style.color = "White";}
+                     if(num1==1){document.getElementById("N").style.color = "red";}else{document.getElementById("N").style.color = "White";}
+                     if(num1==2){document.getElementById("H").style.color = "red";}else{document.getElementById("H").style.color = "White";}
+                     if(num1==3){document.getElementById("L").style.color = "red";}else{document.getElementById("L").style.color = "White";}
+
+
+                }
+            </script>
+
 </html>
