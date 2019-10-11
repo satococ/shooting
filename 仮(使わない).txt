@@ -1,0 +1,29 @@
+$(function() {
+  $("#btn").click(function() {
+    $("#dl").dialog({
+      modal:true,
+      title:"クリアタイム",
+      buttons: {"OK": function() {
+      		 const scene = new DanmakuStgEndScene(this.renderingTarget);
+            this.changeScene(scene);}}
+    });
+  });
+});
+
+
+<div id="dl" style="display:none;">
+  <p>m + ':' + s + ':' + ms</p>
+</div>
+
+
+function  changeColor(){
+   $(function(){
+         $("#dl").dialog({
+      modal:true,
+      title:"クリアタイム",
+      buttons: {"OK": function() {
+      		 const scene = new DanmakuStgEndScene(this.renderingTarget);
+            this.changeScene(scene);}}
+    });
+   });
+}
