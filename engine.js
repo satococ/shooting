@@ -81,7 +81,7 @@ class EventDispatcher {
     }
 }
 
-//EventDIspatcherから発火させるイベント用のクラスらしいです
+//EventDIspatcherから発火（コールバック関数を実行する）させるイベント用のクラスらしいです
 
 class GameEvent {
     constructor(target) {
@@ -149,11 +149,14 @@ class SpriteActor extends Actor {
     render(target) {		//画像を描画できるようにするためのオーバーライド
         const context = target.getContext('2d');
         const rect = this.sprite.rectangle;
+        console.log(context);
         context.drawImage(this.sprite.image,
             rect.x, rect.y,
             rect.width, rect.height,
             this.x, this.y,
             rect.width, rect.height);
+            console.log(document.images.length);
+
     }
 
     isOutOfBounds(boundRect) {		//画面の外に出られないようにする

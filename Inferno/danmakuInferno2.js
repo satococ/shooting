@@ -460,6 +460,65 @@ class Enemy extends SpriteActor {
      this.spawnActor(bullet2);
      }
 
+    }
+
+    squBullet3(num,speed){
+
+          var hairetu = [
+              [-1 * speed,speed],
+              [speed,speed],
+              [speed,-1*speed],
+              [-1*speed,-1*speed]
+         ];
+
+         var s1 = (Number(hairetu[0][0])+Number(hairetu[1][0]))/(num-1);
+         var s2 = (Number(hairetu[0][1])+Number(hairetu[1][1]))/num;
+
+         for(var i=0;i<num;i++){
+          var velocityX = speed;
+          var velocityY = speed- s2 * i;
+          const bullet = new EnemyBullet(this.x, this.y, velocityX* Math.sqrt(1)-velocityY*Math.sqrt(1), velocityX* Math.sqrt(1)+velocityY* Math.sqrt(1));
+
+          this.spawnActor(bullet);
+         }
+
+
+         var s1 = (Number(hairetu[1][0])+Number(hairetu[2][0]))/(num-1);
+         var s2 = (Number(hairetu[1][1])+Number(hairetu[2][1]))/num;
+
+
+         for(var i=0;i<num;i++){
+         var velocityX = speed-s1*i;
+         var velocityY = speed;
+         const bullet2 = new EnemyBullet(this.x, this.y, velocityX* Math.sqrt(1)-velocityY*Math.sqrt(1), velocityX* Math.sqrt(1)+velocityY* Math.sqrt(1));
+
+         this.spawnActor(bullet2);
+         }
+
+         var s1 = (Number(hairetu[2][0])+Number(hairetu[3][0]))/(num-1);
+         var s2 = (Number(hairetu[2][1])+Number(hairetu[3][1]))/num;
+
+
+         for(var i=0;i<num;i++){
+         var velocityX = -1*speed;
+         var velocityY = speed + s2 * i;
+         const bullet2 = new EnemyBullet(this.x, this.y, velocityX* Math.sqrt(1)-velocityY*Math.sqrt(1), velocityX* Math.sqrt(1)+velocityY* Math.sqrt(1));
+
+         this.spawnActor(bullet2);
+         }
+
+         var s1 = (Number(hairetu[3][0])+Number(hairetu[0][0]))/(num-1);
+         var s2 = (Number(hairetu[3][1])+Number(hairetu[0][1]))/num;
+
+
+         for(var i=0;i<num;i++){
+         var velocityX =speed+ s1 *i;
+         var velocityY = -1* speed;
+         const bullet2 = new EnemyBullet(this.x, this.y, velocityX* Math.sqrt(1)-velocityY*Math.sqrt(1), velocityX* Math.sqrt(1)+velocityY* Math.sqrt(1));
+
+         this.spawnActor(bullet2);
+         }
+
 
 
 
@@ -480,6 +539,7 @@ class Enemy extends SpriteActor {
              //this.shootCircularBullets(10, 3);
              this.squBullet(13,4);
               this.squBullet2(13,4);
+              this.squBullet3(13,4);
             //this.shootCircularBullets(20, 2);		//引数１は弾幕の密度、引数２は弾速
             this._timeCount = 0;
         }
