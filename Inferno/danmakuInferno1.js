@@ -133,7 +133,7 @@ class Fighter extends SpriteActor {
         this._velocityY = 0;		//Y(ry
         this._intervalB = 30;		//の間隔
 		this._timeCountB = 0;
-		this.bombval = 5;
+		this.bombval = 1;
 
         // 敵の弾に当たったらdestroyする
         this.addEventListener('hit', (e) => {
@@ -378,7 +378,7 @@ class Enemy extends SpriteActor {
         const hitArea = new Rectangle(0, 0, 50, 98);
         super(x, y, sprite, hitArea, ['enemy']);
 
-        this.maxHp = 200;		//敵の最大HP
+        this.maxHp = 250;		//敵の最大HP
         this.currentHp = this.maxHp;
 
         this._interval = 400; //回転弾用

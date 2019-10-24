@@ -219,5 +219,10 @@
                font-size: 30px;
                color: #ffffff;
           }
+          
+          .right {
+    		text-align: right;
+			}
+
 
 
